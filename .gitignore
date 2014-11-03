@@ -1,12 +1,2 @@
-# ignore everything
-*
-
-# except these files
-!.scripts/
-!.editorconfig
-!.gitattributes
-!.gitignore
-!LICENSE.TXT
-!README
-!Vagrantfile
-!Cakebox.yaml.default
+# Ignore these files
+.vagrant/
