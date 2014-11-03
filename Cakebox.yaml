@@ -16,18 +16,19 @@ folders:
       to: /home/vagrant/Apps/alt3-api
 
 sites:
-    - map: alt3-api.dev
-      to: /home/vagrant/Apps/alt3-api/app/webroot
-
     - map: cake2.dev
       to: /home/vagrant/Apps/cake2/webroot
 
     - map: cake3.dev
       to: /home/vagrant/Apps/cake3/webroot
 
+    - map: alt3-api.dev
+      to: /home/vagrant/Apps/alt3-api/app/webroot
+
 databases:
-    - name: cake2.dev
-    - name: cake3.dev
+    - name: cake2
+    - name: cake3
+    - name: alt3-api
 
 apps:
     - name: app2.dev
