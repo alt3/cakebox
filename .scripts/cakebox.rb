@@ -44,9 +44,14 @@ class Cakebox
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.vm.synced_folder '.scripts', '/cakebox'
 
-    # Register All Of The Configured Shared Folders
+    # Register defined Synced Folders and loosen permissions for Windows users
+    # or Composer installed bins will not work.
     settings["folders"].each do |folder|
-      config.vm.synced_folder folder["map"], folder["to"], create: true, type: folder["type"] ||= nil
+      if Vagrant::Util::Platform.windows?
+          config.vm.synced_folder folder["map"], folder["to"], :mount_options => ["dmode=777","fmode=766"], create: true, type: folder["type"] ||= nil
+      else
+        config.vm.synced_folder folder["map"], folder["to"], create: true, type: folder["type"] ||= nil
+      end
     end
 
     # Configure all defined Nginx sites
