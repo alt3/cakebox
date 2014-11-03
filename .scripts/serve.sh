@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-block="server {
+block="
+server {
   listen 80;
   server_name $1;
   root $2;
@@ -9,15 +10,18 @@ block="server {
   access_log /var/log/nginx/$1.access.log;
   error_log /var/log/nginx/$1.error.log;
 
-  try_files \$uri \$uri/ /index.php?\$args;
+  location / {
+    try_files \$uri \$uri/ /index.php?\$args;
+  }
 
   location ~ \.php\$ {
     try_files \$uri = 404;
+    include /etc/nginx/fastcgi_params;
     fastcgi_pass unix:/var/run/php5-fpm.sock;
     fastcgi_index index.php;
     fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
     fastcgi_intercept_errors on;
-    include /etc/nginx/fastcgi_params;
+
   }
 
   # deny access to hidden
