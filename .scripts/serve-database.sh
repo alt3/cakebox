@@ -1,3 +1,13 @@
+#
+if [ -z "$1" ]
+  then
+  	echo "Error: missing required parameters."
+    echo "Usage: "
+    echo " serve-database name"
+    exit
+fi
+
+
 # Placeholders for optional username and password command arguments
 DB_USER=user
 DB_PASS=password
