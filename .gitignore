@@ -2,7 +2,7 @@
 *
 
 # except these files
-!.chefconfig
+!.scripts/
 !.editorconfig
 !.gitattributes
 !.gitignore
