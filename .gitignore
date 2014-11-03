@@ -2,7 +2,7 @@
 *
 
 # except these files
-!.scripts/
+!.scripts
 !.editorconfig
 !.gitattributes
 !.gitignore
