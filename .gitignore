@@ -1,0 +1,17 @@
+# ignore everything
+*
+
+# except these files
+!.chefconfig
+!.editorconfig
+!.gitattributes
+!.gitignore
+!.kitchen.yml
+!.travis.yml
+!Berksfile
+!LICENSE.TXT
+!metadata.rb
+!node.json
+!README
+!Vagrantfile
+!Vagrantfile.yml.example
