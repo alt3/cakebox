@@ -49,13 +49,22 @@ class Cakebox
       config.vm.synced_folder folder["map"], folder["to"], create: true, type: folder["type"] ||= nil
     end
 
-    # Install All The Configured Nginx Sites
+    # Configure all defined Nginx sites
     settings["sites"].each do |site|
       config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/serve.sh $1 $2"
+            s.inline = "bash /cakebox/serve-site.sh $1 $2"
             s.args = [site["map"], site["to"]]
       end
     end
+
+    # Create all defined databases
+    settings["databases"].each do |database|
+      config.vm.provision "shell" do |s|
+            s.inline = "bash /cakebox/serve-database.sh $1"
+            s.args = [database["name"]]
+      end
+    end
+
 
     # Configure All Of The Server Environment Variables
 #    if settings.has_key?("variables")
