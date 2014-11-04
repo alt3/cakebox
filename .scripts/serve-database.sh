@@ -1,12 +1,17 @@
-#
 if [ -z "$1" ]
   then
   	echo "Error: missing required parameters."
     echo "Usage: "
     echo " serve-database name"
-    exit
+    exit 1
 fi
 
+# CakePHP does not handle database names with dots properly
+if [[ $1 == *.* ]]
+  then
+    echo "Error: database names can not contain dots"
+    exit 1
+fi
 
 # Placeholders for optional username and password command arguments
 DB_USER=user
