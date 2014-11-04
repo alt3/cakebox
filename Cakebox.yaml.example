@@ -1,0 +1,46 @@
+#
+# Use this file to:
+# - map local folders to the remote server
+# - define websites
+# - create databases
+# - generate completely configured CakePHP apps
+---
+ip: "10.33.10.10"
+memory: 2048
+cpus: 1
+
+authorize: ~/.ssh/github_rsa
+
+keys:
+    - ~/.ssh/github_rsa
+
+folders:
+    - map: c:\git\alt3-api
+      to: /home/vagrant/Apps/alt3-api
+
+sites:
+    - map: cake2.dev
+      to: /home/vagrant/Apps/cake2/webroot
+
+    - map: cake3.dev
+      to: /home/vagrant/Apps/cake3/webroot
+
+    - map: alt3-api.dev
+      to: /home/vagrant/Apps/alt3-api/app/webroot
+
+databases:
+    - name: cake2
+    - name: cake3
+    - name: alt3-api
+
+apps:
+    - name: app2.dev
+      cake: 2
+
+    - name: app3.dev
+      cake: 3
+      template: FriendsOfCake
+
+variables:
+    - key: APP_ENV
+      value: local
