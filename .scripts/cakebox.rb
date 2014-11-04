@@ -1,32 +1,33 @@
 class Cakebox
   def Cakebox.configure(config, settings)
-    # Configure The Box
+
+    # Specify base-box and hostname
     config.vm.box = "cakebox"
     config.vm.hostname = "cakebox"
 
-    # Configure A Private Network IP
+    # Configure a private network IP (since DHCP is known to cause SSH timeouts)
     config.vm.network :private_network, ip: settings["ip"] ||= "10.33.10.10"
 
-    # Configure A Few VirtualBox Settings
+    # Optimizae box settings
     config.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", settings["memory"] ||= "2048"]
-#      vb.customize ["modifyvm", :id, "--cpus", settings["cpus"] ||= "1"]
+      vb.customize ["modifyvm", :id, "--cpus", settings["cpus"] ||= "1"]
 #      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 #      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 
-    # Configure Port Forwarding To The Box
+    # Enable port forwarding to the box
 #    config.vm.network "forwarded_port", guest: 80, host: 8000
 #    config.vm.network "forwarded_port", guest: 3306, host: 33060
 #    config.vm.network "forwarded_port", guest: 5432, host: 54320
 
-    # Configure The Public Key For SSH Access
+    # Configure the public key to use for SSH access
 #    config.vm.provision "shell" do |s|
 #      s.inline = "echo $1 | tee -a /home/vagrant/.ssh/authorized_keys"
 #      s.args = [File.read(File.expand_path(settings["authorize"]))]
 #    end
 
-    # Copy The SSH Private Keys To The Box
+    # Copy all specified SSH private keys to the box
 #    settings["keys"].each do |key|
 #      config.vm.provision "shell" do |s|
 #        s.privileged = false
@@ -35,17 +36,17 @@ class Cakebox
 #      end
 #    end
 
-    # Copy The Bash Aliases
+    # Copy bash aliasaes to the box
 #    config.vm.provision "shell" do |s|
 #      s.inline = "cp /vagrant/aliases /home/vagrant/.bash_aliases"
 #    end
 
-    # Do NOT mount Cakebox root directory , just the required scripts
+    # Mount (small) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.vm.synced_folder '.scripts', '/cakebox'
 
-    # Register defined Synced Folders and loosen permissions for Windows users
-    # or Composer installed bins will not work.
+    # Create Vagrant Synced Folders for all yaml specified "folders" and use loosened permissions
+    # for Windows users so they will be able to execute (e.g. Composer installed) binaries.
     settings["folders"].each do |folder|
       if Vagrant::Util::Platform.windows?
           config.vm.synced_folder folder["map"], folder["to"], :mount_options => ["dmode=777","fmode=766"], create: true, type: folder["type"] ||= nil
@@ -54,7 +55,7 @@ class Cakebox
       end
     end
 
-    # Configure all defined Nginx sites
+    # Create Nginx site configuration files for all yaml specified "sites"
     settings["sites"].each do |site|
       config.vm.provision "shell" do |s|
             s.inline = "bash /cakebox/serve-site.sh $1 $2"
@@ -62,14 +63,13 @@ class Cakebox
       end
     end
 
-    # Create all defined databases
+    # Create MySQL databases for all yaml specified "databases"
     settings["databases"].each do |database|
       config.vm.provision "shell" do |s|
             s.inline = "bash /cakebox/serve-database.sh $1"
             s.args = [database["name"]]
       end
     end
-
 
     # Configure All Of The Server Environment Variables
 #    if settings.has_key?("variables")
