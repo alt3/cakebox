@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 
+# Define script usage
+read -r -d '' USAGE <<-'EOF'
+Installs additional software from the Ubuntu Pacakge archive.
+
+Usage: serve-package [NAME]
+
+    NAME: name of the software package (as used by `apt-get install`)
+EOF
+
 # Check for required parameter
 if [ -z "$1" ]
   then
-    echo "Error: missing required parameter."
-    echo "Usage: "
-    echo " serve-package name"
+    printf "\n$USAGE\n"
+    printf "\nError: missing required parameter.\n\n"
     exit 1
 fi
 
