@@ -9,7 +9,11 @@ class Cakebox
     # Configure a private network IP (since DHCP is known to cause SSH timeouts)
     config.vm.network :private_network, ip: settings["ip"] ||= "10.33.10.10"
 
-    # Optimizae box settings
+    # Enable SSH Forwarding and prevent annoying "stdin: not a tty" errors
+    config.ssh.forward_agent = true
+    config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+
+    # Optimize box settings
     config.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", settings["memory"] ||= "2048"]
       vb.customize ["modifyvm", :id, "--cpus", settings["cpus"] ||= "1"]
