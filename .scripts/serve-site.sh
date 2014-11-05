@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+# Check for required first parameter
+if [ -z "$1" ]
+  then
+    echo "Error: missing required first parameter."
+    echo "Usage: "
+    echo " serve-site server_name root"
+    exit 1
+fi
+
+# Check for required second parameter
+if [ -z "$2" ]
+  then
+    echo "Error: missing required second parameter."
+    echo "Usage: "
+    echo " serve-site server_name root"
+    exit 1
+fi
+
+# Display feedback during Vagrant provisioning
+echo "Creating Nginx site configuration file for $1"
+
+# Generate Nginx site configuration file
 block="
 server {
   listen 80;
@@ -31,7 +53,11 @@ server {
 }
 "
 
+# Create Nginx site configuration file
 echo "$block" > "/etc/nginx/sites-available/$1"
+
+# Use nxesnite to:
+# - validate file syntax
+# - create the symbolic link in /etc/nginx/sites-enabled
+# - reload nginx
 nxensite $1
-service nginx reload
-service php5-fpm restart
