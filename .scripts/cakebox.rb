@@ -42,9 +42,9 @@ class Cakebox
 #    end
 
     # Copy bash aliasaes to the box
-#    config.vm.provision "shell" do |s|
-#      s.inline = "cp /vagrant/aliases /home/vagrant/.bash_aliases"
-#    end
+    config.vm.provision "shell" do |s|
+      s.inline = "cp /cakebox/aliases /home/vagrant/.bash_aliases"
+    end
 
     # Mount (small) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
@@ -73,6 +73,14 @@ class Cakebox
       config.vm.provision "shell" do |s|
             s.inline = "bash /cakebox/serve-database.sh $1"
             s.args = [database["name"]]
+      end
+    end
+
+    # Create Cake apps for all yaml specified "apps"
+    settings["apps"].each do |app|
+      config.vm.provision "shell" do |s|
+            s.inline = "bash /cakebox/serve-app.sh $1"
+            s.args = [app["name"]]
       end
     end
 
