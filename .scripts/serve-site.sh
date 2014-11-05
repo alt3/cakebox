@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 
-# Check for required first parameter
-if [ -z "$1" ]
+# Define script usage
+read -r -d '' USAGE <<-'EOF'
+Creates an Nginx site configuration file.
+
+Usage: serve-site [NAME] [ROOT]
+
+    NAME: fqdn of the site (e.g. app.dev)
+    ROOT: full path to site root (e.g. /var/www/app.dev/app/webroot)
+EOF
+
+# Check for required parameters
+if [[ -z "$1" || -z "$2" ]]
   then
-    echo "Error: missing required first parameter."
-    echo "Usage: "
-    echo " serve-site server_name root"
+    printf "\n$USAGE\n"
+    printf "\nError: missing required parameter.\n\n"
     exit 1
 fi
 
-# Check for required second parameter
-if [ -z "$2" ]
-  then
-    echo "Error: missing required second parameter."
-    echo "Usage: "
-    echo " serve-site server_name root"
-    exit 1
-fi
-
-# Display feedback during Vagrant provisioning
+# Vagrant provisioning feedback
 echo "Creating Nginx site configuration file for $1"
 
 # Generate Nginx site configuration file
@@ -54,10 +54,13 @@ server {
 "
 
 # Create Nginx site configuration file
+#echo "$block" | sudo tee "/etc/nginx/sites-available/$1" > /dev/null
 echo "$block" > "/etc/nginx/sites-available/$1"
 
 # Use nxesnite to:
 # - validate file syntax
 # - create the symbolic link in /etc/nginx/sites-enabled
-# - reload nginx
 nxensite $1
+
+# Reload Nginx to enable new site
+service nginx reload
