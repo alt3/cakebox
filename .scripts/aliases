@@ -7,3 +7,7 @@ alias c='clear'
 function serve-site() {
   sudo bash /cakebox/serve-site.sh "$1" "$2"
 }
+
+function serve-package() {
+  sudo bash /cakebox/serve-package.sh "$1"
+}

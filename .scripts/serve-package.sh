@@ -9,8 +9,8 @@ if [ -z "$1" ]
     exit 1
 fi
 
-# Display feedback during Vagrant provisioning
+# Vagrant provisioning feedback
 echo "Installing additional package $1"
 
 # Install the package
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -qq -y $1
+DEBIAN_FRONTEND=noninteractive apt-get install -qq -y $1
