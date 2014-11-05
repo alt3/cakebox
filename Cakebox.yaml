@@ -1,20 +1,42 @@
-#
-# Default Cakebox settings.
-#
 ---
+#
+# Cakebox optimization
+#
+# Usage:
+#   ip:     optional ip-address of your Cakebox (defaults to 10.33.10.10)
+#   memory: optionaL amount of memory for your Cakebox (defaults to 2048)
+#   cpus:   optional number of CPUs for your Cakebox (defaults to 1)
+#
 ip: "10.33.10.10"
 memory: 2048
 cpus: 1
+
+
 
 authorize: ~/.ssh/github_rsa
 
 keys:
     - ~/.ssh/github_rsa
 
+
+#
+# Folders: maps a local folder on your host to a folder on the virtual Cakebox
+#
+# Usage:
+#   - map:  required full path to the local folder to be mapped
+#     to:   required full path to the remote folder to mount
+#
 folders:
     - map: c:\git\alt3-api
       to: /home/vagrant/Apps/alt3-api
 
+#
+# Sites: create a Nginx site configuration file.
+#
+# Usage:
+#   - map:  required fqdn of the site
+#     to:   required full path to the directory serving pages (nginx root)
+#
 sites:
     - map: cake2.dev
       to: /home/vagrant/Apps/cake2/webroot
@@ -25,19 +47,57 @@ sites:
     - map: alt3-api.dev
       to: /home/vagrant/Apps/alt3-api/app/webroot
 
+#
+# Databases: create '%name%' and '%name%_test' databases.
+#
+# Usage:
+#   - name:     required name of the database
+#     username: optional username (granted localhost access, defaults to 'user')
+#     password: optional password (defaults to 'password')
+#     type:     optional database server (defaults to 'MySQL', supports 'PostgreSQL')
+#     backup:   optional backup to /var/backups (defaults to 'true', 'false' to disable backups) !!! Percona !!!
+#
 databases:
     - name: cake2
     - name: cake3
     - name: alt3-api
 
+#
+# Apps: create a fully working CakePHP app with database.
+#
+# Usage:
+#   - name:     required fqdn for the site
+#     cake:     optional CakePHP version (defaults to '2', supports '3')
+#     foc:      optional boolean to use FriendsOfCake app-template (default to 'false')
+#     db_user:  optional username for database (defaults to 'user')
+#     db_pass:  optional username for database (defaults to 'password')
+#
 apps:
     - name: app2.dev
       cake: 2
 
     - name: app3.dev
       cake: 3
-      template: FriendsOfCake
+      foc:  true
 
+#
+# Variables:
+#
+# Usage:
+#   - key:
+#     value:
+#
 variables:
     - key: APP_ENV
       value: local
+
+#
+# Packages: install additional software from the Ubuntu Pacakge archive.
+#
+# Usage:
+#   - name:   required name of the package (as used by `apt-get install`)
+#
+packages:
+#    - name: ruby
+    - name: whois
+    - name: phpmyadmin
