@@ -16,6 +16,7 @@ One Box, All Cakes.
 - remove existing sites, databases, apps?
 - enable aliases (serve-database)
 - add bash colouring scheme?
+- remote (Git hosted?) Cakebox.yaml
 
 ### serve-site
 
