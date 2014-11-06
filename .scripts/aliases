@@ -4,10 +4,18 @@ alias ...="cd ../.."
 alias h='cd ~'
 alias c='clear'
 
-function serve-site() {
-  sudo bash /cakebox/serve-site.sh "$1" "$2"
+function serve-app() {
+  sudo bash /cakebox/serve-database.sh "$1" "$2"
+}
+
+function serve-database() {
+  sudo bash /cakebox/serve-database.sh "$1"
 }
 
 function serve-package() {
   sudo bash /cakebox/serve-package.sh "$1"
+}
+
+function serve-site() {
+  sudo bash /cakebox/serve-site.sh "$1" "$2"
 }
