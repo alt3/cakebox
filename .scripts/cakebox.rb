@@ -19,6 +19,7 @@ class Cakebox
       vb.customize ["modifyvm", :id, "--cpus", settings["cpus"] ||= "1"]
 #      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
 #      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      #vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
     end
 
     # Enable port forwarding to the box
