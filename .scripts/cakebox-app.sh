@@ -26,9 +26,9 @@ echo "Composer installing FriendsOfCake app-template"
 #if [ "$(ls -A $APP_DIR/$1)" ]
 if [ "find $APP_DIR/$1 -depth -type d -empty" ]
   then
+    su vagrant -c "composer --prefer-dist --dev create-project friendsofcake/app-template $APP_DIR/$1"
+  else
     echo " * Skipping: $APP_DIR/$1 not empty"
-    exit 0
 fi
-su vagrant -c "composer --prefer-dist --dev create-project friendsofcake/app-template $APP_DIR/$1"
 
 # Create .env file
