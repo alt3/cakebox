@@ -16,11 +16,11 @@ APP_NAME=`echo $1 | sed 's/\.[^.]*$//'`
 # Vagrant provisioning feedback
 echo "Creating Cake app $1"
 
-# Generate the Nginx site configuration file (after we are sure the directory is present)
-source /cakebox/serve-site.sh $1 $APP_DIR/$1
+# Generate the Nginx site configuration file
+/cakebox/cakebox-site.sh $1 $APP_DIR/$1 || exit 1
 
-# Create the MySQL database (unless it exists)
-source /cakebox/serve-database.sh $APP_NAME
+# Create the MySQL database
+/cakebox/cakebox-database.sh $APP_NAME || exit 1
 
 # Install CakePHP 2 application using FriendsOfCake app-template
 echo "Composer installing FriendsOfCake app-template"

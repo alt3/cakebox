@@ -20,15 +20,15 @@ if [ -z "$1" ]
     exit 1
 fi
 
+# Vagrant provisioning feedback
+echo "Creating databases for $1"
+
 # CakePHP does not handle database names with dots properly
 if [[ $1 == *.* ]]
   then
-    echo "Error: database names may not contain dots"
+    echo "Error: database name may not contains dots"
     exit 1
 fi
-
-# Vagrant provisioning feedback
-echo "Creating databases for $1"
 
 # Create databases unless they already exist
 if [ -d "/var/lib/mysql/$1" ]
