@@ -12,7 +12,7 @@ fi
 APP_DIR=/home/vagrant/Apps
 
 # Vagrant provisioning feedback
-echo "Creating Cake app $1"
+echo "Creating CakePHP app $1"
 
 # Generate the Nginx site configuration file
 /cakebox/cakebox-site.sh $1 $APP_DIR/$1 || exit 1
