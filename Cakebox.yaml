@@ -11,7 +11,6 @@ ip: "10.33.10.10"
 memory: 2048
 cpus: 1
 
-
 #
 #
 #
@@ -25,53 +24,52 @@ keys:
     - ~/.ssh/github_rsa
 
 #
-# Folders: maps a local folder on your host to a folder on the virtual Cakebox
+# Folders: map local folders on your host to remote Cakebox folders
 #
 # Usage:
-#   - map:  required full path to the local folder to be mapped
-#     to:   required full path to the remote folder to mount
+#   - map:  required full path of the local folder
+#     to:   required full path of the remote folder
+#
 #
 folders:
-    - map: c:\git\alt3-api
-      to: /home/vagrant/Apps/alt3-api
+    - map: /git/my_repo
+      to:  /home/vagrant/Apps/my_repo
+
+    - map: /git/my_other_repo
+      to:  /my/custom/path
 
 #
-# Sites: create an Nginx site configuration file.
+# Sites: generate Nginx site configuration files.
 #
 # Usage:
 #   - map:  required fqdn of the site
 #     to:   required full path to the directory serving pages (nginx root)
 #
 sites:
-    - map: cake2.dev
-      to: /home/vagrant/Apps/cake2/webroot
+    - map: cake.dev
+      to:  /home/vagrant/Apps/cake2.dev/webroot
 
-    - map: cake3.dev
-      to: /home/vagrant/Apps/cake3/webroot
-
-    - map: alt3-api.dev
-      to: /home/vagrant/Apps/alt3-api/app/webroot
+    - map: api.cake.dev
+      to:  /home/vagrant/Apps/api.cake.dev/app/webroot
 
     - map: test.dev
-      to: /cakebox
+      to:  /my/custom/dir
 
 #
-# Databases: create database and test database with '_test' suffix.
+# Databases: create MySQL databases with accompanying '_test' database.
 #
 # Usage:
 #   - name:     required name of the database
 #     username: optional username (granted localhost access, defaults to 'user')
 #     password: optional password (defaults to 'password')
-#     type:     optional database server (defaults to 'MySQL', supports 'PostgreSQL')
-#     backup:   optional backup to /var/backups (defaults to 'true', 'false' to disable backups) !!! Percona !!!
 #
 databases:
-    - name: cake2
-    - name: cake3
+    - name: app1
+    - name: api-app
     - name: alt3-api
 
 #
-# Apps: create a fully working CakePHP app with database.
+# Apps: install fully working CakePHP applications.
 #
 # Usage:
 #   - name:     required fqdn for the site
@@ -81,10 +79,10 @@ databases:
 #     db_pass:  optional username for database (defaults to 'password')
 #
 apps:
-    - name: app2.dev
+    - name: app.dev
       cake: 2
 
-    - name: app3.dev
+    - name: app.template.dev
       cake: 3
       foc:  true
 
