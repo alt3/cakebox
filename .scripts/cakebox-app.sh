@@ -30,7 +30,7 @@ if [ -d "$APP_DIR/$1" ]; then
   DIR_COUNT="$( find $APP_DIR/$1 -mindepth 1 -maxdepth 1 | wc -l )"
 fi
 
-if [ $DIR_COUNT != 0 ]; then
+if [ $DIR_COUNT ]; then
     echo " * Skipping: $APP_DIR/$1 is not empty"
   else
     su vagrant -c "composer --prefer-dist --dev create-project friendsofcake/app-template $APP_DIR/$1"
