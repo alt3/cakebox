@@ -64,7 +64,7 @@ class Cakebox
     # Create Nginx site configuration files for all yaml specified "sites"
     settings["sites"].each do |site|
       config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/serve-site.sh $1 $2"
+            s.inline = "bash /cakebox/cakebox-site.sh $1 $2"
             s.args = [site["map"], site["to"]]
       end
     end
@@ -72,7 +72,7 @@ class Cakebox
     # Create MySQL databases for all yaml specified "databases"
     settings["databases"].each do |database|
       config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/serve-database.sh $1"
+            s.inline = "bash /cakebox/cakebox-database.sh $1"
             s.args = [database["name"]]
       end
     end
@@ -80,7 +80,7 @@ class Cakebox
     # Create Cake apps for all yaml specified "apps"
     settings["apps"].each do |app|
       config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/serve-app.sh $1"
+            s.inline = "bash /cakebox/cakebox-app.sh $1"
             s.args = [app["name"]]
       end
     end
@@ -98,7 +98,7 @@ class Cakebox
     # Install additional software
     settings["packages"].each do |package|
       config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/serve-package.sh $1"
+            s.inline = "bash /cakebox/cakebox-package.sh $1"
             s.args = [package["name"]]
       end
     end
