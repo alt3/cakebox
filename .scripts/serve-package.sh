@@ -12,8 +12,7 @@ EOF
 # Check for required parameter
 if [ -z "$1" ]
   then
-    printf "\n$USAGE\n"
-    printf "\nError: missing required parameter.\n\n"
+    printf "\n$USAGE\n\nError: missing required parameter.\n\n"
     exit 1
 fi
 

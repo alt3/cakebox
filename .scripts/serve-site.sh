@@ -13,8 +13,7 @@ EOF
 # Check for required parameters
 if [[ -z "$1" || -z "$2" ]]
   then
-    printf "\n$USAGE\n"
-    printf "\nError: missing required parameter.\n\n"
+    printf "\n$USAGE\n\nError: missing required parameter.\n\n"
     exit 1
 fi
 

@@ -12,12 +12,17 @@ memory: 2048
 cpus: 1
 
 
-
+#
+#
+#
 authorize: ~/.ssh/github_rsa
+
+#
+#
+#
 
 keys:
     - ~/.ssh/github_rsa
-
 
 #
 # Folders: maps a local folder on your host to a folder on the virtual Cakebox
@@ -31,7 +36,7 @@ folders:
       to: /home/vagrant/Apps/alt3-api
 
 #
-# Sites: create a Nginx site configuration file.
+# Sites: create an Nginx site configuration file.
 #
 # Usage:
 #   - map:  required fqdn of the site
@@ -47,8 +52,11 @@ sites:
     - map: alt3-api.dev
       to: /home/vagrant/Apps/alt3-api/app/webroot
 
+    - map: test.dev
+      to: /cakebox
+
 #
-# Databases: create '%name%' and '%name%_test' databases.
+# Databases: create database and test database with '_test' suffix.
 #
 # Usage:
 #   - name:     required name of the database
@@ -95,9 +103,8 @@ variables:
 # Packages: install additional software from the Ubuntu Pacakge archive.
 #
 # Usage:
-#   - name:   required name of the package (as used by `apt-get install`)
+#   - name:   name of the software package (as used by `apt-get install`)
 #
 packages:
-#    - name: ruby
     - name: whois
     - name: phpmyadmin
