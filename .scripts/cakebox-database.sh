@@ -8,7 +8,7 @@ DB_PASS=password
 read -r -d '' USAGE <<-'EOF'
 Creates database and test database with '_test' suffix.
 
-Usage: serve-database [NAME]
+Usage: cakebox-database [NAME]
 
   NAME: name to be used for the databases.
 EOF
@@ -20,25 +20,22 @@ if [ -z "$1" ]
     exit 1
 fi
 
-# Vagrant provisioning feedback
-echo "Creating databases for $1"
+# Database names should not contain dots, replace with underscores
+DB=`echo $1 | sed 's/\./_/g'`
+DB_TEST=$DB"_test"
 
-# CakePHP does not handle database names with dots properly
-if [[ $1 == *.* ]]
-  then
-    echo "Error: database name may not contains dots"
-    exit 1
-fi
+# Vagrant provisioning feedback
+echo "Creating database $DB"
 
 # Create databases unless they already exist
-if [ -d "/var/lib/mysql/$1" ]
+if [ -d "/var/lib/mysql/$DB" ]
   then
-    echo " * Skipping: databases already exist"
+    echo " * Skipping: database already exist"
   else
-    mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$1\`"
-    mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$1_test\`"
+    mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$DB\`"
+    mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$DB_TEST\`"
 fi
 
 # Always set database permissions
-mysql -uroot -e "GRANT ALL ON \`$1\`.* to  '$DB_USER'@'localhost' identified by '$DB_PASS'"
-mysql -uroot -e "GRANT ALL ON \`$1_test\`.* to '$DB_USER'@'localhost' identified by '$DB_PASS'"
+mysql -uroot -e "GRANT ALL ON \`$DB\`.* to  '$DB_USER'@'localhost' identified by '$DB_PASS'"
+mysql -uroot -e "GRANT ALL ON \`$DB_TEST\`.* to '$DB_USER'@'localhost' identified by '$DB_PASS'"
