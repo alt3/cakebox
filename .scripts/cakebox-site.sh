@@ -4,7 +4,7 @@
 read -r -d '' USAGE <<-'EOF'
 Creates an Nginx site configuration file.
 
-Usage: serve-site [NAME] [ROOT]
+Usage: cakebox-site [NAME] [ROOT]
 
     NAME: fqdn of the site (e.g. app.dev)
     ROOT: full path to site root (e.g. /var/www/app.dev/app/webroot)

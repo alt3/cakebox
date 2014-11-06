@@ -4,7 +4,7 @@
 read -r -d '' USAGE <<-'EOF'
 Installs additional software from the Ubuntu Pacakge archive.
 
-Usage: serve-package [NAME]
+Usage: cakebox-package [NAME]
 
     NAME: name of the software package (as used by `apt-get install`)
 EOF
