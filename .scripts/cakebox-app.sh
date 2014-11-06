@@ -11,7 +11,6 @@ fi
 
 # Generate convenience variable
 APP_DIR=/home/vagrant/Apps
-APP_NAME=`echo $1 | sed 's/\.[^.]*$//'`
 
 # Vagrant provisioning feedback
 echo "Creating Cake app $1"
@@ -20,7 +19,7 @@ echo "Creating Cake app $1"
 /cakebox/cakebox-site.sh $1 $APP_DIR/$1 || exit 1
 
 # Create the MySQL database
-/cakebox/cakebox-database.sh $APP_NAME || exit 1
+/cakebox/cakebox-database.sh $1 || exit 1
 
 # Install CakePHP 2 application using FriendsOfCake app-template
 echo "Composer installing FriendsOfCake app-template"
