@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
 # Check for required parameter
-if [ -z "$1" ]
-  then
+if [ -z "$1" ]; then
     echo "Error: missing required parameter."
     echo "Usage: "
-    echo " serve-app name.domain"
+    echo " cakebox-app name.domain"
     exit 1
 fi
 
@@ -23,11 +22,18 @@ echo "Creating Cake app $1"
 
 # Install CakePHP 2 application using FriendsOfCake app-template
 echo "Composer installing FriendsOfCake app-template"
-if [ "find $APP_DIR/$1 -depth -type d -empty" ]
-  then
-    su vagrant -c "composer --prefer-dist --dev create-project friendsofcake/app-template $APP_DIR/$1"
+
+# Only run composer if:
+# - directory does not exist
+# - directory does exist but is empty
+if [ -d "$APP_DIR/$1" ]; then
+  DIR_COUNT="$( find $APP_DIR/$1 -mindepth 1 -maxdepth 1 | wc -l )"
+fi
+
+if [ $DIR_COUNT != 0 ]; then
+    echo " * Skipping: $APP_DIR/$1 is not empty"
   else
-    echo " * Skipping: $APP_DIR/$1 not empty"
+    su vagrant -c "composer --prefer-dist --dev create-project friendsofcake/app-template $APP_DIR/$1"
 fi
 
 # Create .env file
