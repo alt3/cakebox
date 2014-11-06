@@ -31,8 +31,13 @@ fi
 echo "Creating databases for $1"
 
 # Create databases unless they already exist
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$1\`"
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$1_test\`"
+if [ -d "/var/lib/mysql/$1" ]
+  then
+    echo " * Skipping: databases already exist"
+  else
+    mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$1\`"
+    mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$1_test\`"
+fi
 
 # Always set database permissions
 mysql -uroot -e "GRANT ALL ON \`$1\`.* to  '$DB_USER'@'localhost' identified by '$DB_PASS'"
