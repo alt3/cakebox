@@ -23,7 +23,6 @@ echo "Creating Cake app $1"
 
 # Install CakePHP 2 application using FriendsOfCake app-template
 echo "Composer installing FriendsOfCake app-template"
-#if [ "$(ls -A $APP_DIR/$1)" ]
 if [ "find $APP_DIR/$1 -depth -type d -empty" ]
   then
     su vagrant -c "composer --prefer-dist --dev create-project friendsofcake/app-template $APP_DIR/$1"
