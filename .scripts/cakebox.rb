@@ -53,35 +53,44 @@ class Cakebox
 
     # Create Vagrant Synced Folders for all yaml specified "folders" and use loosened permissions
     # for Windows users so they will be able to execute (e.g. Composer installed) binaries.
-    settings["folders"].each do |folder|
-      if Vagrant::Util::Platform.windows?
-          config.vm.synced_folder folder["map"], folder["to"], :mount_options => ["dmode=777","fmode=766"], create: true, type: folder["type"] ||= nil
-      else
-        config.vm.synced_folder folder["map"], folder["to"], create: true, type: folder["type"] ||= nil
+    unless settings["folders"].nil?
+      settings["folders"].each do |folder|
+        if Vagrant::Util::Platform.windows?
+            config.vm.synced_folder folder["map"], folder["to"], :mount_options => ["dmode=777","fmode=766"], create: true, type: folder["type"] ||= nil
+        else
+          config.vm.synced_folder folder["map"], folder["to"], create: true, type: folder["type"] ||= nil
+        end
       end
     end
 
     # Create Nginx site configuration files for all yaml specified "sites"
-    settings["sites"].each do |site|
-      config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/cakebox-site.sh $1 $2"
-            s.args = [site["map"], site["to"]]
+    unless settings["sites"].nil?
+      settings["sites"].each do |site|
+        puts "DO"
+        config.vm.provision "shell" do |s|
+          s.inline = "bash /cakebox/cakebox-site.sh $@"
+          s.args = [site["map"], site["to"]]
+        end
       end
     end
 
     # Create MySQL databases for all yaml specified "databases"
-    settings["databases"].each do |database|
-      config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/cakebox-database.sh $1"
-            s.args = [database["name"]]
+    unless settings["databases"].nil?
+      settings["databases"].each do |database|
+        config.vm.provision "shell" do |s|
+          s.inline = "bash /cakebox/cakebox-database.sh $@"
+          s.args = [database["name"]]
+        end
       end
     end
 
     # Create Cake apps for all yaml specified "apps"
-    settings["apps"].each do |app|
-      config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/cakebox-app.sh $1"
-            s.args = [app["name"]]
+    unless settings["apps"].nil?
+      settings["apps"].each do |app|
+        config.vm.provision "shell" do |s|
+          s.inline = "bash /cakebox/cakebox-app.sh $@"
+          s.args = [ app["fqdn"], app["template"] ]
+        end
       end
     end
 
@@ -96,10 +105,12 @@ class Cakebox
 #    end
 
     # Install additional software
-    settings["packages"].each do |package|
-      config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/cakebox-package.sh $1"
-            s.args = [package["name"]]
+    unless settings["databases"].nil?
+      settings["packages"].each do |package|
+        config.vm.provision "shell" do |s|
+          s.inline = "bash /cakebox/cakebox-package.sh $@"
+          s.args = [ package["name"] ]
+        end
       end
     end
 
