@@ -25,4 +25,4 @@ sed -i "/DATABASE_TEST_URL/c\export DATABASE_TEST_URL=\"mysql://$TEST_DATABASE_U
 chmod 777 "$APP_DIR/tmp" -R
 
 # Generate the Nginx site configuration file
-/cakebox/cakebox-site.sh $FQDN $APP_DIR/webroot || exit 1
+/cakebox/cakebox-site.sh $URL $APP_DIR/webroot || exit 1
