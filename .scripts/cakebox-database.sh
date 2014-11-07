@@ -21,7 +21,7 @@ if [ -z "$1" ]
 fi
 
 # Convenience variables. Please note that database names should not contain
-# dots so we replace them with with underscores
+# dots so we replace them with with underscores.
 DB=`echo $1 | sed 's/\./_/g'`
 DB_TEST=$DB"_test"
 
