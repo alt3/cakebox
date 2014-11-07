@@ -21,4 +21,4 @@ sed -i "/'username'/c'username' => '$DATABASE_USER'," "$APP_PHP"
 sed -i "/'password'/c'password' => '$DATABASE_PASSWORD'," "$APP_PHP"
 
 # Generate the Nginx site configuration file
-/cakebox/cakebox-site.sh $FQDN $APP_DIR/webroot || exit 1
+/cakebox/cakebox-site.sh $URL $APP_DIR/webroot || exit 1

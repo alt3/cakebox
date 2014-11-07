@@ -5,9 +5,9 @@ read -r -d '' USAGE <<-'EOF'
 Installs and configures a fully working CakePHP application using
 nginx webserver and MySQL database.
 
-Usage: cakebox-app <FQDN> <TEMPLATE> [<VERSION>]
+Usage: cakebox-app <URL> <TEMPLATE> [<VERSION>]
 
-    FQDN      fqdn used to expose the site (eg. cake.app)
+    URL       URL used to expose the site
     TEMPLATE  template to use (cakephp, foc)
     VERSION   CakePHP major version (defaults to 3, supports 2)
 EOF
@@ -25,14 +25,14 @@ if [[ "$2" != "cakephp" && "$2" != "friendsofcake" ]]; then
 fi
 
 # Export variables to make them available in installer scripts
-export FQDN=$1
+export URL=$1
 export TEMPLATE=$2
 export CAKE_VERSION=3
 if [[ "$3" && "$3" -eq 2 ]]; then
   export CAKE_VERSION=2
 fi
 export APPS_ROOT=/home/vagrant/Apps
-export APP_DIR="$APPS_ROOT/$FQDN"
+export APP_DIR="$APPS_ROOT/$URL"
 export SALT="Replace-Insecure-Cakebox-Salt-And-Cipher"
 export CIPHER="11111111111111111111111112345"
 export DATABASE=`echo $1 | sed 's/\./_/g'`

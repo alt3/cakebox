@@ -49,4 +49,4 @@ fi
 chmod 777 "$TMP_DIR" -R
 
 # Generate the Nginx site configuration file
-/cakebox/cakebox-site.sh $FQDN $APP_DIR/app/webroot || exit 1
+/cakebox/cakebox-site.sh $URL $APP_DIR/app/webroot || exit 1
