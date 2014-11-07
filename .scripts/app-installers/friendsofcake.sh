@@ -4,23 +4,15 @@
 ENV="$APP_DIR/app/Config/.env"
 
 # Provide Vagrant provisioning feedback
-echo "Creating CakePHP $CAKE_VERSION.x application using FriendsOfCake app-template"
+echo "Creating CakePHP 2.x application using FriendsOfCake app-template"
 
-# Generate the Nginx site configuration file
-/cakebox/cakebox-site.sh $FQDN $APP_DIR/webroot || exit 1
-
-# Install CakePHP 2 application using FriendsOfCake app-template
-echo "Composer installing"
-
-# Only run composer if directory does not exist OR is empty
-if [ -d "$APP_DIR" ]; then
-  DIR_COUNT="$( find $APP_DIR -mindepth 1 -maxdepth 1 | wc -l )"
-fi
-
-if [ $DIR_COUNT ]; then
-    echo " * Skipping: $APP_DIR is not empty"
-  else
+# Composer install CakePHP 2 application using FriendsOfCake app-template
+if dir_available "$APP_DIR"
+  then
+    echo "Composer installing"
     su vagrant -c "composer create-project --prefer-dist --dev friendsofcake/app-template $APP_DIR"
+  else
+    echo " * Skipping Composer installation: $APP_DIR not empty"
 fi
 
 # Configure .env file
@@ -32,3 +24,6 @@ sed -i "/DATABASE_TEST_URL/c\export DATABASE_TEST_URL=\"mysql://$TEST_DATABASE_U
 
 # Set /tmp permissions
 chmod 777 "$APP_DIR/tmp" -R
+
+# Generate the Nginx site configuration file
+/cakebox/cakebox-site.sh $FQDN $APP_DIR/webroot || exit 1
