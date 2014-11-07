@@ -66,7 +66,6 @@ class Cakebox
     # Create Nginx site configuration files for all yaml specified "sites"
     unless settings["sites"].nil?
       settings["sites"].each do |site|
-        puts "DO"
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/cakebox-site.sh $@"
           s.args = [site["map"], site["to"]]
