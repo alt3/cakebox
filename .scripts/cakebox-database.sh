@@ -30,7 +30,7 @@ echo "Creating databases for $DB"
 # Create databases unless they already exist
 if [ -d "/var/lib/mysql/$DB" ]
   then
-    echo " * Skipping: database already exist"
+    echo " * Skipping: databases already exist"
   else
     mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$DB\`"
     mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$DB_TEST\`"
