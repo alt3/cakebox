@@ -15,7 +15,7 @@ if dir_available "$APP_DIR"
 fi
 
 # Configure .env file
-cp "$APP_DIR/app/Config/.env.default" "$ENV"
+cp "$ENV.default" "$ENV"
 sed -i "/SECURITY_SALT/c\export SECURITY_SALT=\"$SALT\"" "$ENV"
 sed -i "/SECURITY_CIPHER/c\export SECURITY_CIPHER=\"$CIPHER\"" "$ENV"
 sed -i "/DATABASE_URL/c\export DATABASE_URL=\"mysql://$DATABASE_USER:$DATABASE_PASSWORD@localhost/$DATABASE?encoding=utf8\"" "$ENV"
