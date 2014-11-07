@@ -29,6 +29,9 @@ keys:
 #   - map:  required full path of the local folder
 #     to:   required full path of the remote folder
 #
+# Notes:
+#   - folders starting with a character will be created in the Cakebox root folder
+#   - folders starting with / will conveniently be translated to C: for Windows users
 #
 #folders:
 #    - map: /git/my_repo

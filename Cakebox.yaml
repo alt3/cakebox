@@ -1,108 +1,12 @@
 ---
-#
-# Cakebox optimization
-#
-# Usage:
-#   ip:     optional ip-address of your Cakebox (defaults to 10.33.10.10)
-#   memory: optionaL amount of memory for your Cakebox (defaults to 2048)
-#   cpus:   optional number of CPUs for your Cakebox (defaults to 1)
-#
 ip: "10.33.10.10"
 memory: 2048
 cpus: 1
 
-#
-#
-#
-authorize: ~/.ssh/github_rsa
-
-#
-#
-#
-
-keys:
-    - ~/.ssh/github_rsa
-
-#
-# Folders: map local folders on your host to remote Cakebox folders
-#
-# Usage:
-#   - map:  required full path of the local folder
-#     to:   required full path of the remote folder
-#
-#
 folders:
-    - map: /git/my_repo
-      to:  /home/vagrant/Apps/my_repo
+    - map: Apps/cake.app
+      to:  /home/vagrant/Apps/cake.app
 
-    - map: /git/my_other_repo
-      to:  /my/custom/path
-
-#
-# Sites: generate Nginx site configuration files.
-#
-# Usage:
-#   - map:  required fqdn of the site
-#     to:   required full path to the directory serving pages (nginx root)
-#
-sites:
-    - map: cake.dev
-      to:  /home/vagrant/Apps/cake2.dev/webroot
-
-    - map: api.cake.dev
-      to:  /home/vagrant/Apps/api.cake.dev/app/webroot
-
-    - map: test.dev
-      to:  /my/custom/dir
-
-#
-# Databases: create MySQL databases with accompanying '_test' database.
-#
-# Usage:
-#   - name:     required name of the database
-#     username: optional username (granted localhost access, defaults to 'user')
-#     password: optional password (defaults to 'password')
-#
-databases:
-    - name: app1
-    - name: api-app
-    - name: alt3-api
-
-#
-# Apps: install fully working CakePHP applications.
-#
-# Usage:
-#   - name:     required fqdn for the site
-#     cake:     optional CakePHP version (defaults to '2', supports '3')
-#     foc:      optional boolean to use FriendsOfCake app-template (default to 'false')
-#     db_user:  optional username for database (defaults to 'user')
-#     db_pass:  optional username for database (defaults to 'password')
-#
 apps:
-    - name: app.dev
-      cake: 2
-
-    - name: app.template.dev
-      cake: 3
-      foc:  true
-
-#
-# Variables:
-#
-# Usage:
-#   - key:
-#     value:
-#
-variables:
-    - key: APP_ENV
-      value: local
-
-#
-# Packages: install additional software from the Ubuntu Pacakge archive.
-#
-# Usage:
-#   - name:   name of the software package (as used by `apt-get install`)
-#
-packages:
-    - name: whois
-    - name: phpmyadmin
+    - url: cake.app
+      template: cakephp

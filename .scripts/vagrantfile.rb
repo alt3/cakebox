@@ -51,8 +51,9 @@ class Cakebox
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.vm.synced_folder '.scripts', '/cakebox'
 
-    # Create Vagrant Synced Folders for all yaml specified "folders" and use loosened permissions
-    # for Windows users so they will be able to execute (e.g. Composer installed) binaries.
+    # Create Vagrant Synced Folders for all yaml specified "folders" and use
+    # loosened permissions for Windows users so they will be able to execute
+    # (e.g. Composer installed) binaries.
     unless settings["folders"].nil?
       settings["folders"].each do |folder|
         if Vagrant::Util::Platform.windows?
@@ -88,7 +89,7 @@ class Cakebox
       settings["apps"].each do |app|
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/cakebox-app.sh $@"
-          s.args = [ app["fqdn"], app["template"] ]
+          s.args = [ app["url"], app["template"] ]
         end
       end
     end
