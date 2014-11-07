@@ -16,8 +16,11 @@ if [ -z "$1" ]
     exit 1
 fi
 
+# Convenienve variables
+$PACKAGE=$1
+
 # Vagrant provisioning feedback
-echo "Installing additional package $1"
+echo "Installing additional package $PACKAGE"
 
 # Install the package
-DEBIAN_FRONTEND=noninteractive apt-get install -qq -y $1
+DEBIAN_FRONTEND=noninteractive apt-get install -qq -y $PACKAGE
