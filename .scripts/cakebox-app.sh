@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "Parameters below:"
-echo $@
 
 # Define script usage
 read -r -d '' USAGE <<-'EOF'
@@ -16,24 +14,21 @@ Usage: cakebox-app <FQDN> <TEMPLATE> [<VERSION>]
 EOF
 
 # Check required parameters
-if [[ -z "$1" || -z "$2" ]]
-  then
-    printf "\n$USAGE\n\nError: missing required parameter.\n\n"
-    exit 1
+if [[ -z "$1" || -z "$2" ]]; then
+  printf "\n$USAGE\n\nError: missing required parameter.\n\n"
+  exit 1
 fi
 
 # Verify template parameter
-if [[ "$2" != "cakephp" && "$2" != "friendsofcake" ]]
-  then
-    printf "\n$USAGE\n\nError: unsupported template.\n\n"
-    exit 1
+if [[ "$2" != "cakephp" && "$2" != "friendsofcake" ]]; then
+  printf "\n$USAGE\n\nError: unsupported template.\n\n"
+  exit 1
 fi
 
 # Determine CakePHP version to use
 export CAKE_VERSION=3
-if [[ "$3" && "$3" -eq 2 ]]
-  then
-    export CAKE_VERSION=2
+if [[ "$3" && "$3" -eq 2 ]]; then
+  export CAKE_VERSION=2
 fi
 
 # export variables shared between app-installer scripts
@@ -49,19 +44,30 @@ export TEST_DATABASE=$DATABASE"_test"
 export TEST_DATABASE_USER="user"
 export TEST_DATABASE_PASSWORD="password"
 
-# Create the MySQL database
-/cakebox/cakebox-database.sh $DATABASE || exit 1
-
-# Run app specific installer script
-INSTALLERS=/cakebox/app-installers
-if [ "$2" = 'cakephp' ]
-  then
-    if [ "$CAKE_VERSION" -eq 2 ]
-      then
-        $INSTALLERS/cakephp2.sh
-      else
-        $INSTALLERS/cakephp3.sh
+# Convenience function to check target directory before running Git and Composer
+# installs. Please note that $1 is the function parameter here and NOT the first
+# parameter as passed to this script.
+function dir_available {
+  if [ ! -d "$1" ]; then
+    return 0
   fi
-  exit 0
+
+  if [ "$( find $1 -mindepth 1 -maxdepth 1 | wc -l )" -eq 0 ]; then
+    return 0
+  fi
+  return 1
+}
+export -f dir_available
+
+# Run app-specific installer script
+INSTALLERS=/cakebox/app-installers
+if [[ "$2" = 'cakephp' && "$CAKE_VERSION" -eq 2 ]]; then
+  $INSTALLERS/cakephp2.sh
+elif [[ "$2" = 'cakephp' && "$CAKE_VERSION" -eq 3 ]]; then
+  $INSTALLERS/cakephp3.sh
+else
+  $INSTALLERS/friendsofcake.sh
 fi
-$INSTALLERS/friendsofcake.sh
+
+# Create the MySQL databases
+/cakebox/cakebox-database.sh $DATABASE || exit 1
