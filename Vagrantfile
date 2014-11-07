@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = '2'
 
 path = "#{File.dirname(__FILE__)}"
-require path + '/.scripts/vagrantfile.rb'
+require path + '/.scripts/Vagrantfile.rb'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   Cakebox.configure(config, YAML::load(File.read(path + '/Cakebox.yaml')))

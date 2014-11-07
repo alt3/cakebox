@@ -94,6 +94,7 @@ class Cakebox
       end
     end
 
+
     # Configure All Of The Server Environment Variables
 #    if settings.has_key?("variables")
 #      settings["variables"].each do |var|
