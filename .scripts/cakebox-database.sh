@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Placeholders for optional username and password command arguments
+# @todo: username and password command arguments
 DB_USER=user
 DB_PASS=password
 
@@ -25,7 +25,7 @@ DB=`echo $1 | sed 's/\./_/g'`
 DB_TEST=$DB"_test"
 
 # Vagrant provisioning feedback
-echo "Creating database $DB"
+echo "Creating databases for $DB"
 
 # Create databases unless they already exist
 if [ -d "/var/lib/mysql/$DB" ]
