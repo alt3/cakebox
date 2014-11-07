@@ -9,7 +9,7 @@ echo "Creating CakePHP 3.x application using FriendsOfCake app-template"
 # Composer install CakePHP 2 application using FriendsOfCake app-template
 if dir_available "$APP_DIR"
   then
-    su vagrant -c "composer create-project --prefer-dist -s dev friendsofcake/app-template $APP_DIR dev-cake3"``
+    su vagrant -c "composer create-project --prefer-dist -s dev friendsofcake/app-template $APP_DIR dev-cake3"
   else
     echo " * Skipping Composer installation: $APP_DIR not empty"
 fi
