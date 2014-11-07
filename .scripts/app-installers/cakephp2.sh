@@ -10,18 +10,15 @@ PLUGIN_DIR="$APP_DIR/plugins"
 TMP_DIR="$APP_DIR/app/tmp"
 
 # Provide Vagrant provisioning feedback
-echo "Creating CakePHP $CAKE_VERSION.x application"
+echo "Creating CakePHP 2.x application"
 
-# Clone the cakephp repository
+# Git clone the cakephp repository
 if dir_available "$APP_DIR"
   then
     su vagrant -c "git clone git://github.com/cakephp/cakephp.git $APP_DIR"
   else
     echo " * Skipping Git installation: $APP_DIR not empty"
 fi
-
-# Generate the Nginx site configuration file
-/cakebox/cakebox-site.sh $FQDN $APP_DIR/app/webroot || exit 1
 
 # Change salt/cipher in core.php
 sed -i "/Security.salt/c\\Configure::write('Security.salt', \"$SALT\");" "$CONFIG_CORE"
@@ -50,3 +47,6 @@ fi
 
 # Set /tmp permissions
 chmod 777 "$TMP_DIR" -R
+
+# Generate the Nginx site configuration file
+/cakebox/cakebox-site.sh $FQDN $APP_DIR/app/webroot || exit 1
