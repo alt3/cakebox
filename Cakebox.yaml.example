@@ -1,46 +1,108 @@
-#
-# Use this file to:
-# - map local folders to the remote server
-# - define websites
-# - create databases
-# - generate completely configured CakePHP apps
 ---
+#
+# Cakebox optimization
+#
+# Usage:
+#   ip:     optional ip-address of your Cakebox (defaults to 10.33.10.10)
+#   memory: optionaL amount of memory for your Cakebox (defaults to 2048)
+#   cpus:   optional number of CPUs for your Cakebox (defaults to 1)
+#
 ip: "10.33.10.10"
 memory: 2048
 cpus: 1
 
+#
+#
+#
 authorize: ~/.ssh/github_rsa
 
+#
+#
+#
 keys:
     - ~/.ssh/github_rsa
 
-folders:
-    - map: c:\git\alt3-api
-      to: /home/vagrant/Apps/alt3-api
+#
+# Folders: map local folders on your host to remote Cakebox folders
+#
+# Usage:
+#   - map:  required full path of the local folder
+#     to:   required full path of the remote folder
+#
+#
+#folders:
+#    - map: /git/my_repo
+#      to:  /home/vagrant/Apps/my_repo
+#
+#    - map: /git/my_other_repo
+#      to:  /my/custom/path
 
-sites:
-    - map: cake2.dev
-      to: /home/vagrant/Apps/cake2/webroot
+#
+# Sites: generate Nginx site configuration files.
+#
+# Usage:
+#   - map:  required fqdn of the site
+#     to:   required full path to the nginx webroot
+#
+#sites:
+#    - map: cake.dev
+#      to:  /home/vagrant/Apps/cake2.dev/webroot
+#
+#    - map: api.cake.dev
+#      to:  /my/custom/webroot
 
-    - map: cake3.dev
-      to: /home/vagrant/Apps/cake3/webroot
+#
+# Databases: create MySQL databases with accompanying '_test' database. Please note
+# that dots (.) will be converted to underscores.
+#
+# Usage:
+#   - name:     required name of the database
+#     username: optional username (granted localhost access, defaults to 'user')
+#     password: optional password (defaults to 'password')
+#
+#databases:
+#    - name: app1
+#    - name: app.dev
+#    - name: alt3-api
 
-    - map: alt3-api.dev
-      to: /home/vagrant/Apps/alt3-api/app/webroot
-
-databases:
-    - name: cake2
-    - name: cake3
-    - name: alt3-api
-
+#
+# Apps: install fully working CakePHP applications.
+#
+# Usage:
+#   - fqdn:     fqdn used to expose the site
+#     template: required name of template to use (cakephp, friendsofcake)
+#     version:  optional CakePHP major version number (defaults to 2, supports 3)
+#
 apps:
-    - name: app2.dev
-      cake: 2
+    - fqdn:     cake3.app
+      template: cakephp
 
-    - name: app3.dev
-      cake: 3
-      template: FriendsOfCake
+#    - fqdn:     cake2.app
+#      template: cakephp
+#      version:  2
 
-variables:
-    - key: APP_ENV
-      value: local
+#    - name:     cake3.app
+#      template: friendsofcake
+#      version:  3
+
+#
+#
+# Variables:
+#
+# Usage:
+#   - key:
+#     value:
+#
+#variables:
+#    - key: APP_ENV
+#      value: local
+
+#
+# Packages: install additional software from the Ubuntu Pacakge archive.
+#
+# Usage:
+#   - name:   name of the software package (as used by `apt-get install`)
+#
+packages:
+    - name: whois
+    - name: phpmyadmin
