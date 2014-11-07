@@ -20,7 +20,8 @@ if [ -z "$1" ]
     exit 1
 fi
 
-# Database names should not contain dots, replace with underscores
+# Convenience variables. Please note that database names should not contain
+# dots so we replace them with with underscores
 DB=`echo $1 | sed 's/\./_/g'`
 DB_TEST=$DB"_test"
 
