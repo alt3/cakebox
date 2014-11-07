@@ -10,7 +10,7 @@ Usage: cakebox-site [NAME] [ROOT]
     ROOT: full path to site root (e.g. /var/www/app.dev/app/webroot)
 EOF
 
-# Check for required parameters
+# Check required parameters
 if [[ -z "$1" || -z "$2" ]]
   then
     printf "\n$USAGE\n\nError: missing required parameter.\n\n"
