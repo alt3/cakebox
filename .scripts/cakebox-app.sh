@@ -1,39 +1,67 @@
 #!/usr/bin/env bash
 
-# Check for required parameter
-if [ -z "$1" ]; then
-    echo "Error: missing required parameter."
-    echo "Usage: "
-    echo " cakebox-app name.domain"
+echo "Parameters below:"
+echo $@
+
+# Define script usage
+read -r -d '' USAGE <<-'EOF'
+Installs and configures a fully working CakePHP application using
+nginx webserver and MySQL database.
+
+Usage: cakebox-app <FQDN> <TEMPLATE> [<VERSION>]
+
+    FQDN      fqdn used to expose the site (eg. cake.app)
+    TEMPLATE  template to use (cakephp, foc)
+    VERSION   CakePHP major version (defaults to 3, supports 2)
+EOF
+
+# Check required parameters
+if [[ -z "$1" || -z "$2" ]]
+  then
+    printf "\n$USAGE\n\nError: missing required parameter.\n\n"
     exit 1
 fi
 
-# Generate convenience variable
-APP_DIR=/home/vagrant/Apps
+# Verify template parameter
+if [[ "$2" != "cakephp" && "$2" != "friendsofcake" ]]
+  then
+    printf "\n$USAGE\n\nError: unsupported template.\n\n"
+    exit 1
+fi
 
-# Vagrant provisioning feedback
-echo "Creating CakePHP app $1"
+# Determine CakePHP version to use
+export CAKE_VERSION=3
+if [[ "$3" && "$3" -eq 2 ]]
+  then
+    export CAKE_VERSION=2
+fi
 
-# Generate the Nginx site configuration file
-/cakebox/cakebox-site.sh $1 $APP_DIR/$1 || exit 1
+# export variables shared between app-installer scripts
+export FQDN=$1
+export APPS_ROOT=/home/vagrant/Apps
+export APP_DIR="$APPS_ROOT/$FQDN"
+export SALT="Replace-Insecure-Cakebox-Salt-And-Cipher"
+export CIPHER="11111111111111111111111112345"
+export DATABASE=`echo $1 | sed 's/\./_/g'`
+export DATABASE_USER="user"
+export DATABASE_PASSWORD="password"
+export TEST_DATABASE=$DATABASE"_test"
+export TEST_DATABASE_USER="user"
+export TEST_DATABASE_PASSWORD="password"
 
 # Create the MySQL database
-/cakebox/cakebox-database.sh $1 || exit 1
+/cakebox/cakebox-database.sh $DATABASE || exit 1
 
-# Install CakePHP 2 application using FriendsOfCake app-template
-echo "Composer installing FriendsOfCake app-template"
-
-# Only run composer if:
-# - directory does not exist
-# - directory does exist but is empty
-if [ -d "$APP_DIR/$1" ]; then
-  DIR_COUNT="$( find $APP_DIR/$1 -mindepth 1 -maxdepth 1 | wc -l )"
+# Run app specific installer script
+INSTALLERS=/cakebox/app-installers
+if [ "$2" = 'cakephp' ]
+  then
+    if [ "$CAKE_VERSION" -eq 2 ]
+      then
+        $INSTALLERS/cakephp2.sh
+      else
+        $INSTALLERS/cakephp3.sh
+  fi
+  exit 0
 fi
-
-if [ $DIR_COUNT ]; then
-    echo " * Skipping: $APP_DIR/$1 is not empty"
-  else
-    su vagrant -c "composer --prefer-dist --dev create-project friendsofcake/app-template $APP_DIR/$1"
-fi
-
-# Create .env file
+$INSTALLERS/friendsofcake.sh
