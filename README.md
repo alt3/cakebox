@@ -11,8 +11,7 @@ One Box, All Cakes.
 
 ### General
 
-- bug: replace nxensite to conform output to other cakebox-scripts feedback
-- bug: standardize cakebox-command usage blocks
+- bug: standardize if-statements
 - bug: use setfacl for cakephp2 and foc2 (and foc3) /tmp permissions
 - bug: add ruby file-detector to Cakebox.yaml.examples
 - foc: install suggested Search plugin
@@ -23,6 +22,7 @@ One Box, All Cakes.
 - new: check -e Cakebox.yaml in Vagrantfile
 - bug: foc3 template broken ==> looks in wrong dir for bootstrap.php (https://github.com/FriendsOfCake/app-template/issues/58)
 - bug: cakephp3 test-database configuration uses prod-settings ==> depends on decent bash argument parsing
+- bug: add vagrant to /var/log/nginx
 
 ### Maybe
 - add bash colouring scheme?
