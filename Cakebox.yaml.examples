@@ -44,8 +44,8 @@ keys:
 # Sites: generate Nginx site configuration files.
 #
 # Usage:
-#   - map:  required fqdn of the site
-#     to:   required full path to the nginx webroot
+#   - url:    Fully qualified domain name used to expose the site
+#     root:   Full path to site's webroot folder serving pages
 #
 #sites:
 #    - map: cake.dev
@@ -72,7 +72,7 @@ keys:
 # Apps: install fully working CakePHP applications.
 #
 # Usage:
-#   - fqdn:     fqdn used to expose the site
+#   - url:      fully qualified domain name used to expose the site
 #     template: required name of template to use (cakephp, friendsofcake)
 #     version:  optional CakePHP major version number (defaults to 2, supports 3)
 #
