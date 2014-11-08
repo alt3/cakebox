@@ -2,13 +2,13 @@
 
 # Define script usage
 read -r -d '' USAGE <<-'EOF'
-Creates a new Nginx site by generating a configuration file, creating the
-related symbolic link in /sites-enabled and reloading nginx.
+Creates an Nginx site by generating a site configuration file, creating
+a symbolic link in /sites-enabled and reloading nginx.
 
-Usage: cakebox-site [URL] [ROOT]
+Usage: cakebox-site <URL> <ROOT>
 
-    URL   Fully qualified domain name (FQDN) used to expose the site
-    ROOT  full path to site webroot (e.g. /var/www/app.dev/app/webroot)
+    URL   Fully qualified domain name used to expose the site
+    ROOT  Full path to site webroot (e.g. /var/www/app.dev/app/webroot)
 EOF
 
 # Check required parameters

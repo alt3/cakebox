@@ -2,13 +2,12 @@
 
 # Define script usage
 read -r -d '' USAGE <<-'EOF'
-Installs and configures a fully working CakePHP application using
-nginx webserver and MySQL database.
+Installs a fully working CakePHP application in ~/Apps using Nginx and MySQL.
 
 Usage: cakebox-app <URL> <TEMPLATE> [<VERSION>]
 
-    URL       URL used to expose the site
-    TEMPLATE  template to use (cakephp, foc)
+    URL       Fully qualified domain name used to expose the site
+    TEMPLATE  Template used to generate the application (cakephp, friendsofcake)
     VERSION   CakePHP major version (defaults to 3, supports 2)
 EOF
 

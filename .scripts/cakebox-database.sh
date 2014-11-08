@@ -8,11 +8,11 @@ DB_PASS=password
 read -r -d '' USAGE <<-'EOF'
 Creates two MySQL databases, one suffixed with '_test'.
 
-Usage: cakebox-database [NAME] <[USERNAME]> <[PASSWORD]>
+Usage: cakebox-database <NAME> [<USERNAME>] [<PASSWORD>]
 
-    NAME      name to be used for the databases
-    USERNAME  name of the user to grant localhost access, defaults to 'user'
-    PASSWORD  password for the user, defaults to 'password'
+    NAME      Name to be used for the databases
+    USERNAME  Name of the user with localhost access (default: user)
+    PASSWORD  Password for the user (default: password)
 EOF
 
 # Check for required parameter
