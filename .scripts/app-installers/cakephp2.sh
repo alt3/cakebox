@@ -13,8 +13,7 @@ TMP_DIR="$APP_DIR/app/tmp"
 echo "Creating CakePHP 2.x application"
 
 # Git clone the cakephp repository
-if dir_available "$APP_DIR"
-  then
+if dir_available "$APP_DIR"; then
     su vagrant -c "git clone git://github.com/cakephp/cakephp.git $APP_DIR"
   else
     echo " * Skipping Git installation: $APP_DIR not empty"
@@ -32,16 +31,14 @@ sed -i "/'test_database_name'/c'database' => '$TEST_DATABASE'," "$CONFIG_DATABAS
 
 # Install the CakePHP DebugKit
 echo "Installing DebugKit plugin"
-if dir_available "$PLUGIN_DIR/DebugKit"
-  then
+if dir_available "$PLUGIN_DIR/DebugKit"; then
     su vagrant -c "git clone git://github.com/cakephp/debug_kit.git $PLUGIN_DIR/DebugKit"
   else
     echo " * Skipping Git installation: $APP_DIR not empty"
 fi
 
 # Enable Debugkit in bootstrap. php
-if [ "$( grep 'loadAll()' $CONFIG_BOOTSTRAP | wc -l )" -ne 2 ]
-  then
+if [ "$( grep 'loadAll()' $CONFIG_BOOTSTRAP | wc -l )" -ne 2 ]; then
     printf "\nCakePlugin::loadAll();" >> $CONFIG_BOOTSTRAP
 fi
 

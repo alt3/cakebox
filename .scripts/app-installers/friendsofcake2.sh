@@ -7,8 +7,7 @@ ENV="$APP_DIR/app/Config/.env"
 echo "Creating CakePHP 2.x application using FriendsOfCake app-template"
 
 # Composer install CakePHP 2 application using FriendsOfCake app-template
-if dir_available "$APP_DIR"
-  then
+if dir_available "$APP_DIR"; then
     su vagrant -c "composer create-project --prefer-dist -s dev friendsofcake/app-template $APP_DIR"
   else
     echo " * Skipping Composer installation: $APP_DIR not empty"

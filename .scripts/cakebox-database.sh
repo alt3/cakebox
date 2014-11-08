@@ -16,8 +16,7 @@ Usage: cakebox-database <NAME> [<USERNAME>] [<PASSWORD>]
 EOF
 
 # Check for required parameter
-if [ -z "$1" ]
-  then
+if [ -z "$1" ]; then
     printf "\n$USAGE\n\nError: missing required parameter.\n\n"
     exit 1
 fi
@@ -46,8 +45,7 @@ TEST_DATABASE_PASSWORD="$DATABASE_PASSWORD"
 echo "Creating databases for $DB"
 
 # Create databases unless they already exist
-if [ -d "/var/lib/mysql/$DB" ]
-  then
+if [ -d "/var/lib/mysql/$DB" ]; then
     echo " * Skipping: databases already exist"
   else
     mysql -u root -e "CREATE DATABASE IF NOT EXISTS \`$DB\`"
