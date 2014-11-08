@@ -2,6 +2,7 @@
 
 # Convenience variables
 ENV="$APP_DIR/app/Config/.env"
+WEBROOT="$APP_DIR/webroot"
 
 # Provide Vagrant provisioning feedback
 echo "Creating CakePHP 3.x application"
@@ -20,4 +21,4 @@ sed -i "/'username'/c'username' => '$DATABASE_USER'," "$APP_PHP"
 sed -i "/'password'/c'password' => '$DATABASE_PASSWORD'," "$APP_PHP"
 
 # Generate the Nginx site configuration file
-/cakebox/cakebox-site.sh $URL $APP_DIR/webroot || exit 1
+/cakebox/cakebox-site.sh $URL $WEBROOT || exit 1

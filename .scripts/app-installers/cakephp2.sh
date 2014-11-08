@@ -8,6 +8,7 @@ CONFIG_DATABASE_SOURCE="$CONFIG_DIR/database.php.default"
 CONFIG_DATABASE_TARGET="$CONFIG_DIR/database.php"
 PLUGIN_DIR="$APP_DIR/plugins"
 TMP_DIR="$APP_DIR/app/tmp"
+WEBROOT="$APP_DIR/app/webroot"
 
 # Provide Vagrant provisioning feedback
 echo "Creating CakePHP 2.x application"
@@ -46,4 +47,4 @@ fi
 chmod 777 "$TMP_DIR" -R
 
 # Generate the Nginx site configuration file
-/cakebox/cakebox-site.sh $URL $APP_DIR/app/webroot || exit 1
+/cakebox/cakebox-site.sh $URL $WEBROOT || exit 1

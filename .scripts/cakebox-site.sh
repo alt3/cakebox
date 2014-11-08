@@ -7,8 +7,8 @@ a symbolic link in /sites-enabled and reloading nginx.
 
 Usage: cakebox-site <URL> <ROOT>
 
-    URL   Fully qualified domain name used to expose the site
-    ROOT  Full path to site webroot (e.g. /var/www/app.dev/app/webroot)
+    URL     Fully qualified domain name used to expose the site
+    WEBROOT Full path to site's root folder (e.g. /var/www/app.dev/app/webroot)
 EOF
 
 # Check required parameters
@@ -25,7 +25,7 @@ fi
 
 # Convenience variables
 URL=$1
-ROOT=$2
+WEBROOT=$2
 SITES_AVAILABLE=/etc/nginx/sites-available
 SITES_ENABLED=/etc/nginx/sites-enabled
 
@@ -37,7 +37,7 @@ block="
 server {
   listen 80;
   server_name $URL;
-  root $ROOT;
+  root $WEBROOT;
   index index.php index.htm index.html;
 
   access_log /var/log/nginx/$URL.access.log;
