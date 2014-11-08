@@ -1,2 +1,13 @@
-# Ignore these files
-.vagrant/
+# Ignore everything so the Cakebox root folder can be used as the user sees fit.
+*
+
+# Except these files and folders
+!.scripts/
+!.editorconfig
+!.gitattributes
+!.gitignore
+!Cakebox.yaml
+!Cakebox.yaml.examples
+!README.md
+!vagrant_private_key.ppk
+!Vagrantfile
