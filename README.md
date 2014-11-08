@@ -11,7 +11,6 @@ One Box, All Cakes.
 
 ### General
 
-- .gitignore everything except...
 - bug: use setfacl for cakephp2 and foc2 (and foc3) /tmp permissions
 - bug: add ruby file-detector to Cakebox.yaml.examples
 - foc: install suggested Search plugin
