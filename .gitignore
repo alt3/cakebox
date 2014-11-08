@@ -1,8 +1,13 @@
-# Ignore everything so the Cakebox root folder can be used as the user sees fit.
+# Ignore everything
 *
 
-# Except these files and folders
+# Except these folders
 !.scripts/
+!.scripts/*
+!.scripts/app-installers
+!.scripts/app-installers/*
+
+# Except these files
 !.editorconfig
 !.gitattributes
 !.gitignore
