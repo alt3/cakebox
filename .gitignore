@@ -1,13 +1,13 @@
 # Ignore everything
 *
 
-# Except these folders
+# Except these folders (who have their own .gitignore)
 !.scripts/
 !.scripts/*
 !.scripts/app-installers
 !.scripts/app-installers/*
 !.scripts/commands
-
+!.scripts/vendor
 
 # Except these files
 !.editorconfig
