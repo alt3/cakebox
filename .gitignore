@@ -6,6 +6,8 @@
 !.scripts/*
 !.scripts/app-installers
 !.scripts/app-installers/*
+!.scripts/commands
+
 
 # Except these files
 !.editorconfig
