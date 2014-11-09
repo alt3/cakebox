@@ -11,9 +11,10 @@ One Box, All Cakes.
 
 ### General
 
+- new: replace bash with php-cli
 - bug: use setfacl for cakephp2 and foc2 (and foc3) /tmp permissions
 - bug: add ruby file-detector to Cakebox.yaml.examples
-- foc: install suggested Search plugin
+- foc: install suggested Search plugin???
 - new: warn if no Cakebox.yaml is found? (load default settings first?)
 - new: long args so we can shorten cakebox-command (e.g. cakebox-app URL, everything else as argument)
 - new: enable Vagrantfile.rb environment variables
@@ -28,3 +29,4 @@ One Box, All Cakes.
 
 # DOCS
 - describe vagrant_private_key.pkk
+- uses https://github.com/ulrichsg/getopt-php
