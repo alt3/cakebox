@@ -11,6 +11,7 @@ end_of_line = lf
 
 [*.php]
 indent_style = tab
+tab_width = 4
 trim_trailing_whitespace = true
 end_of_line = lf
 insert_final_newline = true
