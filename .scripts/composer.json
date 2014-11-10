@@ -1,0 +1,7 @@
+{
+    "require": {
+        "ulrichsg/getopt-php": "2.2.*",
+        "corneltek/getoptionkit": "~2",
+        "monolog/monolog": "1.0.*"
+    }
+}
