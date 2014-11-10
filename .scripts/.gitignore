@@ -1,0 +1,5 @@
+# Ignore nothing in this subdirectory
+!*
+
+# Except the vendor directory
+vendor/
