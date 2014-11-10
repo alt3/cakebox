@@ -23,6 +23,27 @@ One Box, All Cakes.
 - bug: cakephp3 test-database configuration uses prod-settings ==> depends on decent bash argument parsing
 - bug: add vagrant to /var/log/nginx
 
+
+## cakebox site
+
+- ssl support (generate cert)
+
+### cakebox database
+
+- add option -o --overwrite        Otherwise leave untouched
+
+### cakebox database
+
+- change default username/password
+- add option d, --drop database    Drop database, otherwise skip if exist
+
+### YAML
+
+- configure global git user (email, password, options)
+-
+
+
+
 ### Maybe
 - add bash colouring scheme?
 - remote (Git hosted?) Cakebox.yaml
