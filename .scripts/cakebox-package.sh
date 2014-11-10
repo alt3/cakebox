@@ -16,7 +16,7 @@ if [ -z "$1" ]; then
 fi
 
 # Convenienve variables
-$PACKAGE=$1
+PACKAGE=$1
 
 # Vagrant provisioning feedback
 echo "Installing additional package $PACKAGE"

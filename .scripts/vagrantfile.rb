@@ -106,7 +106,7 @@ class Cakebox
 #    end
 
     # Install additional software
-    unless settings["databases"].nil?
+    unless settings["packages"].nil?
       settings["packages"].each do |package|
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/cakebox-package.sh $@"

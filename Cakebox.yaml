@@ -10,3 +10,6 @@ folders:
 apps:
     - url: cake.app
       template: cakephp
+
+packages:
+    - name: whois
