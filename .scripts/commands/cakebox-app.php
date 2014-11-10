@@ -74,7 +74,7 @@
     * @return boolean true when the argument passes validation
     */
     function isValidTemplate($value) {
-        if ($value == 'cakephp' || $template == 'friendsofcake'){
+        if ($value == 'cakephp' || $value == 'friendsofcake'){
             return true;
         }
         return false;
