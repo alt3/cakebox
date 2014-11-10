@@ -1,5 +1,8 @@
 # Ignore nothing in this subdirectory
 !*
 
-# Except the vendor directory
+# Except these directories
 vendor/
+
+# Except these files
+composer.lock
