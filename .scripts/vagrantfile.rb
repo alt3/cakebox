@@ -94,15 +94,14 @@ class Cakebox
       end
     end
 
-
-    # Configure All Of The Server Environment Variables
-#    if settings.has_key?("variables")
+    # Create all the (PHP-FPM?) server variables
+#    unless settings["variables"].nil?
 #      settings["variables"].each do |var|
-#        config.vm.provision "shell" do |s|
+#          config.vm.provision "shell" do |s|
 #            s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php5/fpm/php-fpm.conf && service php5-fpm restart"
 #            s.args = [var["key"], var["value"]]
+#          end
 #        end
-#      end
 #    end
 
     # Install additional software
