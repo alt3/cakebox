@@ -1,6 +1,6 @@
 #!/usr/bin/php -q
 <?php
-require 'vendor/autoload.php';
+require_once __DIR__.'/vendor/autoload.php';
 main();
 
 /**
@@ -18,6 +18,12 @@ function main(){
 
     # Include required command script
     include "commands/". $cakebox->getSubcommand() . ".php";
+
+    # testing list function
+    function list($arg = null){
+        echo "Hello list\n";
+    }
+    list();
     exit(0);
 }
 
@@ -54,10 +60,10 @@ class Cakebox
     private function _findSubcommand(){
         global $argv;
         if (empty($argv[1])){
-            throw new Exception($this->getUsage() . 'Error: missing subcommand argument');
+            throw new Exception($this->getUsage() . "\nError: missing subcommand argument");
         }
         if (!in_array($argv[1], $this->subcommands)){
-            throw new Exception($this->getUsage() . 'Error: unsupported subcommand argument');
+            throw new Exception($this->getUsage() . "\nError: unsupported subcommand argument");
         }
         $this->subcommand = $argv[1];
     }

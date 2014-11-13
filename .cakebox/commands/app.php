@@ -23,7 +23,7 @@ use Ulrichsg\Getopt\Argument;
     # Define custom banner for auto-generated --help message
     $getopt->setBanner(
         "Installs a fully working CakePHP application in ~/Apps using Nginx and MySQL.\n" .
-        "Usage: cakebox-app [<options>] <url>\n"
+        "Usage: cakebox app create [<options>] <url>\n"
     );
 
     # Parse and validate options and operands

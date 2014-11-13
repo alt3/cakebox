@@ -2,12 +2,13 @@
 *
 
 # Except these folders (who have their own .gitignore)
-!.scripts/
+!.cakebox/
 
 # Except these files
 !.editorconfig
 !.gitattributes
 !.gitignore
+!aliases
 !Cakebox.yaml
 !Cakebox.yaml.examples
 !README.md

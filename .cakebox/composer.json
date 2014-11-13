@@ -2,6 +2,7 @@
     "require": {
         "ulrichsg/getopt-php": "2.2.*",
         "corneltek/getoptionkit": "~2",
+        "codegyre/robo": "*",
         "monolog/monolog": "1.0.*"
     }
 }
