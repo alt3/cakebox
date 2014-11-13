@@ -64,54 +64,54 @@ class Cakebox
     end
 
     # Create Nginx site configuration files for all yaml specified "sites"
-    unless settings["sites"].nil?
-      settings["sites"].each do |site|
-        config.vm.provision "shell" do |s|
-          s.inline = "bash /cakebox/cakebox-site.sh $@"
-          s.args = [site["map"], site["to"]]
-        end
-      end
-    end
-
-    # Create MySQL databases for all yaml specified "databases"
-    unless settings["databases"].nil?
-      settings["databases"].each do |database|
-        config.vm.provision "shell" do |s|
-          s.inline = "bash /cakebox/cakebox-database.sh $@"
-          s.args = [database["name"]]
-        end
-      end
-    end
-
-    # Create Cake apps for all yaml specified "apps"
-    unless settings["apps"].nil?
-      settings["apps"].each do |app|
-        config.vm.provision "shell" do |s|
-          s.inline = "bash /cakebox/cakebox-app.sh $@"
-          s.args = [ app["url"], app["template"] ]
-        end
-      end
-    end
-
-    # Create all the (PHP-FPM?) server variables
-#    unless settings["variables"].nil?
-#      settings["variables"].each do |var|
-#          config.vm.provision "shell" do |s|
-#            s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php5/fpm/php-fpm.conf && service php5-fpm restart"
-#            s.args = [var["key"], var["value"]]
-#          end
+#    unless settings["sites"].nil?
+#      settings["sites"].each do |site|
+#        config.vm.provision "shell" do |s|
+#          s.inline = "bash /cakebox/cakebox-site.sh $@"
+#          s.args = [site["map"], site["to"]]
 #        end
+#      end
 #    end
 
+    # Create MySQL databases for all yaml specified "databases"
+#    unless settings["databases"].nil?
+#      settings["databases"].each do |database|
+#        config.vm.provision "shell" do |s|
+#          s.inline = "bash /cakebox/cakebox-database.sh $@"
+#          s.args = [database["name"]]
+#        end
+#      end
+#    end
+
+    # Create Cake apps for all yaml specified "apps"
+#    unless settings["apps"].nil?
+#      settings["apps"].each do |app|
+#        config.vm.provision "shell" do |s|
+#          s.inline = "bash /cakebox/cakebox-app.sh $@"
+#          s.args = [ app["url"], app["template"] ]
+#        end
+#      end
+#    end
+
+    # Create all the (PHP-FPM?) server variables
+##    unless settings["variables"].nil?
+##      settings["variables"].each do |var|
+##          config.vm.provision "shell" do |s|
+##            s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php5/fpm/php-fpm.conf && service php5-fpm restart"
+##            s.args = [var["key"], var["value"]]
+##          end
+##        end
+##    end
+
     # Install additional software
-    unless settings["packages"].nil?
-      settings["packages"].each do |package|
-        config.vm.provision "shell" do |s|
-          s.inline = "bash /cakebox/cakebox-package.sh $@"
-          s.args = [ package["name"] ]
-        end
-      end
-    end
+#    unless settings["packages"].nil?
+#      settings["packages"].each do |package|
+#        config.vm.provision "shell" do |s|
+#          s.inline = "bash /cakebox/cakebox-package.sh $@"
+#          s.args = [ package["name"] ]
+#        end
+#      end
+#    end
 
   end
 end
