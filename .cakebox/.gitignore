@@ -1,5 +1,5 @@
 # Do not ignore anything in this subdirectory
 !*
 
-# Except the git cloned commands directory
-commands/
+# Except the git cloned command directory
+command/
