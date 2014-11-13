@@ -45,7 +45,6 @@ class Cakebox
     # SSH copy bash aliases to the box without using a synced folder
     config.vm.provision "file", source: "aliases", destination: "/home/vagrant/.bash_aliases"
 
-
     # Mount (small) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.vm.synced_folder '.cakebox', '/cakebox'
@@ -62,6 +61,13 @@ class Cakebox
         end
       end
     end
+
+    # Install the cakebox-command repository so we can use it to provision
+    #config.vm.provision "shell" do |s|
+    #    s.inline = "bash /cakebox/command-installer.sh"
+    #end
+
+
 
     # Create Nginx site configuration files for all yaml specified "sites"
 #    unless settings["sites"].nil?
