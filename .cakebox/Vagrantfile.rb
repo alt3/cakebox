@@ -42,14 +42,13 @@ class Cakebox
 #      end
 #    end
 
-    # Copy bash aliasaes to the box
-    config.vm.provision "shell" do |s|
-      s.inline = "cp /cakebox/aliases /home/vagrant/.bash_aliases"
-    end
+    # SSH copy bash aliases to the box without using a synced folder
+    config.vm.provision "file", source: "aliases", destination: "/home/vagrant/.bash_aliases"
+
 
     # Mount (small) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
-    config.vm.synced_folder '.scripts', '/cakebox'
+    config.vm.synced_folder '.cakebox', '/cakebox'
 
     # Create Vagrant Synced Folders for all yaml specified "folders" and use
     # loosened permissions for Windows users so they will be able to execute
