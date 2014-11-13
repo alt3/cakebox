@@ -1,8 +1,5 @@
 # Ignore nothing in this subdirectory
 !*
 
-# Except these directories
-vendor/
-
-# Except these files
-composer.lock
+# Except the commands directory which is it's own repository
+commands/
