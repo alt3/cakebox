@@ -72,7 +72,7 @@ class Cakebox
       settings["sites"].each do |site|
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/command/bin/cake site add $@"
-          s.args = [site["url"], site["webroot"]]
+          s.args = [ site["url"], site["webroot"] ]
         end
       end
     end
@@ -82,20 +82,20 @@ class Cakebox
       settings["databases"].each do |database|
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/command/bin/cake database add $@"
-          s.args = [database["name"]]
+          s.args = [ database["name"] ]
         end
       end
     end
 
     # Create Cake apps for all yaml specified "apps"
-#    unless settings["apps"].nil?
-#      settings["apps"].each do |app|
-#        config.vm.provision "shell" do |s|
-#          s.inline = "bash /cakebox/cakebox-app.sh $@"
-#          s.args = [ app["url"], app["template"] ]
-#        end
-#      end
-#    end
+    unless settings["applications"].nil?
+      settings["applications"].each do |app|
+        config.vm.provision "shell" do |s|
+          s.inline = "bash /cakebox/command/bin/cake application add $@"
+          s.args = [ app["url"] ]
+        end
+      end
+    end
 
     # Create all the (PHP-FPM?) server variables
 ##    unless settings["variables"].nil?

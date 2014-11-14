@@ -7,9 +7,22 @@ folders:
     - map: Apps/cake.app
       to:  /home/vagrant/Apps/cake.app
 
-apps:
+applications:
     - url: cake.app
       template: cakephp
+
+sites:
+    - url: rob1.app
+      webroot: /var/www/rob1.app
+      options: -f
+    - url: rob2.app
+      webroot: /var/www/rob2.app
+    - url: rob3.app
+      webroot: /var/www/rob3.app
+
+databases:
+    - name: dummy1.db
+    - name: dummy2.db
 
 packages:
     - name: whois
