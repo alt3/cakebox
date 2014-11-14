@@ -11,7 +11,11 @@ One Box, All Cakes.
 
 ### General
 
-- new: replace bash with php-cli
+- IMPORTANT: install cakebox-command during provisioning (git clone + composer)
+
+
+- new: implement optional yaml options
+- new ReadTheDocs
 - bug: use setfacl for cakephp2 and foc2 (and foc3) /tmp permissions
 - bug: add ruby file-detector to Cakebox.yaml.examples
 - foc: install suggested Search plugin???
@@ -22,7 +26,7 @@ One Box, All Cakes.
 - bug: foc3 template broken ==> looks in wrong dir for bootstrap.php (https://github.com/FriendsOfCake/app-template/issues/58)
 - bug: cakephp3 test-database configuration uses prod-settings ==> depends on decent bash argument parsing
 - bug: add vagrant to /var/log/nginx
-
+- bug: install cakebox-command repo as vagrant once repo goes public
 
 ## cakebox site
 
@@ -40,9 +44,6 @@ One Box, All Cakes.
 ### YAML
 
 - configure global git user (email, password, options)
--
-
-
 
 ### Maybe
 - add bash colouring scheme?
@@ -51,3 +52,4 @@ One Box, All Cakes.
 # DOCS
 - describe vagrant_private_key.pkk
 - uses https://github.com/ulrichsg/getopt-php
+- keep your .yaml !
