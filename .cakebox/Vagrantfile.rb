@@ -67,27 +67,25 @@ class Cakebox
     #    s.inline = "bash /cakebox/command-installer.sh"
     #end
 
-
-
     # Create Nginx site configuration files for all yaml specified "sites"
-#    unless settings["sites"].nil?
-#      settings["sites"].each do |site|
-#        config.vm.provision "shell" do |s|
-#          s.inline = "bash /cakebox/cakebox-site.sh $@"
-#          s.args = [site["map"], site["to"]]
-#        end
-#      end
-#    end
+    unless settings["sites"].nil?
+      settings["sites"].each do |site|
+        config.vm.provision "shell" do |s|
+          s.inline = "bash /cakebox/command/bin/cake site add $@"
+          s.args = [site["url"], site["webroot"]]
+        end
+      end
+    end
 
     # Create MySQL databases for all yaml specified "databases"
-#    unless settings["databases"].nil?
-#      settings["databases"].each do |database|
-#        config.vm.provision "shell" do |s|
-#          s.inline = "bash /cakebox/cakebox-database.sh $@"
-#          s.args = [database["name"]]
-#        end
-#      end
-#    end
+    unless settings["databases"].nil?
+      settings["databases"].each do |database|
+        config.vm.provision "shell" do |s|
+          s.inline = "bash /cakebox/command/bin/cake database add $@"
+          s.args = [database["name"]]
+        end
+      end
+    end
 
     # Create Cake apps for all yaml specified "apps"
 #    unless settings["apps"].nil?
