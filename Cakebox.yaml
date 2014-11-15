@@ -10,18 +10,21 @@ folders:
 applications:
     - url: cake.app
       template: cakephp
+    - url: foc2.app
+      options: --major-version 2
 
 sites:
     - url: rob1.app
       webroot: /var/www/rob1.app
-      options: -f
     - url: rob2.app
       webroot: /var/www/rob2.app
+      options: --force
     - url: rob3.app
       webroot: /var/www/rob3.app
 
 databases:
     - name: dummy1.db
+      options: --force
     - name: dummy2.db
 
 packages:

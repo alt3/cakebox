@@ -73,6 +73,7 @@ class Cakebox
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/command/bin/cake site add $@"
           s.args = [ site["url"], site["webroot"] ]
+          s.args.push(site["options"]) if !site["options"].nil?
         end
       end
     end
@@ -83,6 +84,7 @@ class Cakebox
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/command/bin/cake database add $@"
           s.args = [ database["name"] ]
+          s.args.push(database["options"]) if !database["options"].nil?
         end
       end
     end
@@ -93,6 +95,7 @@ class Cakebox
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/command/bin/cake application add $@"
           s.args = [ app["url"] ]
+          s.args.push(app["options"]) if !app["options"].nil?
         end
       end
     end
