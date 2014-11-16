@@ -9,23 +9,20 @@ folders:
 
 applications:
     - url: cake.app
-      template: cakephp
-    - url: foc2.app
-      options: --major-version 2
+    - url: cake2.app
+      options: --majorversion 2
 
 sites:
-    - url: rob1.app
-      webroot: /var/www/rob1.app
-    - url: rob2.app
-      webroot: /var/www/rob2.app
+    - url: test1.app
+      webroot: /var/www/test1.app
+    - url: test2.app
+      webroot: /var/www/test2.app
       options: --force
-    - url: rob3.app
-      webroot: /var/www/rob3.app
 
 databases:
-    - name: dummy1.db
+    - name: test.db
+    - name: test2.db
       options: --force
-    - name: dummy2.db
 
 packages:
     - name: whois
