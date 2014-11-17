@@ -67,6 +67,21 @@ class Cakebox
     #    s.inline = "bash /cakebox/command-installer.sh"
     #end
 
+
+    # Run `cakebox config` for all defined "subcommands"
+    unless settings["config"].nil?
+        settings["config"].each do |subcommand,options|
+            arguments = ''
+            options.each do |key, value|
+                arguments.concat(" --#{key} #{value}")
+            end
+            config.vm.provision "shell" do |s|
+                s.inline = "bash /cakebox/command/bin/cake config #{subcommand} $@"
+                s.args = arguments
+            end
+        end
+    end
+
     # Create Nginx site configuration files for all yaml specified "sites"
     unless settings["sites"].nil?
       settings["sites"].each do |site|

@@ -3,6 +3,11 @@ ip: "10.33.10.10"
 memory: 2048
 cpus: 1
 
+config:
+  git:
+    username: bravo-kernel
+    email: bravo-kernel@users.noreply@github.com
+
 folders:
     - map: Apps/cake.app
       to:  /home/vagrant/Apps/cake.app
