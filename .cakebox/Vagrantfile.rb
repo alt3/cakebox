@@ -1,6 +1,8 @@
 class Cakebox
   def Cakebox.configure(config, settings)
 
+    require 'json'
+
     # Specify base-box and hostname
     config.vm.box = "cakebox"
     config.vm.box_url = "http://alt3-aee.kxcdn.com/cakebox.box"
