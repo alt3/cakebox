@@ -24,26 +24,6 @@ class Cakebox
       #vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
     end
 
-    # Enable port forwarding to the box
-#    config.vm.network "forwarded_port", guest: 80, host: 8000
-#    config.vm.network "forwarded_port", guest: 3306, host: 33060
-#    config.vm.network "forwarded_port", guest: 5432, host: 54320
-
-    # Configure the public key to use for SSH access
-#    config.vm.provision "shell" do |s|
-#      s.inline = "echo $1 | tee -a /home/vagrant/.ssh/authorized_keys"
-#      s.args = [File.read(File.expand_path(settings["authorize"]))]
-#    end
-
-    # Copy all specified SSH private keys to the box
-#    settings["keys"].each do |key|
-#      config.vm.provision "shell" do |s|
-#        s.privileged = false
-#        s.inline = "echo \"$1\" > /home/vagrant/.ssh/$2 && chmod 600 /home/vagrant/.ssh/$2"
-#        s.args = [File.read(File.expand_path(key)), key.split('/').last]
-#      end
-#    end
-
     # SSH copy bash aliases to the box without using a synced folder
     config.vm.provision "file", source: "aliases", destination: "/home/vagrant/.bash_aliases"
 
