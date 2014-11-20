@@ -44,13 +44,13 @@ class Cakebox
       end
     end
 
-    # Install the cakebox-command repository so we can use it to provision
+    # Install the cakebox-console repository so we can use it to provision
     #config.vm.provision "shell" do |s|
-    #    s.inline = "bash /cakebox/command-installer.sh"
+    #    s.inline = "bash /cakebox/console-installer.sh"
     #end
 
 
-    # Run `cakebox config` for all defined "subcommands"
+    # Run `cakebox config $subcommand --options` for all yaml specified "config"
     unless settings["config"].nil?
         settings["config"].each do |subcommand,options|
             arguments = ''
@@ -58,7 +58,7 @@ class Cakebox
                 arguments.concat(" --#{key} #{value}")
             end
             config.vm.provision "shell" do |s|
-                s.inline = "bash /cakebox/command/bin/cake config #{subcommand} $@"
+                s.inline = "bash /cakebox/console/bin/cake config #{subcommand} $@"
                 s.args = arguments
             end
         end
@@ -68,7 +68,7 @@ class Cakebox
     unless settings["sites"].nil?
       settings["sites"].each do |site|
         config.vm.provision "shell" do |s|
-          s.inline = "bash /cakebox/command/bin/cake site add $@"
+          s.inline = "bash /cakebox/console/bin/cake site add $@"
           s.args = [ site["url"], site["webroot"] ]
           s.args.push(site["options"]) if !site["options"].nil?
         end
@@ -79,7 +79,7 @@ class Cakebox
     unless settings["databases"].nil?
       settings["databases"].each do |database|
         config.vm.provision "shell" do |s|
-          s.inline = "bash /cakebox/command/bin/cake database add $@"
+          s.inline = "bash /cakebox/console/bin/cake database add $@"
           s.args = [ database["name"] ]
           s.args.push(database["options"]) if !database["options"].nil?
         end
@@ -90,7 +90,7 @@ class Cakebox
     unless settings["applications"].nil?
       settings["applications"].each do |app|
         config.vm.provision "shell" do |s|
-          s.inline = "bash /cakebox/command/bin/cake application add $@"
+          s.inline = "bash /cakebox/console/bin/cake application add $@"
           s.args = [ app["url"] ]
           s.args.push(app["options"]) if !app["options"].nil?
         end
@@ -111,7 +111,7 @@ class Cakebox
     unless settings["packages"].nil?
       settings["packages"].each do |package|
         config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/command/bin/cake package add $@"
+            s.inline = "bash /cakebox/console/bin/cake package add $@"
           s.args = [ package["name"] ]
         end
       end

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # Vagrant provisioning feedback
-echo "Installing cakebox command"
+echo "Installing cakebox console"
 
 # Convenience variables
-REPOSIORY="git@github.com:alt3/cakebox-command.git"
-TARGET_DIR="/cakebox/command"
+REPOSITORY="git@github.com:alt3/cakebox-console.git"
+TARGET_DIR="/cakebox/console"
 
 # Verify the directory is empty or non-existent before git cloning
 if [ -d "$TARGET_DIR" ]; then
@@ -16,8 +16,8 @@ if [ -d "$TARGET_DIR" ]; then
 fi
 
 # Clone the repo.
-git clone $REPOSIORY $TARGET_DIR
+git clone $REPOSITORY $TARGET_DIR
 
 # Round up by Composer installing
-cd /cakebox/command
+cd /cakebox/console
 composer install --prefer-dist
