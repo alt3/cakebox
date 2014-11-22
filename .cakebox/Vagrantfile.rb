@@ -2,13 +2,21 @@ class Cakebox
   def Cakebox.configure(config, user_settings)
     require 'json'
 
-    # Define absolutely required box settings, overridable by Cakebox.yaml
+    # Define absolutely required box settings
     settings =  Hash.new
     settings["vm"] =  Hash.new
     settings["vm"]["ip"] = "10.33.10.10"
     settings["vm"]["memory"] = 2048
     settings["vm"]["cpus"] = 1
-    settings.deep_merge!(YAML::load_file('Cakebox.yaml')) if File.exist?('Cakebox.yaml')
+
+    # Prevent merging empty vm user settings
+    user_settings["vm"] = Hash.new if user_settings["vm"].nil?
+    user_settings["vm"]["ip"] = settings["vm"]["ip"] if user_settings["vm"]["ip"].nil?
+    user_settings["vm"]["memory"] = settings["vm"]["memory"] if user_settings["vm"]["memory"].nil?
+    user_settings["vm"]["cpus"] = settings["vm"]["cpus"] if user_settings["vm"]["cpus"].nil?
+
+    # Deep merge user settings found in Cakebox.yaml
+    settings.deep_merge!(user_settings)
 
     # Specify base-box and hostname
     config.vm.box = "cakebox"
@@ -34,15 +42,15 @@ class Cakebox
     # SSH copy bash aliases to the box without using a synced folder
     config.vm.provision "file", source: "aliases", destination: "/home/vagrant/.bash_aliases"
 
-    # Mount (small) scripts folder instead of complete box root folder.
+    # Mount (small and thus fast) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.vm.synced_folder '.cakebox', '/cakebox'
 
     # Create Vagrant Synced Folders for all yaml specified "folders" and use
     # loosened permissions for Windows users so they will be able to execute
     # (e.g. Composer installed) binaries.
-    unless settings["folders"].nil?
-      settings["folders"].each do |folder|
+    unless settings["synced_folders"].nil?
+      settings["synced_folders"].each do |folder|
         if Vagrant::Util::Platform.windows?
             config.vm.synced_folder folder["map"], folder["to"], :mount_options => ["dmode=777","fmode=766"], create: true, type: folder["type"] ||= nil
         else
@@ -51,11 +59,11 @@ class Cakebox
       end
     end
 
-    # Install the cakebox-console repository so we can use it to provision
+    # Install the cakebox-console so we can use it to provision all collections
+    # specified in Cakebox.yaml.
     #config.vm.provision "shell" do |s|
     #    s.inline = "bash /cakebox/console-installer.sh"
     #end
-
 
     # Run `cakebox config $subcommand --options` for all yaml specified "personal"
     unless settings["personal"].nil?
@@ -93,7 +101,7 @@ class Cakebox
       end
     end
 
-    # Create Cake apps for all yaml specified "apps"
+    # Install fully working apps for all yaml specified "applications"
     unless settings["applications"].nil?
       settings["applications"].each do |app|
         config.vm.provision "shell" do |s|
@@ -104,17 +112,7 @@ class Cakebox
       end
     end
 
-    # Create all the (PHP-FPM?) server variables
-##    unless settings["variables"].nil?
-##      settings["variables"].each do |var|
-##          config.vm.provision "shell" do |s|
-##            s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php5/fpm/php-fpm.conf && service php5-fpm restart"
-##            s.args = [var["key"], var["value"]]
-##          end
-##        end
-##    end
-
-    # Install additional software
+    # Install all yaml specified "additional_software" packages
     unless settings["additional_software"].nil?
       settings["additional_software"].each do |package|
         config.vm.provision "shell" do |s|
