@@ -57,9 +57,9 @@ class Cakebox
     #end
 
 
-    # Run `cakebox config $subcommand --options` for all yaml specified "config"
-    unless settings["config"].nil?
-        settings["config"].each do |subcommand,options|
+    # Run `cakebox config $subcommand --options` for all yaml specified "personal"
+    unless settings["personal"].nil?
+        settings["personal"].each do |subcommand,options|
             arguments = ''
             options.each do |key, value|
                 arguments.concat(" --#{key} #{value}")
