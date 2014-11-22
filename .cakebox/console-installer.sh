@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Vagrant provisioning feedback
-echo "Installing cakebox console"
+echo "Please wait... installing cakebox console"
 
 # Convenience variables
 REPOSITORY="git@github.com:alt3/cakebox-console.git"
