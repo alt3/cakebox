@@ -1,9 +1,16 @@
+#
+# Use this file to customize your cakebox.
+#
+# See Cakebox.examples.yaml for more inspiration and make sure that you keep
+# your Cakebox.yaml in a safe place so you will be able to easily recreate
+# your box if ever required.
+#
 ---
 vm:
 
 personal:
 
-folders:
+synced_folders:
     - map: Apps/cake.app
       to:  /home/vagrant/Apps/cake.app
 
