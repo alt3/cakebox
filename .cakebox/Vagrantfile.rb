@@ -115,11 +115,11 @@ class Cakebox
 ##    end
 
     # Install additional software
-    unless settings["packages"].nil?
-      settings["packages"].each do |package|
+    unless settings["additional_software"].nil?
+      settings["additional_software"].each do |package|
         config.vm.provision "shell" do |s|
             s.inline = "bash /cakebox/console/bin/cake package add $@"
-          s.args = [ package["name"] ]
+          s.args = [ package["package"] ]
         end
       end
     end

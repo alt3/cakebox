@@ -25,5 +25,5 @@ databases:
     - name: test2.db
       options: --force
 
-packages:
-    - name: whois
+additional_software:
+    - package: whois
