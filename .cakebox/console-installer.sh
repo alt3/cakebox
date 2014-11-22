@@ -21,3 +21,4 @@ git clone $REPOSITORY $TARGET_DIR
 # Round up by Composer installing
 cd /cakebox/console
 composer install --prefer-dist
+echo "* cakebox console installed successfully!"
