@@ -1,8 +1,7 @@
 ---
-config:
-  git:
-    username: bravo-kernel
-    email: bravo-kernel@users.noreply@github.com
+vm:
+
+personal:
 
 folders:
     - map: Apps/cake.app
@@ -10,20 +9,10 @@ folders:
 
 applications:
     - url: cake.app
-    - url: cake2.app
-      options: --majorversion 2
 
 sites:
-    - url: test1.app
-      webroot: /var/www/test1.app
-    - url: test2.app
-      webroot: /var/www/test2.app
-      options: --force
 
 databases:
-    - name: test.db
-    - name: test2.db
-      options: --force
 
 additional_software:
     - package: whois
