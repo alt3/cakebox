@@ -52,9 +52,9 @@ class Cakebox
     unless settings["synced_folders"].nil?
       settings["synced_folders"].each do |folder|
         if Vagrant::Util::Platform.windows?
-            config.vm.synced_folder folder["map"], folder["to"], :mount_options => ["dmode=777","fmode=766"], create: true, type: folder["type"] ||= nil
+            config.vm.synced_folder folder["local"], folder["remote"], :mount_options => ["dmode=777","fmode=766"], create: true, type: folder["type"] ||= nil
         else
-          config.vm.synced_folder folder["map"], folder["to"], create: true, type: folder["type"] ||= nil
+          config.vm.synced_folder folder["local"], folder["remote"], create: true, type: folder["type"] ||= nil
         end
       end
     end

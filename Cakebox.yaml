@@ -1,9 +1,8 @@
 #
 # Use this file to customize your cakebox.
 #
-# See Cakebox.examples.yaml for more inspiration and make sure that you keep
-# your Cakebox.yaml in a safe place so you will be able to easily recreate
-# your box if ever required.
+# - keep your Cakebox.yaml in a safe place so you can easiy re-create your box
+# - take a look at Cakebox.examples.yaml if you need inspiration
 #
 ---
 vm:
@@ -11,8 +10,8 @@ vm:
 personal:
 
 synced_folders:
-    - map: Apps/cake.app
-      to:  /home/vagrant/Apps/cake.app
+    - local: Apps/cake.app
+      remote: /home/vagrant/Apps/cake.app
 
 applications:
     - url: cake.app
