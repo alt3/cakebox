@@ -1,8 +1,4 @@
 ---
-ip: "10.33.10.10"
-memory: 2048
-cpus: 1
-
 config:
   git:
     username: bravo-kernel

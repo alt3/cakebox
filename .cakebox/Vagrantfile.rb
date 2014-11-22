@@ -1,7 +1,14 @@
 class Cakebox
-  def Cakebox.configure(config, settings)
-
+  def Cakebox.configure(config, user_settings)
     require 'json'
+
+    # Define absolutely required box settings, overridable by Cakebox.yaml
+    settings =  Hash.new
+    settings["vm"] =  Hash.new
+    settings["vm"]["ip"] = "10.33.10.10"
+    settings["vm"]["memory"] = 2048
+    settings["vm"]["cpus"] = 1
+    settings.deep_merge!(YAML::load_file('Cakebox.yaml')) if File.exist?('Cakebox.yaml')
 
     # Specify base-box and hostname
     config.vm.box = "cakebox"
@@ -9,7 +16,7 @@ class Cakebox
     config.vm.hostname = "cakebox"
 
     # Configure a private network IP (since DHCP is known to cause SSH timeouts)
-    config.vm.network :private_network, ip: settings["ip"] ||= "10.33.10.10"
+    config.vm.network :private_network, ip: settings["vm"]["ip"]
 
     # Enable SSH Forwarding and prevent annoying "stdin: not a tty" errors
     config.ssh.forward_agent = true
@@ -17,8 +24,8 @@ class Cakebox
 
     # Optimize box settings
     config.vm.provider "virtualbox" do |vb|
-      vb.customize ["modifyvm", :id, "--memory", settings["memory"] ||= "2048"]
-      vb.customize ["modifyvm", :id, "--cpus", settings["cpus"] ||= "1"]
+      vb.customize ["modifyvm", :id, "--memory", settings["vm"]["memory"]]
+      vb.customize ["modifyvm", :id, "--cpus", settings["vm"]["cpus"]]
       vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       #vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
