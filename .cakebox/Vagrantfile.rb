@@ -1,5 +1,6 @@
 class Cakebox
   def Cakebox.configure(config, user_settings)
+    require 'vagrant/util/deep_merge'
     require 'json'
 
     # Define absolutely required box settings
@@ -15,8 +16,8 @@ class Cakebox
     user_settings["vm"]["memory"] = settings["vm"]["memory"] if user_settings["vm"]["memory"].nil?
     user_settings["vm"]["cpus"] = settings["vm"]["cpus"] if user_settings["vm"]["cpus"].nil?
 
-    # Deep merge user settings found in Cakebox.yaml
-    settings.deep_merge!(user_settings)
+    # Deep merge user settings found in Cakebox.yaml without plugin dependency
+    settings = Vagrant::Util::DeepMerge.deep_merge(settings, user_settings)
 
     # Specify base-box and hostname
     config.vm.box = "cakebox"
