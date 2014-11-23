@@ -4,8 +4,15 @@
 echo "Please wait... installing cakebox console"
 
 # Convenience variables
-REPOSITORY="git@github.com:alt3/cakebox-console.git"
+KITCHEN_FILE="/cakebox/console/webroot/index.htm"
+REPOSITORY="https://github.com/alt3/cakebox-console.git"
 TARGET_DIR="/cakebox/console"
+
+# Remove /webroot/index.html used by test-kitchen before git cloning the repository.
+if [ -f $KITCHEN_FILE ]; then
+	echo "* Preparing installation directory"
+	rm -rfv "$TARGET_DIR"/*
+fi
 
 # Verify the directory is empty or non-existent before git cloning
 if [ -d "$TARGET_DIR" ]; then
@@ -16,9 +23,12 @@ if [ -d "$TARGET_DIR" ]; then
 fi
 
 # Clone the repo.
-git clone $REPOSITORY $TARGET_DIR
+cd /cakebox
+git clone "$REPOSITORY" "$TARGET_DIR" --quiet
 
 # Round up by Composer installing
-cd /cakebox/console
-composer install --prefer-dist
-echo "* cakebox console installed successfully!"
+cd "$TARGET_DIR"
+composer install --prefer-dist  > /dev/null
+
+# Provisioning feedback
+echo "* Cakebox console installed successfully!"
