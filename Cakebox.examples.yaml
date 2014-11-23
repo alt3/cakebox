@@ -1,4 +1,8 @@
----
+#
+# The three dashes below are not just for visuals
+#
+
+
 #
 # Cakebox optimization
 #
@@ -33,6 +37,10 @@ keys:
 #   - folders starting with a character will be created in the Cakebox root folder
 #   - folders starting with / will conveniently be translated to C: for Windows users
 #
+synced_folders:
+    - map: Apps/cake.app
+      to:  /home/vagrant/Apps/cake.app
+
 #folders:
 #    - map: /git/my_repo
 #      to:  /home/vagrant/Apps/my_repo
@@ -53,6 +61,13 @@ keys:
 #
 #    - map: api.cake.dev
 #      to:  /my/custom/webroot
+sites:
+    - url: test1.app
+      webroot: /var/www/test1.app
+    - url: test2.app
+      webroot: /var/www/test2.app
+      options: --force
+
 
 #
 # Databases: create MySQL databases with accompanying '_test' database. Please note
@@ -64,9 +79,10 @@ keys:
 #     password: optional password (defaults to 'password')
 #
 #databases:
-#    - name: app1
-#    - name: app.dev
-#    - name: alt3-api
+databases:
+    - name: test.db
+    - name: test2.db
+      options: --force
 
 #
 # Apps: install fully working CakePHP applications.
@@ -76,21 +92,16 @@ keys:
 #     template: required name of template to use (cakephp, friendsofcake)
 #     version:  optional CakePHP major version number (defaults to 2, supports 3)
 #
-apps:
-    - fqdn:     cake3.app
-      template: cakephp
-
-#    - fqdn:     cake2.app
-#      template: cakephp
-#      version:  2
-
-#    - name:     cake3.app
-#      template: friendsofcake
-#      version:  3
+applications:
+    - url: cake.app
+    - url: cake2.app
+      options: --majorversion 2
+    - url: laravel.app
+      options: --framework laravel
 
 #
 #
-# Variables:
+# Variables: not implemented yet
 #
 # Usage:
 #   - key:
@@ -106,6 +117,12 @@ apps:
 # Usage:
 #   - name:   name of the software package (as used by `apt-get install`)
 #
-packages:
-    - name: whois
-    - name: phpmyadmin
+additional_software:
+    - package: whois
+    - package: phpmyadmin
+
+
+personal:
+    git:
+      username: bravo-kernel
+      email: bravo-kernel@users.noreply@github.com
