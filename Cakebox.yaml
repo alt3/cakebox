@@ -10,11 +10,8 @@ vm:
 personal:
 
 synced_folders:
-    - local: Apps/cake.app
-      remote: /home/vagrant/Apps/cake.app
 
 applications:
-    - url: cake.app
 
 sites:
 
