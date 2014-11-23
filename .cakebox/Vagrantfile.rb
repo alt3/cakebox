@@ -62,7 +62,7 @@ class Cakebox
     # Install the cakebox-console so we can use it to provision all collections
     # specified in Cakebox.yaml.
     #config.vm.provision "shell" do |s|
-    #    s.inline = "bash /cakebox/console-installer.sh"
+    #    s.inline = "bash /cakebox/bash/console-installer.sh"
     #end
 
     # Run `cakebox config $subcommand --options` for all yaml specified "personal"
@@ -124,7 +124,7 @@ class Cakebox
 
     # Provide user with box-info
     config.vm.provision "shell" do |s|
-        s.inline = "bash /cakebox/box-info.sh $@"
+        s.inline = "bash /cakebox/bash/box-info.sh $@"
         s.args = [ settings["vm"]["ip"] ]
     end
 
