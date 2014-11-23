@@ -122,5 +122,11 @@ class Cakebox
       end
     end
 
+    # Provide user with box-info
+    config.vm.provision "shell" do |s|
+        s.inline = "bash /cakebox/box-info.sh $@"
+        s.args = [ settings["vm"]["ip"] ]
+    end
+
   end
 end
