@@ -4,7 +4,7 @@
 # - keep your Cakebox.yaml in a safe place so you can easiy re-create your box
 # - take a look at Cakebox.examples.yaml if you need inspiration
 #
----
+
 vm:
 
 personal:
