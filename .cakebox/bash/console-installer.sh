@@ -23,10 +23,12 @@ if [ -d "$TARGET_DIR" ]; then
 fi
 
 # Clone the repo.
+echo "* Cloning repository"
 cd /cakebox
 git clone "$REPOSITORY" "$TARGET_DIR" --quiet
 
 # Round up by Composer installing
+echo "* Composer installing"
 cd "$TARGET_DIR"
 composer install --prefer-dist  > /dev/null
 
