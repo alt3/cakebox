@@ -59,11 +59,10 @@ class Cakebox
       end
     end
 
-    # Install the cakebox-console so we can use it to provision all collections
-    # specified in Cakebox.yaml.
-    #config.vm.provision "shell" do |s|
-    #    s.inline = "bash /cakebox/bash/console-installer.sh"
-    #end
+    # Install the cakebox-console so it can be used for yaml-provisioning
+    config.vm.provision "shell" do |s|
+        s.inline = "bash /cakebox/bash/console-installer.sh"
+    end
 
     # Run `cakebox config $subcommand --options` for all yaml specified "personal"
     unless settings["personal"].nil?
