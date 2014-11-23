@@ -1,3 +1,6 @@
+<?php
+
+print <<< HEREDOC
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,3 +22,4 @@
 		</div>
 	</body>
 </html>
+HEREDOC;
