@@ -30,7 +30,7 @@ git clone "$REPOSITORY" "$TARGET_DIR" --quiet
 # Round up by Composer installing
 echo "* Composer installing"
 cd "$TARGET_DIR"
-composer install --prefer-dist  > /dev/null
+composer install --prefer-dist --no-dev > /dev/null
 
 # Provisioning feedback
 echo "* Cakebox console installed successfully!"
