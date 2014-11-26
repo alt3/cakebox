@@ -101,9 +101,9 @@ class Cakebox
       end
     end
 
-    # Install fully working apps for all yaml specified "applications"
-    unless settings["applications"].nil?
-      settings["applications"].each do |app|
+    # Install fully working framework applications for all yaml specified "apps"
+    unless settings["apps"].nil?
+      settings["apps"].each do |app|
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/console/bin/cake application add $@"
           s.args = [ app["url"] ]
