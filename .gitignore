@@ -10,7 +10,7 @@
 !.gitignore
 !aliases
 !Cakebox.yaml
-!Cakebox.examples.yaml
+!Cakebox.inspiration.yaml
 !README.md
 !vagrant_private_key.ppk
 !Vagrantfile
