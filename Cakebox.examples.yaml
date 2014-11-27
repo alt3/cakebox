@@ -1,5 +1,5 @@
 
-# Customize your Virtual Machine settings by configuring the "vm" section.
+# Use the "vm:" section to customize your Virtual Machine.
 #
 #  ip:     ip-address used by your Cakebox
 #  memory: amount of memory available to your Cakebox
@@ -10,7 +10,7 @@ vm:
     memory: 2048
     cpus: 1
 
-# Personalize your Cakebox by configuring the "personal" section.
+# Use the "personal:" section to simplify/personalize Cakebox usage.
 #
 #  git:
 #    username: your git(hub) username as it will be used by the vagrant user
@@ -22,8 +22,9 @@ personal:
       email: cakeuser@users.noreply.github.com
       key: local path (no need to upload key)
 
-# Specify Vagrant "synced_folders" to share data anywhere on your local machine
-# and the remote Cakebox.
+# Use the "synced_folders:" section to create Vagrant Synced Folders responsible
+# for auto-syncing data between a folder on your local host machine and a folder
+# on the remote Cakebox.
 #
 #  - local:  path of the local folder
 #    remote: path of the remote folder
@@ -54,8 +55,8 @@ synced_folders:
     - local:  c:\git\clones\another.app
       remote: /var/www/awesome.app
 
-# Define "applications" to install fully configured/working framework
-# applications.
+# Use the "apps:" section to provision instant-up PHP framework applications
+# including website configuration, databases and configuration.
 #
 #  - url:     fully qualified domain name used to expose the site
 #    options: any combination of the supported command line options
@@ -72,7 +73,7 @@ apps:
     - url: laravel.app
       options: --framework laravel
 
-# Define "sites" to generate Nginx site configuration files.
+# Use the "sites:" section to provision Nginx site configuration files.
 #
 #  - url:     fully qualified domain name used to expose the site
 #    webroot: full path to site's webroot folder serving pages
@@ -90,8 +91,8 @@ sites:
       webroot: /var/www/app3.dev
       options: --force
 
-# MySQL databases will be created for every entry in "databases" along with an
-# accompanying '_test' suffixed test database.
+# Use the "databases:" section to provision MySQL databases accompanied by
+# '_test' suffixed test database.
 #
 #  - name:     name of the database
 #    options: any combination of the supported command line options
@@ -110,21 +111,15 @@ databases:
       options: --force
 
     - name: test3.db
-      options: --username my_db_user --password secret123
+      options: --username user123 --password pass123
 
-# Your default Cakebox will probably always be missing one or more of your
-# favorite tools. No problem, just specify them in the "additional_software"
-# section, re-provisioning your box and they will always be there from now on.
+# Use the "additional_software:" section to add all software you are missing.
 #
 #  - name:    name of the software package (as used by `apt-get install`)
-#    options: options as you would literally pass them to `apt-get install`
 #
 # Please note:
-#  - all installations are executed using "DEBIAN_FRONTEND=noninteractive" so no
-#    need to specify that option.
+#  - all installations are executed using "DEBIAN_FRONTEND=noninteractive"
 #
 additional_software:
     - package: whois
     - package: phpmyadmin
-    - package: somePackage
-      options: --no-upgrade

@@ -1,10 +1,9 @@
 #
 # Use this file to customize your cakebox.
 #
-# - keep your Cakebox.yaml in a safe place so you can easiy re-create your box
-# - take a look at Cakebox.examples.yaml if you need inspiration
+# Keep your Cakebox.yaml in a safe place as it will allow you to easily re-create
+# your box exactly how you like it. See Cakebox.examples.yaml for inspiration.
 #
-
 vm:
 
 personal:
@@ -18,4 +17,3 @@ sites:
 databases:
 
 additional_software:
-    - package: whois
