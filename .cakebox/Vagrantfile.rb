@@ -117,7 +117,7 @@ class Cakebox
       settings["additional_software"].each do |package|
         config.vm.provision "shell" do |s|
             s.inline = "bash /cakebox/console/bin/cake package add $@"
-          s.args = [ package["package"] ]
+            s.args = [ package["package"] ]
         end
       end
     end
