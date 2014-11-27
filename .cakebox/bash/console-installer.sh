@@ -25,12 +25,24 @@ fi
 # Clone the repo.
 echo "* Cloning repository"
 cd /cakebox
-git clone "$REPOSITORY" "$TARGET_DIR" --quiet
+OUTPUT=$(git clone "$REPOSITORY" "$TARGET_DIR" 2>&1)
+EXITCODE=$?
+if [ "$EXITCODE" -ne 0 ]; then
+	echo $OUTPUT
+	echo "FATAL: non-zero git exit code ($EXITCODE)"
+	exit 1
+fi
 
 # Round up by Composer installing
 echo "* Composer installing"
 cd "$TARGET_DIR"
-composer install --prefer-dist --no-dev > /dev/null
+OUTPUT=$(composer install --prefer-dist --no-dev 2>&1)
+EXITCODE=$?
+if [ "$EXITCODE" -ne 0 ]; then
+	echo $OUTPUT
+	echo "FATAL: non-zero composer exit code ($EXITCODE)"
+	exit 1
+fi
 
 # Provisioning feedback
-echo "* Cakebox console installed successfully!"
+echo "* Installation completed successfully!"
