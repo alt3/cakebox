@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Vagrant provisioning feedback
-echo "Please wait... installing cakebox console"
+echo "Please wait... installing Cakebox console and dashboard"
 
 # Convenience variables
 KITCHEN_FILE="/cakebox/console/webroot/index.htm"
