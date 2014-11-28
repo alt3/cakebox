@@ -80,7 +80,6 @@ class Cakebox
         # Add user's private key to all Vagrant-usable local private keys so all
         # required login scenarios will keep functioning as expected:
         # - initial non-secure vagrant up
-        # - users preferring to use the default insecure key
         # - users protecting their box with a personally generated public key
         config.ssh.private_key_path = [
           '~/.vagrant.d/insecure_private_key',
