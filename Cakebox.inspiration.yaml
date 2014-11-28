@@ -1,3 +1,6 @@
+#
+# Make sure you use spaces, tab indents will not prevent your box from starting.
+#
 
 # Use the "vm:" section to customize your Virtual Machine.
 #
@@ -10,17 +13,41 @@ vm:
     memory: 2048
     cpus: 1
 
+# Use the "security:" section to protect ssh access to your Cakebox (RECOMMENDED).
+#
+#  ssh_public_key:  full path to your personal public key file
+#  ssh_private_key: full path to your personal private key file
+#
+# Please note:
+# - only your public key will be copied to the Cakebox
+# - your private key will NEVER leave your local machine
+# - passphrase protected keys are supported
+# - SSH Agent Forwarding will prevent entering passphrase in clear text (RECOMMENDED)
+#
+# - Windows users:
+#   a) MUST NOT use the puttygen "Save public key" button and should instead
+#      copy/paste the OpenSSH public key shown in the main puttygen window.
+#   b) MUST NOT use the puttygen "Save private key" button and should
+#      export it as an OpenSSH key (Puttygen > Conversions > Export)
+#   c) will also need a Putty .ppk file to be able to login remotely
+#   d) will probably find their local keys in /Users/windows-username/.ssh
+#
+security:
+  ssh_public_key: ~/.ssh/cakebox_rsa.pub
+  ssh_private_key: ~/.ssh/cakebox_rsa
+
 # Use the "personal:" section to simplify/personalize Cakebox usage.
 #
 #  git:
-#    username: your git(hub) username as it will be used by the vagrant user
-#    email:    your git email-address as it will be used by the vagrant user
+#    username:    your git(hub) username as it will be used by the vagrant user
+#    email:       your git email-address as it will be used by the vagrant user
+#    private_key: path to your Github private key (local directory will be shared)
 #
 personal:
     git:
       username: cakeuser@github.com
       email: cakeuser@users.noreply.github.com
-      key: local path (no need to upload key)
+      private_key: ~/.ssh/github_rsa
 
 # Use the "synced_folders:" section to create Vagrant Synced Folders responsible
 # for auto-syncing data between a folder on your local host machine and a folder

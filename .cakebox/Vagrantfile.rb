@@ -27,10 +27,6 @@ class Cakebox
     # Configure a private network IP (since DHCP is known to cause SSH timeouts)
     config.vm.network :private_network, ip: settings["vm"]["ip"]
 
-    # Enable SSH Forwarding and prevent annoying "stdin: not a tty" errors
-    config.ssh.forward_agent = true
-    config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-
     # Optimize box settings
     config.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", settings["vm"]["memory"]]
@@ -39,9 +35,6 @@ class Cakebox
       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       #vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
     end
-
-    # SSH copy bash aliases to the box without using a synced folder
-    config.vm.provision "file", source: "aliases", destination: "/home/vagrant/.bash_aliases"
 
     # Mount (small and thus fast) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
@@ -59,6 +52,51 @@ class Cakebox
         end
       end
     end
+
+    # Enable SSH Forwarding and prevent annoying "stdin: not a tty" errors
+    config.ssh.forward_agent = true
+    config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+    config.ssh.username = "vagrant"
+
+    # Replace insecure Vagrant ssh public key with user generated public key
+    unless settings["security"].nil?
+      unless settings["security"]["ssh_public_key"].nil?
+        public_key = settings["security"]["ssh_public_key"]
+        unless File.exists?(public_key)
+          raise Vagrant::Errors::VagrantError.new, "Fatal: your public ssh key does not exist (#{settings["security"]["ssh_public_key"]})"
+        end
+
+        # A public key MUST be an accompanied by a private key
+        if settings["security"]["ssh_private_key"].nil?
+          raise Vagrant::Errors::VagrantError.new, "Fatal: using a public ssh key also requires specifying a local private ssh key in your Cakebox.yaml"
+        end
+        unless File.exists?(settings["security"]["ssh_private_key"])
+          raise Vagrant::Errors::VagrantError.new, "Fatal: your private ssh key does not exist (#{settings["security"]["ssh_private_key"]})"
+        end
+
+        # Copy user's public key to the vm so it can be validated and applied
+        config.vm.provision "file", source: settings["security"]["ssh_public_key"], destination: "/home/vagrant/.ssh/" + File.basename(settings["security"]["ssh_public_key"])
+
+        # Add user's private key to all Vagrant-usable local private keys so all
+        # required login scenarios will keep functioning as expected:
+        # - initial non-secure vagrant up
+        # - users preferring to use the default insecure key
+        # - users protecting their box with a personally generated public key
+        config.ssh.private_key_path = [
+          '~/.vagrant.d/insecure_private_key',
+          settings["security"]["ssh_private_key"]
+        ]
+
+        # Run bash script to replace insecure key in authorized_keys
+        config.vm.provision "shell" do |s|
+          s.inline = "bash /cakebox/bash/replace-insecure-key.sh $@"
+          s.args = "/home/vagrant/.ssh/" + File.basename(settings["security"]["ssh_public_key"])
+        end
+      end
+    end
+
+    # SSH copy bash aliases to the box without using a synced folder
+    config.vm.provision "file", source: "aliases", destination: "/home/vagrant/.bash_aliases"
 
     # Install the cakebox-console so it can be used for yaml-provisioning
     config.vm.provision "shell" do |s|

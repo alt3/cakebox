@@ -1,12 +1,21 @@
 #
 # Use this file to customize your cakebox.
 #
-# Keep your Cakebox.yaml in a safe place as it will allow you to easily re-create
-# your box exactly how you like it. See Cakebox.examples.yaml for inspiration.
+# Please note:
+# - spaced indentation MUST be used or your Cakebox will not start
+# - keep this file in a safe place so you can re-create if needed
+# - see Cakebox.inspiration.yaml for example usage
 #
 vm:
 
+security:
+  ssh_public_key: /Users/rob/.ssh/cakebox_rsa.pub
+  ssh_private_key: /Users/rob/.ssh/cakebox_rsa
+
 personal:
+  git:
+    username: bravo-kernel
+    email: bravo-kernel@users.no-reply.github.com
 
 synced_folders:
 
