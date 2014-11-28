@@ -1,5 +1,7 @@
 #
-# Make sure you use spaces, tab indents will not prevent your box from starting.
+# General information:
+# - make sure to use spaced indentation in your Cakebox.yaml, tabbed indents
+#   will prevent your box from starting.
 #
 
 # Use the "vm:" section to customize your Virtual Machine.
