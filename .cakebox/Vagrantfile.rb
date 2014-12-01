@@ -21,7 +21,7 @@ class Cakebox
 
     # Specify base-box and hostname
     config.vm.box = "cakebox"
-    config.vm.box_url = "http://alt3-aee.kxcdn.com/cakebox.box"
+    config.vm.box_url = "https://alt3-aee.kxcdn.com/cakebox.box"
     config.vm.hostname = "cakebox"
 
     # Configure a private network IP (since DHCP is known to cause SSH timeouts)
