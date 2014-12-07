@@ -44,5 +44,8 @@ if [ "$EXITCODE" -ne 0 ]; then
 	exit 1
 fi
 
+# Enable console execution for Macs
+chmod +x /cakebox/console/bin/cake
+
 # Provisioning feedback
 echo "* Installation completed successfully!"
