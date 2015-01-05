@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-printf %63s |tr " " "="
+printf %63s |tr " " "-"
 printf '\n'
-echo "Sanity checking SSH Agent Forwarding"
-printf %63s |tr " " "="
+printf "Sanity checking SSH Agent Forwarding\n"
+printf %63s |tr " " "-"
 printf '\n'
 
 # Show user
