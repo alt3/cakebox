@@ -91,13 +91,19 @@ synced_folders:
 #    options: any combination of the supported command line options
 #             (see `cakebox application add --help`)
 apps:
-    - url: cake.app
+    - url: cake3.app
+
+    - url: cake3.app
+      options: --ssh
+
+    - url: my-first.app
+      options: --source http://github.com/your-name/repository
+
+    - url: my-second.app
+      options: --source git@github.com:your-name/private-repository.git
 
     - url: cake2.app
       options: --majorversion 2 --path /var/www/cake2.app
-
-    - url: foc3.app
-      options: --template friendsofcake
 
     - url: laravel.app
       options: --framework laravel
