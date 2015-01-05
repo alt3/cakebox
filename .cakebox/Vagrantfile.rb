@@ -97,6 +97,12 @@ class Cakebox
     # SSH copy bash aliases to the box without using a synced folder
     config.vm.provision "file", source: "aliases", destination: "/home/vagrant/.bash_aliases"
 
+    # Always display SSH Agent Forwarding sanity checks
+    config.vm.provision "shell" do |s|
+      s.privileged = false
+      s.inline = "bash /cakebox/bash/check-ssh-agent.sh"
+    end
+
     # Install the cakebox-console so it can be used for yaml-provisioning
     config.vm.provision "shell" do |s|
       s.privileged = false
