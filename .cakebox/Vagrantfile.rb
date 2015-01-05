@@ -86,7 +86,7 @@ class Cakebox
           settings["security"]["ssh_private_key"]
         ]
 
-        # Run bash script to replace insecure key in authorized_keys
+        # Run bash script to replace insecure public key in authorized_keys
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/bash/replace-insecure-key.sh $@"
           s.args = "/home/vagrant/.ssh/" + File.basename(settings["security"]["ssh_public_key"])
@@ -99,7 +99,8 @@ class Cakebox
 
     # Install the cakebox-console so it can be used for yaml-provisioning
     config.vm.provision "shell" do |s|
-        s.inline = "bash /cakebox/bash/console-installer.sh"
+      s.privileged = false
+      s.inline = "bash /cakebox/bash/console-installer.sh"
     end
 
     # Run `cakebox config $subcommand --options` for all yaml specified "personal"
@@ -110,8 +111,9 @@ class Cakebox
                 arguments.concat(" --#{key} #{value}")
             end
             config.vm.provision "shell" do |s|
-                s.inline = "bash /cakebox/console/bin/cake config #{subcommand} $@"
-                s.args = arguments
+              s.privileged = false
+              s.inline = "bash /cakebox/console/bin/cake config #{subcommand} $@"
+              s.args = arguments
             end
         end
     end
@@ -120,6 +122,7 @@ class Cakebox
     unless settings["sites"].nil?
       settings["sites"].each do |site|
         config.vm.provision "shell" do |s|
+          s.privileged = false
           s.inline = "bash /cakebox/console/bin/cake site add $@"
           s.args = [ site["url"], site["webroot"] ]
           s.args.push(site["options"]) if !site["options"].nil?
@@ -131,6 +134,7 @@ class Cakebox
     unless settings["databases"].nil?
       settings["databases"].each do |database|
         config.vm.provision "shell" do |s|
+          s.privileged = false
           s.inline = "bash /cakebox/console/bin/cake database add $@"
           s.args = [ database["name"] ]
           s.args.push(database["options"]) if !database["options"].nil?
@@ -142,6 +146,7 @@ class Cakebox
     unless settings["apps"].nil?
       settings["apps"].each do |app|
         config.vm.provision "shell" do |s|
+          s.privileged = false
           s.inline = "bash /cakebox/console/bin/cake application add $@"
           s.args = [ app["url"] ]
           s.args.push(app["options"]) if !app["options"].nil?
@@ -153,8 +158,9 @@ class Cakebox
     unless settings["additional_software"].nil?
       settings["additional_software"].each do |package|
         config.vm.provision "shell" do |s|
-            s.inline = "bash /cakebox/console/bin/cake package add $@"
-            s.args = [ package["package"] ]
+          s.privileged = false
+          s.inline = "bash /cakebox/console/bin/cake package add $@"
+          s.args = [ package["package"] ]
         end
       end
     end
