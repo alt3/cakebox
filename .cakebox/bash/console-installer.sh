@@ -17,7 +17,7 @@ fi
 # Verify the directory is empty or non-existent before git cloning
 if [ -d "$TARGET_DIR" ]; then
 	if [ "$( find $TARGET_DIR -mindepth 1 -maxdepth 1 | wc -l )" -ne 0 ]; then
-		echo "* Skipping: installation directory not empty"
+		echo "* Skipping: already installed"
 		exit 0
 	fi
 fi
