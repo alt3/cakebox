@@ -1,8 +1,10 @@
 # Ignore everything
 *
 
-# Except these folders (who have their own .gitignore)
+# Except these folders
 !.cakebox/
+!docs/
+!docs/**
 
 # Except these files
 !.editorconfig
