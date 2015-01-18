@@ -10,7 +10,7 @@ Sick and tired of the time and effort it takes to correctly set up webservers,
 databases and configuration files before you can actually start developing an
 application?
 
-From now on simply run:
+From now on simply run this command inside your box:
 
 ```bash
 $ cakebox application add my.app
