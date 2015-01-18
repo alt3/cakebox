@@ -2,7 +2,7 @@
 
 The only local development server you'll ever need!
 
-Documentation [found here](https://cakebox.readthedocs.org).
+Documentation [found here](https://cakebox.readthedocs.org/installation).
 
 ## What is it?
 
@@ -24,6 +24,10 @@ Which will result in:
 - your application fully configured, connected to your database and ready for
 development
 
+> Currently supports CakePHP, Laravel, Composer and (public/private) Git
+> installations.
+
+
 ## Command Line Provisioning
 
 Easily (re)provision virtual hosts, databases and fully configured applications
@@ -36,3 +40,8 @@ using shell commands.
 Comes with a dashboard to keep track of your applications.
 
 ![Cakebox Commands](docs/sources/img/cakebox-dashboard.png)
+
+## One more thing
+
+You can have yours up-and-running with 3 simple commands, just
+[Read The Docs](https://cakebox.readthedocs.org/installation).
