@@ -6,12 +6,14 @@ class Cakebox
     # Define absolutely required box settings
     settings =  Hash.new
     settings["vm"] =  Hash.new
+    settings["vm"]["hostname"] = "cakebox"
     settings["vm"]["ip"] = "10.33.10.10"
     settings["vm"]["memory"] = 2048
     settings["vm"]["cpus"] = 1
 
     # Prevent merging empty vm user settings
     user_settings["vm"] = Hash.new if user_settings["vm"].nil?
+    user_settings["vm"]["hostname"] = settings["vm"]["hostname"] if user_settings["vm"]["hostname"].nil?
     user_settings["vm"]["ip"] = settings["vm"]["ip"] if user_settings["vm"]["ip"].nil?
     user_settings["vm"]["memory"] = settings["vm"]["memory"] if user_settings["vm"]["memory"].nil?
     user_settings["vm"]["cpus"] = settings["vm"]["cpus"] if user_settings["vm"]["cpus"].nil?
@@ -19,10 +21,10 @@ class Cakebox
     # Deep merge user settings found in Cakebox.yaml without plugin dependency
     settings = Vagrant::Util::DeepMerge.deep_merge(settings, user_settings)
 
-    # Specify base-box and hostname
+    # Specify CDN base-box and hostname for the vm
     config.vm.box = "cakebox"
     config.vm.box_url = "https://alt3-aee.kxcdn.com/cakebox.box"
-    config.vm.hostname = "cakebox"
+    config.vm.hostname = settings["vm"]["hostname"]
 
     # Configure a private network IP (since DHCP is known to cause SSH timeouts)
     config.vm.network :private_network, ip: settings["vm"]["ip"]
