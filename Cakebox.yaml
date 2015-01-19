@@ -9,12 +9,13 @@ vm:
     memory: 2048
     cpus: 1
 
+git:
+  username:
+  email:
+
 security:
   box_public_key:
   box_private_key:
-
-personal:
-  git:
 
 synced_folders:
   - local:  Apps

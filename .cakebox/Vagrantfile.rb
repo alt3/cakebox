@@ -122,21 +122,22 @@ class Cakebox
       s.inline = "bash /cakebox/bash/console-installer.sh"
     end
 
-    # Run `cakebox config $subcommand --options` for all yaml specified "personal"
-    unless settings["personal"].nil?
-        settings["personal"].each do |subcommand,options|
-          unless options.nil?
-            arguments = ''
-            options.each do |key, value|
-                arguments.concat(" --#{key} #{value}")
-            end
-            config.vm.provision "shell" do |s|
-              s.privileged = false
-              s.inline = "bash /cakebox/console/bin/cake config #{subcommand} $@"
-              s.args = arguments
-            end
-          end
+    # Set global git username and email using `cakebox config git [options]`
+    unless settings["git"].nil?
+      if !settings["git"]["username"].nil? || !settings["git"]["email"].nil?
+
+        arguments = ''
+        settings["git"].each do |key, value|
+          arguments.concat(" --#{key} #{value}")
         end
+
+        config.vm.provision "shell" do |s|
+          s.privileged = false
+          s.inline = "bash /cakebox/console/bin/cake config git $@"
+          s.args = arguments
+        end
+
+      end
     end
 
     # Create Nginx site configuration files for all yaml specified "sites"
