@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------
 # https://cakebox.readthedocs.org/configuration/cakebox-yaml
 #
-# Spaced indentations MUST be used or your box will not start.
+# Spaced indentation MUST be used or your box will not start.
 # ------------------------------------------------------------------------
 vm:
   hostname: cakebox
@@ -30,4 +30,4 @@ sites:
 
 databases:
 
-additional_software:
+software:
