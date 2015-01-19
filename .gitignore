@@ -10,9 +10,6 @@
 !.editorconfig
 !.gitattributes
 !.gitignore
-!aliases
-!Cakebox.yaml
-!Cakebox.inspiration.yaml
 !README.md
 !vagrant_private_key.ppk
 !Vagrantfile
