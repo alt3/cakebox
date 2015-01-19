@@ -38,20 +38,31 @@ class Cakebox
       #vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
     end
 
-    # Mount (small and thus fast) scripts folder instead of complete box root folder.
+    # Mount small (and thus fast) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.vm.synced_folder '.cakebox', '/cakebox'
 
-    # Create Vagrant Synced Folders for all yaml specified "folders" and use
-    # loosened permissions for Windows users so they will be able to execute
-    # (e.g. Composer installed) binaries.
+    # Create Vagrant Synced Folders for all yaml specified "folders".
     unless settings["synced_folders"].nil?
       settings["synced_folders"].each do |folder|
+
+        # On Windows mounts are created with loosened permissions so the vagrant
+        # user will be able to execute files (like composer installed binaries)
+        # inside shared folder.
         if Vagrant::Util::Platform.windows?
-            config.vm.synced_folder folder["local"], folder["remote"], :mount_options => ["dmode=777","fmode=766"], create: true, type: folder["type"] ||= nil
-        else
-          config.vm.synced_folder folder["local"], folder["remote"], create: true, type: folder["type"] ||= nil
+            config.vm.synced_folder folder["local"], folder["remote"], :mount_options => ["dmode=777","fmode=766"], create: true
         end
+
+        # On Linux/Mac mounts are created using the vagrant default settings
+        # UNLESS the user has specified supported mount options in Cakebox.yaml.
+        unless Vagrant::Util::Platform.windows?
+          if folder["mount_options"].nil?
+            config.vm.synced_folder folder["local"], folder["remote"], create: true
+          else
+            config.vm.synced_folder folder["local"], folder["remote"], create: true, :mount_options => [folder["mount_options"]]
+          end
+        end
+
       end
     end
 
