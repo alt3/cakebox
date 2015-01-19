@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 # Vagrant provisioning feedback
-echo "Please wait... installing Cakebox console and dashboard"
+printf %63s |tr " " "-"
+printf '\n'
+printf "Please wait... installing Cakebox Console and Dashboard"
+printf %63s |tr " " "-"
+printf '\n'
 
 # Convenience variables
 KITCHEN_FILE="/cakebox/console/webroot/index.htm"
