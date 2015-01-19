@@ -73,22 +73,22 @@ class Cakebox
 
     # Replace insecure Vagrant ssh public key with user generated public key
     unless settings["security"].nil?
-      unless settings["security"]["ssh_public_key"].nil?
-        public_key = settings["security"]["ssh_public_key"]
+      unless settings["security"]["box_public_key"].nil?
+        public_key = settings["security"]["box_public_key"]
         unless File.exists?(public_key)
-          raise Vagrant::Errors::VagrantError.new, "Fatal: your public ssh key does not exist (#{settings["security"]["ssh_public_key"]})"
+          raise Vagrant::Errors::VagrantError.new, "Fatal: your public ssh key does not exist (#{settings["security"]["box_public_key"]})"
         end
 
         # A public key MUST be an accompanied by a private key
-        if settings["security"]["ssh_private_key"].nil?
+        if settings["security"]["box_private_key"].nil?
           raise Vagrant::Errors::VagrantError.new, "Fatal: using a public ssh key also requires specifying a local private ssh key in your Cakebox.yaml"
         end
-        unless File.exists?(settings["security"]["ssh_private_key"])
-          raise Vagrant::Errors::VagrantError.new, "Fatal: your private ssh key does not exist (#{settings["security"]["ssh_private_key"]})"
+        unless File.exists?(settings["security"]["box_private_key"])
+          raise Vagrant::Errors::VagrantError.new, "Fatal: your private ssh key does not exist (#{settings["security"]["box_private_key"]})"
         end
 
         # Copy user's public key to the vm so it can be validated and applied
-        config.vm.provision "file", source: settings["security"]["ssh_public_key"], destination: "/home/vagrant/.ssh/" + File.basename(settings["security"]["ssh_public_key"])
+        config.vm.provision "file", source: settings["security"]["box_public_key"], destination: "/home/vagrant/.ssh/" + File.basename(settings["security"]["box_public_key"])
 
         # Add user's private key to all Vagrant-usable local private keys so all
         # required login scenarios will keep functioning as expected:
@@ -96,13 +96,13 @@ class Cakebox
         # - users protecting their box with a personally generated public key
         config.ssh.private_key_path = [
           '~/.vagrant.d/insecure_private_key',
-          settings["security"]["ssh_private_key"]
+          settings["security"]["box_private_key"]
         ]
 
         # Run bash script to replace insecure public key in authorized_keys
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/bash/replace-insecure-key.sh $@"
-          s.args = "/home/vagrant/.ssh/" + File.basename(settings["security"]["ssh_public_key"])
+          s.args = "/home/vagrant/.ssh/" + File.basename(settings["security"]["box_public_key"])
         end
       end
     end
@@ -125,6 +125,7 @@ class Cakebox
     # Run `cakebox config $subcommand --options` for all yaml specified "personal"
     unless settings["personal"].nil?
         settings["personal"].each do |subcommand,options|
+          unless options.nil?
             arguments = ''
             options.each do |key, value|
                 arguments.concat(" --#{key} #{value}")
@@ -134,6 +135,7 @@ class Cakebox
               s.inline = "bash /cakebox/console/bin/cake config #{subcommand} $@"
               s.args = arguments
             end
+          end
         end
     end
 

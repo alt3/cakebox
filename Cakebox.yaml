@@ -1,18 +1,24 @@
+# ------------------------------------------------------------------------
+# https://cakebox.readthedocs.org/configuration/cakebox-yaml
 #
-# Use this file to customize your cakebox.
-#
-# Please note:
-# - spaced indentation MUST be used or your box will not start
-# - keep this file in a safe place so you can easily re-create your box if needed
-# - see Cakebox.inspiration.yaml for example usage
-#
+# Spaced indentations MUST be used or your box will not start.
+# ------------------------------------------------------------------------
 vm:
+    hostname: cakebox
+    ip: 10.33.10.10
+    memory: 2048
+    cpus: 1
 
 security:
+  box_public_key:
+  box_private_key:
 
 personal:
+  git:
 
 synced_folders:
+  - local:  Apps
+    remote: /home/vagrant/Apps
 
 apps:
 
