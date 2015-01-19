@@ -179,8 +179,8 @@ class Cakebox
     end
 
     # Install all yaml specified "additional_software" packages
-    unless settings["additional_software"].nil?
-      settings["additional_software"].each do |package|
+    unless settings["software"].nil?
+      settings["software"].each do |package|
         config.vm.provision "shell" do |s|
           s.privileged = false
           s.inline = "bash /cakebox/console/bin/cake package add $@"
