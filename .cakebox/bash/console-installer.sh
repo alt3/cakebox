@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Convenience variables
+BRANCH=$1
 KITCHEN_FILE="/cakebox/console/webroot/index.htm"
 REPOSITORY="https://github.com/alt3/cakebox-console.git"
 TARGET_DIR="/cakebox/console"
@@ -21,7 +22,7 @@ fi
 # Vagrant provisioning feedback
 printf %63s |tr " " "-"
 printf '\n'
-printf "Please wait... installing Cakebox console and dashboard"
+printf "Please wait... installing Cakebox Console and Dashboard"
 printf %63s |tr " " "-"
 printf '\n'
 
@@ -34,6 +35,18 @@ if [ "$EXITCODE" -ne 0 ]; then
 	echo $OUTPUT
 	echo "FATAL: non-zero git exit code ($EXITCODE)"
 	exit 1
+fi
+
+# Check out non-master branch
+if [ "$BRANCH" != "master" ]; then
+	echo "* Checking out $BRANCH branch"
+	OUTPUT=$(git checkout "$BRANCH" 2>&1)
+	EXITCODE=$?
+	if [ "$EXITCODE" -ne 0 ]; then
+		echo $OUTPUT
+		echo "FATAL: non-zero git exit code ($EXITCODE)"
+		exit 1
+	fi
 fi
 
 # Round up by Composer installing

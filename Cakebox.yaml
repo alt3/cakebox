@@ -4,10 +4,13 @@
 # Spaced indentations MUST be used or your box will not start.
 # ------------------------------------------------------------------------
 vm:
-    hostname: cakebox
-    ip: 10.33.10.10
-    memory: 2048
-    cpus: 1
+  hostname: cakebox
+  ip: 10.33.10.10
+  memory: 2048
+  cpus: 1
+
+cakebox:
+  branch: dev
 
 git:
   username:

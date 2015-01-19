@@ -10,6 +10,8 @@ class Cakebox
     settings["vm"]["ip"] = "10.33.10.10"
     settings["vm"]["memory"] = 2048
     settings["vm"]["cpus"] = 1
+    settings["cakebox"] =  Hash.new
+    settings["cakebox"]["branch"] = "master"
 
     # Prevent merging empty vm user settings
     user_settings["vm"] = Hash.new if user_settings["vm"].nil?
@@ -17,6 +19,7 @@ class Cakebox
     user_settings["vm"]["ip"] = settings["vm"]["ip"] if user_settings["vm"]["ip"].nil?
     user_settings["vm"]["memory"] = settings["vm"]["memory"] if user_settings["vm"]["memory"].nil?
     user_settings["vm"]["cpus"] = settings["vm"]["cpus"] if user_settings["vm"]["cpus"].nil?
+    user_settings["cakebox"]["branch"] = settings["cakebox"]["branch"] if user_settings["cakebox"]["branch"].nil?
 
     # Deep merge user settings found in Cakebox.yaml without plugin dependency
     settings = Vagrant::Util::DeepMerge.deep_merge(settings, user_settings)
@@ -119,13 +122,13 @@ class Cakebox
     # Install the cakebox-console so it can be used for yaml-provisioning
     config.vm.provision "shell" do |s|
       s.privileged = false
-      s.inline = "bash /cakebox/bash/console-installer.sh"
+      s.inline = "bash /cakebox/bash/console-installer.sh $@"
+      s.args = user_settings["cakebox"]["branch"]
     end
 
     # Set global git username and email using `cakebox config git [options]`
     unless settings["git"].nil?
       if !settings["git"]["username"].nil? || !settings["git"]["email"].nil?
-
         arguments = ''
         settings["git"].each do |key, value|
           arguments.concat(" --#{key} #{value}")
@@ -136,7 +139,6 @@ class Cakebox
           s.inline = "bash /cakebox/console/bin/cake config git $@"
           s.args = arguments
         end
-
       end
     end
 
