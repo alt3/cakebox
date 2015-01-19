@@ -107,8 +107,8 @@ class Cakebox
       end
     end
 
-    # SSH copy bash aliases to the box without using a synced folder
-    config.vm.provision "file", source: "aliases", destination: "/home/vagrant/.bash_aliases"
+    # SSH copy bash aliases file to the box
+    config.vm.provision "file", source: ".cakebox/aliases", destination: "/home/vagrant/.bash_aliases"
 
     # Always display SSH Agent Forwarding sanity checks
     config.vm.provision "shell" do |s|
