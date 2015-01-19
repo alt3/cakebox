@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# Vagrant provisioning feedback
-printf %63s |tr " " "-"
-printf '\n'
-printf "Please wait... installing Cakebox Console and Dashboard"
-printf %63s |tr " " "-"
-printf '\n'
-
 # Convenience variables
 KITCHEN_FILE="/cakebox/console/webroot/index.htm"
 REPOSITORY="https://github.com/alt3/cakebox-console.git"
@@ -18,13 +11,19 @@ if [ -f $KITCHEN_FILE ]; then
 	rm -rfv "$TARGET_DIR"/*
 fi
 
-# Verify the directory is empty or non-existent before git cloning
+# Assume application is already installed if the directory exists and isn't empty
 if [ -d "$TARGET_DIR" ]; then
 	if [ "$( find $TARGET_DIR -mindepth 1 -maxdepth 1 | wc -l )" -ne 0 ]; then
-		echo "* Skipping: already installed"
 		exit 0
 	fi
 fi
+
+# Vagrant provisioning feedback
+printf %63s |tr " " "-"
+printf '\n'
+printf "Please wait... installing Cakebox console and dashboard"
+printf %63s |tr " " "-"
+printf '\n'
 
 # Clone the repo.
 echo "* Cloning repository"
