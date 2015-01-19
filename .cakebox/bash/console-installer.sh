@@ -36,6 +36,7 @@ if [ "$EXITCODE" -ne 0 ]; then
 	echo "FATAL: non-zero git exit code ($EXITCODE)"
 	exit 1
 fi
+cd "$TARGET_DIR"
 
 # Check out non-master branch
 if [ "$BRANCH" != "master" ]; then
@@ -51,7 +52,6 @@ fi
 
 # Round up by Composer installing
 echo "* Composer installing"
-cd "$TARGET_DIR"
 OUTPUT=$(composer install --prefer-dist --no-dev 2>&1)
 EXITCODE=$?
 if [ "$EXITCODE" -ne 0 ]; then
