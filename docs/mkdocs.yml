@@ -16,15 +16,19 @@ pages:
 # Home:
 - ['index.md', 'Home']
 
-# Getting Started:
-- ['installation.md', '', 'Getting Started']
+# Quickstart:
+- ['quickstart.md', '', 'Quickstart']
 
-# Configuration:
-- ['configuration.md', '', 'Configuration']
+# Features:
+- ['features.md', '', 'Features']
 
-# Usage:
-- ['usage.md', '', 'Usage']
+# Cakebox.yaml:
+- ['configuration/cakebox-yaml.md', '', 'Cakebox.yaml']
+
+# SSH:
+- ['configuration/ssh.md', '', 'SSH']
+
 
 # Additional Information:
-- ['additional/ssh-windows.md', 'Additional Information', 'SSH on Windows']
+- ['additional/credentials.md', 'Additional Information', 'Usernames/Passwords']
 - ['additional/known-limitations.md', 'Additional Information', 'Known Limitations']
