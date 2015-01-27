@@ -1,4 +1,4 @@
-# Cakebox 0.2.0-beta
+# Cakebox 0.1.1-beta
 
 Homestead on steroids!
 
