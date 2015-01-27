@@ -10,7 +10,6 @@ include_search: true
 
 theme: readthedocs
 
-
 pages:
 
 # Home:
