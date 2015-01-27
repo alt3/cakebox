@@ -10,6 +10,7 @@
 !.editorconfig
 !.gitattributes
 !.gitignore
+!mkdocs.yml
 !README.md
 !vagrant_private_key.ppk
 !Vagrantfile
