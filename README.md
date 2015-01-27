@@ -1,4 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/cakebox/badge/?version=latest)](https://readthedocs.org/projects/cakebox/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/cakebox/badge/?version=latest)](https://readthedocs.org/projects/cakebox)
 
 # Cakebox
 
