@@ -22,7 +22,4 @@ $ cakebox database add holiday2015
 $ cakebox site add idea.com /var/www/some-idea
 ```
 
-
-A web interface thrown in for your convenience.
-
 ![Cakebox Dashboard](docs/sources/img/cakebox-dashboard.png)
