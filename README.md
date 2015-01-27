@@ -4,7 +4,7 @@
 
 Homestead on Steroids!
 
-Command line provisioning:
+
 
 ```bash
 # Instant-up framework applications
@@ -23,6 +23,6 @@ $ cakebox site add idea.com /var/www/some-idea
 ```
 
 
-A web interface thrown in for your convenience:
+A web interface thrown in for your convenience.
 
 ![Cakebox Dashboard](docs/sources/img/cakebox-dashboard.png)
