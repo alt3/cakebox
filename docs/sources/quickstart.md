@@ -1,10 +1,12 @@
 
 ## Requirements
 
-+ [Git](http://git-scm.com/downloads)
+
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) version 4.0 or higher
 + [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) version 6.0 or higher
 
+> **Windows users** also need [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html),
+> Pageant and the [Git Bash](http://git-scm.com/downloads) to unlock all functionality.
 
 ## Installation
 
@@ -14,8 +16,9 @@ git clone git@github.com:alt3/cakebox.git
 
 ## Launching your box
 
-Start your box for the first time. Once provisioning has completed either
-login using SSH or visit the Cakebox Dashboard at ``https://10.33.10.10``.
+Start your box for the first time. Once provisioning has
+completed either login using SSH or visit the Cakebox Dashboard at
+``https://10.33.10.10``.
 
 ```bash
 cd cakebox

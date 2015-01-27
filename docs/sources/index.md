@@ -5,7 +5,7 @@ Homestead on steroids!
 ## Get productive
 
 Sick and tired of wasting hours on webservers, databases and configuration
-before you can actually start hacking away at that application prototype?
+before you can actually start hacking away at that prototype?
 
 No more... from now on simply run this command inside your vagrant box:
 
