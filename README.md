@@ -4,6 +4,8 @@
 
 Homestead on Steroids!
 
+Documentation [found here](http://cakebox.readthedocs.org/en/latest/).
+
 ```bash
 # Instant-up framework applications
 $ cakebox application add cake3.app
