@@ -1,9 +1,25 @@
+## Beta
+
+We are currently in beta so things may break. Help us fix them by
+[reporting a problem](https://github.com/alt3/cakebox/issues).
+
+> **Note:** untested on Mac/Linux, help wanted!
 
 ## Requirements
 
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) version 4.0 or higher
 + [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) version 6.0 or higher
+
+## Windows users
+
+Windows users need additional software to unlock all functionality:
+
++ [Git Bash](http://git-scm.com/downloads)
++ [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
++ [Pageant](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) (for private git repositories)
+
+> **Note:** documented instructions assume you are using the Git Bash.
 
 ## Installation
 
@@ -27,13 +43,15 @@ vagrant up
 
 ## Box architecture
 
-To give you a less abstract idea of what you've just launched.
+To give you a less abstract idea of what you've just launched:
 
 ![Cakebox Overview](img/cakebox-overview.png)
 
+> **Note:** the Basebox Build Process is shown for completeness only.
+
 ## What's next?
 
-Your box is up-and-running so you're all good but you might want to:
+Now that your box is up-and-running you might want to:
 
 + take a good look at the ``Cakebox.yaml`` file (described [here](configuration/cakebox-yaml.md))
 + experiment with the ``cakebox`` shell commands
