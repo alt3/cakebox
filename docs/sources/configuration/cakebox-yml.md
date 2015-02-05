@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 
 Your box is highly customizable and was designed to be personalized.
 
@@ -7,12 +7,11 @@ your personal ``Cakebox.yaml`` configuration file. This way you can always
 (re)create an exact copy of your box including installed applications,
 databases and virtual hosts.
 
-> **Note:** to apply (and test) changes to your Cakebox.yaml file reboot your
-> box using ``vagrant reload --provision``.
+**Notes:**
 
-### Indentation
-
-Make sure to use spaced indentation or your box will fail to start.
++ use spaced indentation or your box will fail to start
++ apply (and test) configuration changes by rebooting your box using
+``vagrant reload --provision``
 
 ## TL;DR
 
