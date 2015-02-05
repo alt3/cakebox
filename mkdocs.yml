@@ -25,7 +25,7 @@ pages:
 - ['configuration/cakebox-yaml.md', '', 'Cakebox.yaml']
 
 # SSH:
-- ['configuration/ssh.md', '', 'SSH']
+- ['configuration/ssh-connections.md', '', 'SSH Connections']
 
 
 # Additional Information:
