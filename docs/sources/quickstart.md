@@ -1,7 +1,7 @@
 ## Beta
 
-We are currently in beta so things may break. Help us fix them by
-[reporting a problem](https://github.com/alt3/cakebox/issues).
+We are currently in beta so things may break. Help us improve by
+[reporting problems](https://github.com/alt3/cakebox/issues).
 
 > **Note:** untested on Mac/Linux, help wanted!
 
@@ -19,7 +19,7 @@ Windows users need additional software to unlock all functionality:
 + [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 + [Pageant](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) (for private git repositories)
 
-> **Note:** documented instructions assume you are using the Git Bash.
+> **Note:** this documentation assumes Windows users are using the Git Bash.
 
 ## Installation
 
@@ -53,6 +53,8 @@ To give you a less abstract idea of what you've just launched:
 
 Now that your box is up-and-running you might want to:
 
-+ take a good look at the ``Cakebox.yaml`` file (described [here](configuration/cakebox-yaml.md))
-+ experiment with the ``cakebox`` shell commands
-+ check the credentials page for usernames and passwords (described [here](additional/credentials.md))
++ login to your box using ssh ([described here](configuration/ssh-connections.md))
++ take a good look at the ``Cakebox.yaml`` file used to configure your box
+([described here](configuration/cakebox-yml.md))
++ experiment with the ``cakebox`` shell commands used to provision apps, databases and virtual hosts
++ check the [credentials page](additional/credentials.md) for usernames and passwords
