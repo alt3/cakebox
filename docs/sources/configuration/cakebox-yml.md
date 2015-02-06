@@ -1,10 +1,8 @@
 # Introduction
 
-Your box is highly customizable and was designed to be personalized.
-
-We highly recommend that all customizations are done by defining settings in
-your personal ``Cakebox.yaml`` configuration file. This way you can always
-(re)create an exact copy of your box including installed applications,
+Your box is highly customizable and designed to be personalized by editing
+your ``Cakebox.yaml`` configuration file. This way you can always
+(re)create exact copies of your box including installed applications,
 databases and virtual hosts.
 
 **Notes:**

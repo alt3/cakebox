@@ -5,7 +5,7 @@ Since the internet is already filled with information about
 this chapter will simply focus on generating a key pair to replace the
 insecure vagrant box login authentication key.
 
-## Creating the Key Pair
+## Generating the Key Pair
 
 You will generate a 2048 bit RSA key pair ready to use for your box with:
 

@@ -27,7 +27,7 @@ Enabling secure SSH authentication is a simple two step process:
 1. Generating a SSH authentication key pair ([described here](configuration/ssh-certificates/#creating-the-key-pair))
 2. Enabling it in your Cakebox.yaml configuration file ([described here](configuration/cakebox-yml/#security))
 
-## Login Using Vagrant SSH
+## Using Vagrant SSH
 
 If you don't want to use an external ssh client you can login to your box
 directly from the command line using the native Vagrant
@@ -38,7 +38,7 @@ cd cakebox
 vagrant ssh
 ```
 
-## Login Using Native SSH
+## Using Native SSH
 
 Native SSH is available on Mac, Linux and the Git Bash.
 
@@ -50,10 +50,10 @@ ssh vagrant@10.33.10.10
 
 > **Note:** SSH Agent forwarded keys will be detect automatically.
 
-## Login Using Putty (Windows)
+## Using Putty (Windows)
 
 Windows users should use Putty to login to their box remotely as this
-will ensure that SSH Agent Forwarding will also function as expected.
+will ensure SSH Agent Forwarding will also functioning as expected.
 
 ### Connection Configuration
 
