@@ -1,4 +1,5 @@
-Work in progress
+# Introduction
+
 
 ## MySQL
 
@@ -10,13 +11,7 @@ Local (per app) databases | cakebox | secret
 
 ## SSH
 
-SSH password logins are disabled so either use:
-
-+ vagrant ssh
-+ the Vagrant insecure private key (.ppk included in project's root directory for Windows Putty users)
-+ generate your own secure ssh key pair and add them to your ``Cakebox.yaml`` file
-
-> Windows specific SSH instructions to be added here.
+See [SSH Connections](configuration/ssh-connections)
 
 ## Cakebox Dashboard
 
