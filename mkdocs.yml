@@ -27,6 +27,9 @@ pages:
 # SSH Agent Forwarding:
 - ['configuration/ssh-forwarding.md', '', 'SSH Agent Forwarding']
 
+# SSH Certificates:
+- ['configuration/ssh-certificates.md', '', 'SSH Certificates']
+
 # Cakebox.yaml:
 - ['configuration/cakebox-yml.md', '', 'Configuration']
 

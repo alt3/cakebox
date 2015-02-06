@@ -17,7 +17,8 @@ Windows users need additional software to unlock all functionality:
 
 + [Git Bash](http://git-scm.com/downloads)
 + [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-+ [Pageant](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) (for private git repositories)
++ [Pageant](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
++ [Puttygen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
 > **Note:** this documentation assumes Windows users are using the Git Bash.
 
@@ -54,7 +55,7 @@ To give you a less abstract idea of what you've just launched:
 Now that your box is up-and-running you might want to:
 
 + login to your box using ssh ([described here](configuration/ssh-connections.md))
-+ take a good look at the ``Cakebox.yaml`` file used to configure your box
++ take a good look at the ``Cakebox.yaml`` configuration file
 ([described here](configuration/cakebox-yml.md))
 + experiment with the ``cakebox`` shell commands used to provision apps, databases and virtual hosts
 + check the [credentials page](additional/credentials.md) for usernames and passwords

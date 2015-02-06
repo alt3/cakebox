@@ -9,7 +9,7 @@
 + SSH security done right
 + Highly customizable, Vagrant aware settings
 + Pro tools like Elasticsearch and Logstash
-+ Full functionality on Windows too (SSH, etc)
++ Fully functional on Windows (including SSH)
 + A web interface thrown in as a bonus
 
 
