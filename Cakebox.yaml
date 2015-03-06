@@ -1,12 +1,14 @@
 # ------------------------------------------------------------------------
-# https://cakebox.readthedocs.org/configuration/cakebox-yaml
+# Use this configuration file to personalize your cakebox. See the docs at
+# https://cakebox.readthedocs.org/en/latest/configuration/cakebox-yml
+# for a list of all supported options and some inspiration.
 #
-# Spaced indentation MUST be used or your box will not start.
+# Please note: spaced indentation MUST be used or your box will not start!
 # ------------------------------------------------------------------------
 vm:
   hostname: cakebox
   ip: 10.33.10.10
-  memory: 2048
+  memory: 1024
   cpus: 1
 
 cakebox:

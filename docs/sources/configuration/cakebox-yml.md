@@ -1,11 +1,23 @@
-Take good care of your ``Cakebox.yaml`` file, it will allow you to (re)create
-exact copies of your customized box if ever needed.
+# Introduction
 
-> **Note:** Make sure to use spaced indentation or your box will fail to start.
+Your box is highly customizable and designed to be personalized by editing
+your ``Cakebox.yaml`` configuration file. This way you can always
+(re)create exact copies of your box including installed applications,
+databases and virtual hosts.
+
+**Notes:**
+
++ use spaced indentation or your box will fail to start
++ apply (and test) configuration changes by rebooting your box using
+``vagrant reload --provision``
 
 ## TL;DR
 
+For those who prefer examples to reading.
+
 ```yaml
+# cakebox.yaml configuration examples
+
 vm:
   hostname: cakebox
   ip: 10.33.10.10

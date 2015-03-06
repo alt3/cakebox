@@ -15,17 +15,23 @@ pages:
 # Home:
 - ['index.md', 'Home']
 
-# Quickstart:
-- ['quickstart.md', '', 'Quickstart']
-
 # Features:
 - ['features.md', '', 'Features']
 
-# Cakebox.yaml:
-- ['configuration/cakebox-yaml.md', '', 'Cakebox.yaml']
+# Quickstart:
+- ['quickstart.md', '', 'Quickstart']
 
-# SSH:
-- ['configuration/ssh.md', '', 'SSH']
+# SSH Connections:
+- ['configuration/ssh-connections.md', '', 'SSH Connections']
+
+# SSH Agent Forwarding:
+- ['configuration/ssh-forwarding.md', '', 'SSH Agent Forwarding']
+
+# SSH Certificates:
+- ['configuration/ssh-certificates.md', '', 'SSH Certificates']
+
+# Cakebox.yaml:
+- ['configuration/cakebox-yml.md', '', 'Configuration']
 
 
 # Additional Information:

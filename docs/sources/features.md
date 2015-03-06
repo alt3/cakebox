@@ -9,7 +9,7 @@
 + SSH security done right
 + Highly customizable, Vagrant aware settings
 + Pro tools like Elasticsearch and Logstash
-+ Full functionality on Windows too (SSH, etc)
++ Fully functional on Windows (including SSH)
 + A web interface thrown in as a bonus
 
 
@@ -32,8 +32,9 @@ powered ``cakebox`` shell commands to deploy:
 
 ![Cakebox Commands](img/cakebox-commands.png)
 
-> **Pro tip!** These same commands are used by your ``Cakebox.yaml`` file allowing
-> you to easily (re)create exact copies of your customized box if ever needed.
+> **Note:** These commands are also used by your ``Cakebox.yaml`` file allowing
+> you to (re)create exact copies of your customized box including all installed
+> applications, databases and virtual hosts.
 
 ### Cakebox Dashboard
 
