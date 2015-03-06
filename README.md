@@ -4,6 +4,11 @@
 
 Homestead on Steroids!
 
+## Requirements
+
++ [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
++ [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 6.0 or higher
+
 ## Installation
 
 ```bash
@@ -12,20 +17,34 @@ cd cakebox
 vagrant up
 ```
 
-Documentation [found here](http://cakebox.readthedocs.org/en/latest/).
+> **Note:** the initial download of the (~2GB) box image could take some time
+> so please be patient.
+
+Once provisioning has completed you are ready to:
+
+- [create your first website](http://cakebox.readthedocs.org/en/latest/additional/tutorial-first-site/).
+- login to your Virtual Machine using the ``vagrant ssh`` command
+- login to your Cakebox Dashboard by browsing to [https://10.33.10.10](https://10.33.10.10)
+
+## Documentation
+
+Full documentation [found here](http://cakebox.readthedocs.org/en/latest/).
+
 
 ## Features
+
+### Command Line Provisioning
 
 Provision applications, databases and virtual hosts directly from the command
 line:
 
 ```bash
-# Instant-up framework applications
+# Automatically configured framework skeleton applications
 $ cakebox application add cake3.app
 $ cakebox application add cake2.app --majorversion 2
 $ cakebox application add laravel.app --framework laravel
 
-# Public and private git/composer applications
+# Git and Composer applications (both public and private)
 $ cakebox application add public.app --source http://github.com/your-name/repository
 $ cakebox application add private.app --source git@github.com:your-name/repository.git
 $ cakebox application add yii.app --source yiisoft/yii2-app-basic
@@ -34,6 +53,9 @@ $ cakebox application add yii.app --source yiisoft/yii2-app-basic
 $ cakebox database add holiday2015
 $ cakebox site add idea.com /var/www/some-idea
 ```
+
+### Management Dashboard
+
 Comes with a dashboard for your convenience.
 
 ![Cakebox Dashboard](docs/sources/img/cakebox-dashboard.png)
