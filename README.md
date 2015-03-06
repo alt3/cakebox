@@ -4,7 +4,20 @@
 
 Homestead on Steroids!
 
+## Installation
+
+```bash
+git clone https://github.com/alt3/cakebox.git
+cd cakebox
+vagrant up
+```
+
 Documentation [found here](http://cakebox.readthedocs.org/en/latest/).
+
+## Features
+
+Provision applications, databases and virtual hosts directly from the command
+line:
 
 ```bash
 # Instant-up framework applications
