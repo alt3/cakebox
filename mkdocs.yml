@@ -33,7 +33,10 @@ pages:
 # Cakebox.yaml:
 - ['configuration/cakebox-yml.md', '', 'Configuration']
 
+# Cakebox commands:
+- ['usage/cakebox-commands.md', '', 'Cakebox Commands']
 
 # Additional Information:
-- ['additional/credentials.md', 'Additional Information', 'Usernames/Passwords']
+- ['additional/tutorial-first-site.md', 'Additional Information', 'Creating Your First Website']
+- ['additional/credentials.md', 'Additional Information', 'Credentials']
 - ['additional/known-limitations.md', 'Additional Information', 'Known Limitations']

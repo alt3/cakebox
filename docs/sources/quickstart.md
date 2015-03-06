@@ -3,13 +3,11 @@
 We are currently in beta so things may break. Help us improve by
 [reporting problems](https://github.com/alt3/cakebox/issues).
 
-> **Note:** untested on Mac/Linux, help wanted!
-
 ## Requirements
 
 
-+ [VirtualBox](https://www.virtualbox.org/wiki/Downloads) version 4.0 or higher
-+ [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) version 6.0 or higher
++ [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
++ [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 6.0 or higher
 
 ## Windows users
 
@@ -20,21 +18,15 @@ Windows users need additional software to unlock all functionality:
 + [Pageant](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 + [Puttygen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
-> **Note:** this documentation assumes Windows users are using the Git Bash.
+> **Note:** this documentation assumes Windows users are using the Git Bash to
+> run commands.
 
 ## Installation
 
+To launch your box for the first time:
+
 ```bash
 git clone git@github.com:alt3/cakebox.git
-```
-
-## Launching your box
-
-Run these commands to launch your box for the first time. Once provisioning has
-finished either login to your box using SSH or visit the Cakebox Dashboard at
-``https://10.33.10.10``.
-
-```bash
 cd cakebox
 vagrant up
 ```
@@ -42,20 +34,27 @@ vagrant up
 > **Note:** the initial download of the (~2GB) box image could take some time
 > so please be patient.
 
+Once provisioning has completed you can:
+
+- login to your Virtual Machine by using the ``vagrant ssh`` command
+- login to your Cakebox Dashboard by browsing to ``https://10.33.10.10``
+
+## What's next?
+
+Now that your box is up-and-running you might consider:
+
++ [creating your first website](additional/tutorial-first-site.md)
++ updating your hosts file
++ [customizing your cakebox](configuration/cakebox-yml.md)
++ [setting up SSH](configuration/ssh-connections.md)
++ experimenting with the ``cakebox`` commands
++ checking the [credentials page](additional/credentials.md)
+
+
 ## Box architecture
 
-To give you a less abstract idea of what you've just launched:
+To give you a less abstract idea of what your box looks like:
 
 ![Cakebox Overview](img/cakebox-overview.png)
 
 > **Note:** the Basebox Build Process is shown for completeness only.
-
-## What's next?
-
-Now that your box is up-and-running you might want to:
-
-+ login to your box using ssh ([described here](configuration/ssh-connections.md))
-+ take a good look at the ``Cakebox.yaml`` configuration file
-([described here](configuration/cakebox-yml.md))
-+ experiment with the ``cakebox`` shell commands used to provision apps, databases and virtual hosts
-+ check the [credentials page](additional/credentials.md) for usernames and passwords
