@@ -49,18 +49,19 @@ class Cakebox
     unless settings["synced_folders"].nil?
       settings["synced_folders"].each do |folder|
 
-        # On Windows mounts are created with loosened permissions so the vagrant
-        # user will be able to execute files (like composer installed binaries)
-        # inside shared folder.
+        # On Windows mounts are always created with loosened permissions so the
+        # vagrant user will be able to execute files (like composer installed
+        # binaries) inside the shared folders.
         if Vagrant::Util::Platform.windows?
             config.vm.synced_folder folder["local"], folder["remote"], :mount_options => ["dmode=777","fmode=766"], create: true
         end
 
-        # On Linux/Mac mounts are created using the vagrant default settings
-        # UNLESS the user has specified supported mount options in Cakebox.yaml.
+        # On Linux/Mac mounts are by created with the same loose permissions as
+        # as used on Windows UNLESS the user specifies his own (Vagrant supported)
+        # mount options in Cakebox.yaml.
         unless Vagrant::Util::Platform.windows?
           if folder["mount_options"].nil?
-            config.vm.synced_folder folder["local"], folder["remote"], create: true
+            config.vm.synced_folder folder["local"], folder["remote"], :mount_options => ["dmode=777","fmode=766"], create: true
           else
             config.vm.synced_folder folder["local"], folder["remote"], create: true, :mount_options => [folder["mount_options"]]
           end
