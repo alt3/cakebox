@@ -7,7 +7,7 @@ We are currently in beta so things may break. Help us improve by
 
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
-+ [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 6.0 or higher
++ [Vagrant](https://www.vagrantup.com/downloads.html) 6.0 or higher
 
 ## Windows users
 
