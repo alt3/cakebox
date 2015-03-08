@@ -3,7 +3,7 @@
 Follow these instructions to create your first website:
 
 - using a fresh copy of CakePHP 3.x
-- called ``cake3.app``
+- called ``mycake3.app``
 - with Nginx virtual host
 - with two databases (one for testing purposes)
 
@@ -21,7 +21,7 @@ vagrant ssh
 Inside your Virtual Machine run:
 
 ```bash
-cakebox application add cake3.app
+cakebox application add mycake3.app
 ```
 
 ## 3. Update your hosts file
@@ -40,24 +40,24 @@ local system where to find the new website:
 Add the following line and save the updated file.
 
 ```
-10.33.10.10     cake3.app
+10.33.10.10     mycake3.app
 ```
 
-Even though this is not required you might want to test if your update was
-successful by running ``ping cake3.app`` on your local machine. On Mac/Linux
+You might want to test if your update was
+successful by running ``ping mycake3.app`` on your local machine. On Mac/Linux
 the output should look similar to:
 
 ```
-PING cake3.app (10.33.10.10) 56(84) bytes of data.
-64 bytes from cake3.app (10.33.10.10): icmp_seq=1 ttl=64 time=0.016 ms
-64 bytes from cake3.app (10.33.10.10): icmp_seq=2 ttl=64 time=0.022 ms
-64 bytes from cake3.app (10.33.10.10): icmp_seq=3 ttl=64 time=0.022 ms
+PING mycake3.app (10.33.10.10) 56(84) bytes of data.
+64 bytes from mycake3.app (10.33.10.10): icmp_seq=1 ttl=64 time=0.016 ms
+64 bytes from mycake3.app (10.33.10.10): icmp_seq=2 ttl=64 time=0.022 ms
+64 bytes from mycake3.app (10.33.10.10): icmp_seq=3 ttl=64 time=0.022 ms
 ```
 
 On Windows it should look like this:
 
 ```
-Pinging cake.app [10.33.10.10] with 32 bytes of data:
+Pinging mycake3.app [10.33.10.10] with 32 bytes of data:
 Reply from 10.33.10.10: bytes=32 time=1ms TTL=64
 Reply from 10.33.10.10: bytes=32 time<1ms TTL=64
 Reply from 10.33.10.10: bytes=32 time<1ms TTL=64
@@ -66,7 +66,7 @@ Reply from 10.33.10.10: bytes=32 time<1ms TTL=64
 ## 4. Done!
 
 That's all there's to it. You can now open the browser on your local system and
-browse to ``http://cake3.app``. If things went well you should see something
+browse to ``http://mycake3.app``. If things went well you should see something
 similar to this:
 
 ![Cakebox Overview](img/fresh-install-cake3.png)
@@ -78,7 +78,7 @@ used by the new website.
 
 Just take a look inside the ``cakebox/Apps``
 folder on your local machine. If things went well you should see a subfolder
-named ``cake3.app`` containing all source files. Launch your local editor and
+named ``mycake3.app`` containing all source files. Launch your local editor and
 make some changes.
 
 Changes to local files are automatically synchronized to your box so if you
@@ -86,8 +86,8 @@ refresh the web page you should see your changes applied.
 
 ## Closing Note
 
-You can provision as many applications as you like. They will all run
-parallel inside your box so feel free to create another website to get
+Remember that you can provision as many applications as you like. They will all
+run parallel inside your box so feel free to create another website to get
 comfortable with the process.
 
 Run ``cakebox application add --help`` to display a list of supported options
