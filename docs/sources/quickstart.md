@@ -11,15 +11,8 @@ We are currently in beta so things may break. Help us improve by
 
 ## Windows users
 
-Windows users need additional software to unlock all functionality:
-
-+ [Git Bash](http://git-scm.com/downloads)
-+ [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-+ [Pageant](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-+ [Puttygen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-
-> **Note:** this documentation assumes Windows users are using the Git Bash to
-> run commands.
+Windows users should additionally install the [Git Bash](http://git-scm.com/downloads)
+and use it to run the commands in this documentation.
 
 ## Installation
 
@@ -57,4 +50,5 @@ To give you a less abstract idea of what your box looks like:
 
 ![Cakebox Overview](img/cakebox-overview.png)
 
-> **Note:** the Basebox Build Process is shown for completeness only.
+> **Note:** the Basebox Build Process is already done for you and is shown for
+completeness only.
