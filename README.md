@@ -40,14 +40,14 @@ line:
 
 ```bash
 # Automatically configured framework skeleton applications
-$ cakebox application add cake3.app
-$ cakebox application add cake2.app --majorversion 2
-$ cakebox application add laravel.app --framework laravel
+$ cakebox application add mycake3.app
+$ cakebox application add mycake2.app --majorversion 2
+$ cakebox application add mylaravel.app --framework laravel
 
 # Git and Composer applications (both public and private)
-$ cakebox application add public.app --source http://github.com/your-name/repository
-$ cakebox application add private.app --source git@github.com:your-name/repository.git
-$ cakebox application add yii.app --source yiisoft/yii2-app-basic
+$ cakebox application add mypublic.app --source http://github.com/your-name/repository
+$ cakebox application add myprivate.app --source git@github.com:your-name/repository.git
+$ cakebox application add myyii.app --source yiisoft/yii2-app-basic
 
 # Databases and virtual hosts
 $ cakebox database add holiday2015
