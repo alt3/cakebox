@@ -4,14 +4,22 @@
     - databases
     - virtual hosts
     - fully configured applications
-+ Support for Git hosted applications (public and private)
-+ Support for Composer installed applications
++ Provision applications using Git repositories (both public and private)
++ Provision applications using Composer
 + SSH security done right
 + Highly customizable, Vagrant aware settings
 + Pro tools like Elasticsearch and Logstash
 + Fully functional on Windows (including SSH)
 + A web interface thrown in as a bonus
 
+## Box architecture
+
+To give you a less abstract idea of how your box operates:
+
+![Cakebox Overview](img/cakebox-overview.png)
+
+> **Note:** the Basebox Build Process is already done for you and is shown for
+completeness only.
 
 ## Software
 

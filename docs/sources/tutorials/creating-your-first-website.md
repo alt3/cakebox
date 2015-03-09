@@ -63,7 +63,7 @@ Reply from 10.33.10.10: bytes=32 time<1ms TTL=64
 Reply from 10.33.10.10: bytes=32 time<1ms TTL=64
 ```
 
-## 4. Done!
+## Done!
 
 That's all there's to it. You can now open the browser on your local system and
 browse to ``http://mycake3.app``. If things went well you should see something
@@ -91,4 +91,5 @@ run parallel inside your box so feel free to create another website to get
 comfortable with the process.
 
 Run ``cakebox application add --help`` to display a list of supported options
-if you want to provision a different website variation.
+if you want to try provisioning a different website flavor like CakePHP 2.x,
+Laravel or Yii.

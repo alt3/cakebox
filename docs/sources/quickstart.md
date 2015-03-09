@@ -11,8 +11,8 @@ We are currently in beta so things may break. Help us improve by
 
 ## Windows users
 
-Windows users should additionally install the [Git Bash](http://git-scm.com/downloads)
-and use it to run the commands in this documentation.
+Windows users should additionally install [Git Bash](http://git-scm.com/downloads)
+and are assumed to be using it to run the commands in this documentation.
 
 ## Installation
 
@@ -36,19 +36,10 @@ Once provisioning has completed you can:
 
 Now that your box is up-and-running you might consider:
 
-+ [creating your first website](additional/tutorial-first-site.md)
-+ updating your hosts file
-+ [customizing your cakebox](configuration/cakebox-yml.md)
-+ [setting up SSH](configuration/ssh-connections.md)
-+ experimenting with the ``cakebox`` commands
-+ checking the [credentials page](additional/credentials.md)
-
-
-## Box architecture
-
-To give you a less abstract idea of what your box looks like:
-
-![Cakebox Overview](img/cakebox-overview.png)
-
-> **Note:** the Basebox Build Process is already done for you and is shown for
-completeness only.
++ [creating your first website](tutorials/creating-your-first-website)
++ [updating your hosts file](usage/hosts-file)
++ [experimenting with the ``cakebox commands``](usage/cakebox-commands)
++ [customizing your cakebox](usage/cakebox-yaml)
++ [securing your box authentication](tutorials/securing-box-authentication)
++ [connecting your Github SSH key](tutorials/connecting-your-github-ssh-key) so you can use private repositories
++ [checking the credentials page](additional/credentials) for usernames and passwords
