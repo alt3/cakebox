@@ -10,12 +10,13 @@ libraries) to the most recent version. To update your box run the
 following command inside your Virtual Machine:
 
 ```bash
-cakebox config update
+cakebox update self
 ```
 
-It should produce output similar to:
+You should see something similar to:
 
 ```bash
+$ Updating Cakebox Dashboard and Cakebox Commands
 $ Please wait... this can take a moment
 $ Update completed successfully
 ```
