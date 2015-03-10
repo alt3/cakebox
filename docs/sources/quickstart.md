@@ -8,11 +8,13 @@ We are currently in beta so things may break. Help us improve by
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
 + [Vagrant](https://www.vagrantup.com/downloads.html) 6.0 or higher
++ a machine with at least 4GB of memory and 2 CPUs
 
 ## Windows users
 
-Windows users should additionally install [Git Bash](http://git-scm.com/downloads)
-and are assumed to be using it to run the commands in this documentation.
+We highly recommend that Windows users also install
+the [Git Bash](http://git-scm.com/downloads) and use it
+to run the commands in this documentation.
 
 ## Installation
 
@@ -32,6 +34,9 @@ Once provisioning has completed you can:
 - login to your Virtual Machine by using the ``vagrant ssh`` command
 - login to your Cakebox Dashboard by browsing to ``https://10.33.10.10``
 
+> **Note:** you can safely ignore the browser certificate warning when
+> browsing to the dashboard.
+
 ## What's next?
 
 Now that your box is up-and-running you might consider:
@@ -40,6 +45,6 @@ Now that your box is up-and-running you might consider:
 + [updating your hosts file](usage/hosts-file)
 + [experimenting with the ``cakebox commands``](usage/cakebox-commands)
 + [customizing your cakebox](usage/cakebox-yaml)
-+ [securing your box authentication](tutorials/securing-box-authentication)
++ [hardening box logins](tutorials/hardening-box-authentication)
 + [connecting your Github SSH key](tutorials/connecting-your-github-ssh-key) so you can use private repositories
 + [checking the credentials page](additional/credentials) for usernames and passwords

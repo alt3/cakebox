@@ -33,7 +33,7 @@ their preferred SSH client as this will simplify their workflow and
 guarantee that all cakebox functionality will function as expected.
 
 > **Note:** Make sure that you have created the cakebox_rsa.ppk key as
-> [described here](tutorials/securing-box-authentication/#putty-users-windows).
+> [described here](tutorials/hardening-box-authentication/#putty-users-windows).
 
 To create a Putty connection configuration for your box:
 

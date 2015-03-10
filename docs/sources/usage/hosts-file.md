@@ -3,12 +3,19 @@
 Placeholder for hosts file documentation.
 
 + cakebox will NOT automatically update your local hosts file
-+ manually add an entry after provisioning a new application/website
++ manually add the URL after provisioning a new application/website
 
 Hosts file example corresponding to examples used in this documentation:
 
 ```
 10.33.10.10    cakebox    mycake3.app
+```
+
+You might consider a multiline approach if your box hosts a lot of applications:
+
+```
+10.33.10.10    cakebox    mycake3.app
+10.33.10.10    mylaravel.app     myother.app     etc.app
 ```
 
 ## Windows

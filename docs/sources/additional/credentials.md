@@ -1,18 +1,20 @@
 # Introduction
 
+This chapter contains the usernames/passwords used by your box.
 
 ## MySQL
 
 Description  | username | password |
 :----------- | :--------- | :--------- |
-MySQL root account | root | secret |
+MySQL root  | root | secret |
 Databases | cakebox | secret |
 Remote user | vagrant | vagrant |
 
-<!--break -->
+<break />
 
-> **Note:** you can connect to the MySQL services using ``cakebox:3306`` or
-``10.33.10.10:3306``.
+> **Note:** you can connect to the MySQL service running on your box from
+> your local machine using ``10.33.10.10:3306`` or ``cakebox:3306`` if you have
+> [updated your local hosts file](usage/hosts-file/).
 
 ## SSH
 
