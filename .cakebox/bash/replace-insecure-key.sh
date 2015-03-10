@@ -4,12 +4,15 @@
 PUBLIC_KEY_PATH=$1
 AUTHORIZED_KEYS=/home/vagrant/.ssh/authorized_keys
 
-# Vagrant provisioning feedback
-echo "Replacing insecure Vagrant ssh key"
+printf %63s |tr " " "-"
+printf '\n'
+printf "Hardening SSH Authentication\n"
+printf %63s |tr " " "-"
+printf '\n'
 
 # Do nothing if custom public key is already present in authorized_keys
 if diff "$AUTHORIZED_KEYS" "$PUBLIC_KEY_PATH" >/dev/null ; then
-	echo "* Skipping: SSH access already protected by your personal public key"
+	echo "* Skipping: SSH logins already require your personal SSH key"
 	exit 0
 fi
 
@@ -28,4 +31,4 @@ echo "* Enabling your public key"
 cat "$PUBLIC_KEY_PATH" > "$AUTHORIZED_KEYS"
 
 # Vagrant provisioning feedback
-echo "* SSH access successfully protected by your personal public key"
+echo "* Awesome... SSH logins now require your personal SSH key"
