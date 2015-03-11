@@ -41,6 +41,13 @@ class Cakebox
       #vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
     end
 
+    # SSH copy bash aliases file to the box
+    config.vm.provision "file", source: ".cakebox/aliases", destination: "/home/vagrant/.bash_aliases"
+
+    # SSH copy the Cakebox.yaml to /home/vagrant/.cakebox when --provision is
+    # being used so it can be used for virtual machine information.
+    config.vm.provision "file", source: "Cakebox.yaml", destination: "/home/vagrant/.cakebox/Cakebox.yaml.provisioned"
+
     # Mount small (and thus fast) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.vm.synced_folder '.cakebox', '/cakebox'
@@ -110,9 +117,6 @@ class Cakebox
         end
       end
     end
-
-    # SSH copy bash aliases file to the box
-    config.vm.provision "file", source: ".cakebox/aliases", destination: "/home/vagrant/.bash_aliases"
 
     # Always display SSH Agent Forwarding sanity checks
     config.vm.provision "shell" do |s|
