@@ -34,8 +34,9 @@ Once provisioning has completed you can:
 - login to your Virtual Machine by using the ``vagrant ssh`` command
 - login to your Cakebox Dashboard by browsing to ``https://10.33.10.10``
 
-> **Note:** you can safely ignore the browser certificate warning when
-> browsing to the dashboard.
+> **Note:** accept the
+> [certificate warning](additional/known-limitations/#dashboard-certificate-warning)
+> shown when browsing to the Cakebox Dashboard.
 
 ## What's next?
 

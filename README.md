@@ -22,9 +22,13 @@ vagrant up
 
 Once provisioning has completed you are ready to:
 
-- [create your first website](http://cakebox.readthedocs.org/en/latest/tutorials/creating-your-first-website/).
-- login to your Virtual Machine using the ``vagrant ssh`` command
-- login to your Cakebox Dashboard by browsing to [https://10.33.10.10](https://10.33.10.10)
+- [Create your first website](http://cakebox.readthedocs.org/en/latest/tutorials/creating-your-first-website/).
+- Login to your Virtual Machine using the ``vagrant ssh`` command
+- Login to your Cakebox Dashboard by browsing to [https://10.33.10.10](https://10.33.10.10)
+
+> **Note:** accept the
+> [certificate warning](http://cakebox.readthedocs.org/en/latest/known-limitations/#dashboard-certificate-warning)
+> shown when browsing to the Cakebox Dashboard.
 
 ## Documentation
 

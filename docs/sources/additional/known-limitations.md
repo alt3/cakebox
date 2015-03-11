@@ -1,4 +1,20 @@
 
+## Dashboard Certificate Warning
+
+When connecting to your Cakebox Dashboard your browser will warn
+you that the SSL certificate cannot be trusted. This is **expected behavior**
+caused by the fact that we are using a self-signed certificate that your
+browser cannot validate.
+
+Until the mechanism to replace the default cakebox certificate is implemented
+you will need to ignore the warning.
+
++ **Firefox**: press the ``Add Exception`` button, then press
+``Confirm Security Exception``.
++ **Chrome**: press the ``Advanced`` link, then press
+``Proceed to cakebox (unsafe)``
++ **Internet Explorer**: press the ``Continue to this website (not recommended)`` link.
+
 ## Clear text passwords
 
 You might see the following message when connecting to your box.
