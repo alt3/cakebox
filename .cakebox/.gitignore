@@ -1,5 +1,6 @@
 # Do not ignore anything in this subdirectory
 !*
 
-# Except the git cloned Cakebox Console directory
+# Except these directories
 console/
+backups/
