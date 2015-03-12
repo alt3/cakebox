@@ -50,7 +50,7 @@ class Cakebox
 
     # Mount small (and thus fast) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
-    config.vm.synced_folder '.cakebox', '/cakebox'
+    config.vm.synced_folder '.cakebox', '/cakebox', :mount_options => ["dmode=777","fmode=766"], create: true
 
     # Create Vagrant Synced Folders for all yaml specified "folders".
     unless settings["synced_folders"].nil?
