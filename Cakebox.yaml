@@ -13,6 +13,7 @@ vm:
 
 cakebox:
   branch: dev
+  https: false
 
 git:
   username:
