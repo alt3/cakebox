@@ -112,7 +112,7 @@ class Cakebox
 
         # Run bash script to replace insecure public key in authorized_keys
         config.vm.provision "shell" do |s|
-          s.inline = "bash /cakebox/bash/replace-insecure-key.sh $@"
+          s.inline = "bash /cakebox/bash/ssh-authentication.sh $@"
           s.args = "/home/vagrant/.ssh/" + File.basename(settings["security"]["box_public_key"])
         end
       end
@@ -128,7 +128,17 @@ class Cakebox
     config.vm.provision "shell" do |s|
       s.privileged = false
       s.inline = "bash /cakebox/bash/console-installer.sh $@"
-      s.args = user_settings["cakebox"]["branch"]
+      s.args = settings["cakebox"]["branch"]
+    end
+
+    # Set Cakebox Dashboard protocol to HTTP or HTTPS
+    config.vm.provision "shell" do |s|
+      s.inline = "bash /cakebox/bash/dashboard-protocol.sh $@"
+      if settings["cakebox"]["https"] == false
+        s.args = 'http'
+      else
+        s.args = 'https'
+      end
     end
 
     # Set global git username and email using `cakebox config git [options]`

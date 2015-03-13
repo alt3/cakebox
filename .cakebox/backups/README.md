@@ -1,8 +1,5 @@
-#Placeholder directory.
+# Backups
 
-Cakebox backups will be placed here once implemented.
+This directory will be used for backups of your:
 
-**Intended backups:**
-
-+ MySQL databases
-+ Cakebox.yaml used during the last provisioning run
++ MySQL database server (full)
