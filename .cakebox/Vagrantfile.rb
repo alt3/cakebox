@@ -133,7 +133,8 @@ class Cakebox
 
     # Set Cakebox Dashboard protocol to HTTP or HTTPS
     config.vm.provision "shell" do |s|
-      s.inline = "bash /cakebox/bash/dashboard-protocol.sh $@"
+      s.privileged = false
+      s.inline = "bash /cakebox/console/bin/cake config dashboard --force --protocol $@"
       if settings["cakebox"]["https"] == false
         s.args = 'http'
       else
