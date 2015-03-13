@@ -8,6 +8,8 @@ Homestead on Steroids!
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
 + [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 6.0 or higher
++ Windows users should additionally install the [Git Bash](http://git-scm.com/downloads)
+to run the commands below
 
 ## Installation
 
@@ -24,10 +26,7 @@ Once provisioning has completed you are ready to:
 
 - [Create your first website](http://cakebox.readthedocs.org/en/latest/tutorials/creating-your-first-website/).
 - Login to your Virtual Machine using the ``vagrant ssh`` command
-- Login to your Cakebox Dashboard by browsing to [https://10.33.10.10](https://10.33.10.10)
-
-> **Note:** you can safely ignore the Cakebox Dashboard
-> [certificate warning](http://cakebox.readthedocs.org/en/latest/known-limitations/#dashboard-certificate-warning).
+- Login to your Cakebox Dashboard by browsing to [http://10.33.10.10](http://10.33.10.10)
 
 ## Documentation
 
