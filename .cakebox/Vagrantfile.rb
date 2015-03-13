@@ -8,10 +8,10 @@ class Cakebox
     settings["vm"] =  Hash.new
     settings["vm"]["hostname"] = "cakebox"
     settings["vm"]["ip"] = "10.33.10.10"
-    settings["vm"]["memory"] = 2048
+    settings["vm"]["memory"] = 1024
     settings["vm"]["cpus"] = 1
     settings["cakebox"] =  Hash.new
-    settings["cakebox"]["branch"] = "master"
+    settings["cakebox"]["version"] = "dev-master"
 
     # Prevent merging empty vm user settings
     user_settings["vm"] = Hash.new if user_settings["vm"].nil?
@@ -19,7 +19,7 @@ class Cakebox
     user_settings["vm"]["ip"] = settings["vm"]["ip"] if user_settings["vm"]["ip"].nil?
     user_settings["vm"]["memory"] = settings["vm"]["memory"] if user_settings["vm"]["memory"].nil?
     user_settings["vm"]["cpus"] = settings["vm"]["cpus"] if user_settings["vm"]["cpus"].nil?
-    user_settings["cakebox"]["branch"] = settings["cakebox"]["branch"] if user_settings["cakebox"]["branch"].nil?
+    user_settings["cakebox"]["version"] = settings["cakebox"]["version"] if user_settings["cakebox"]["version"].nil?
 
     # Deep merge user settings found in Cakebox.yaml without plugin dependency
     settings = Vagrant::Util::DeepMerge.deep_merge(settings, user_settings)
@@ -128,7 +128,7 @@ class Cakebox
     config.vm.provision "shell" do |s|
       s.privileged = false
       s.inline = "bash /cakebox/bash/console-installer.sh $@"
-      s.args = settings["cakebox"]["branch"]
+      s.args = settings["cakebox"]["version"]
     end
 
     # Set Cakebox Dashboard protocol to HTTP or HTTPS

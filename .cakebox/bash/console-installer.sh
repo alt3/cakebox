@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 # Convenience variables
-BRANCH=$1
 KITCHEN_FILE="/cakebox/console/webroot/index.htm"
-REPOSITORY="https://github.com/alt3/cakebox-console.git"
+REPOSITORY="alt3/cakebox-console"
+VERSION=$1
 TARGET_DIR="/cakebox/console"
+DIR_NAME="console"
 
 # Remove /webroot/index.html used by test-kitchen before git cloning the repository.
 if [ -f $KITCHEN_FILE ]; then
@@ -27,28 +28,16 @@ printf %63s |tr " " "-"
 printf '\n'
 
 # Clone the repo.
-echo "* Cloning repository"
+echo "* Creating project"
 cd /cakebox
-OUTPUT=$(git clone "$REPOSITORY" "$TARGET_DIR" 2>&1)
+OUTPUT=$(composer create-project -sdev --no-install --keep-vcs --no-interaction "$REPOSITORY":"$VERSION" "$DIR_NAME" 2>&1)
 EXITCODE=$?
 if [ "$EXITCODE" -ne 0 ]; then
 	echo $OUTPUT
 	echo "FATAL: non-zero git exit code ($EXITCODE)"
 	exit 1
 fi
-cd "$TARGET_DIR"
-
-# Check out non-master branch
-if [ "$BRANCH" != "master" ]; then
-	echo "* Checking out $BRANCH branch"
-	OUTPUT=$(git checkout "$BRANCH" 2>&1)
-	EXITCODE=$?
-	if [ "$EXITCODE" -ne 0 ]; then
-		echo $OUTPUT
-		echo "FATAL: non-zero git exit code ($EXITCODE)"
-		exit 1
-	fi
-fi
+cd "$DIR_NAME"
 
 # Round up by Composer installing
 echo "* Composer installing"
