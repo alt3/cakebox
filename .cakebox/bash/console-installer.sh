@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 # Convenience variables
-BRANCH=$1
 KITCHEN_FILE="/cakebox/console/webroot/index.htm"
 REPOSITORY="alt3/cakebox-console"
-VERSION="dev-dev"
+VERSION=$1
 TARGET_DIR="/cakebox/console"
 DIR_NAME="console"
 

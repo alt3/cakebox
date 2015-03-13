@@ -128,7 +128,7 @@ class Cakebox
     config.vm.provision "shell" do |s|
       s.privileged = false
       s.inline = "bash /cakebox/bash/console-installer.sh $@"
-      s.args = settings["cakebox"]["branch"]
+      s.args = settings["cakebox"]["version"]
     end
 
     # Set Cakebox Dashboard protocol to HTTP or HTTPS
