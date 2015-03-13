@@ -112,7 +112,7 @@ class Cakebox
 
         # Run bash script to replace insecure public key in authorized_keys
         config.vm.provision "shell" do |s|
-          s.inline = "bash /cakebox/bash/replace-insecure-key.sh $@"
+          s.inline = "bash /cakebox/bash/ssh-authentication.sh $@"
           s.args = "/home/vagrant/.ssh/" + File.basename(settings["security"]["box_public_key"])
         end
       end
