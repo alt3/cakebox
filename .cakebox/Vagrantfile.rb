@@ -133,7 +133,8 @@ class Cakebox
 
     # Set Cakebox Dashboard protocol to HTTP or HTTPS
     config.vm.provision "shell" do |s|
-      s.inline = "bash /cakebox/bash/dashboard-protocol.sh $@"
+      s.privileged = false
+      s.inline = "bash /cakebox/console/bin/cake config dashboard --force --protocol $@"
       if settings["cakebox"]["https"] == false
         s.args = 'http'
       else
@@ -206,8 +207,13 @@ class Cakebox
 
     # Provide user with box-info
     config.vm.provision "shell" do |s|
-        s.inline = "bash /cakebox/bash/box-info.sh $@"
+        s.inline = "bash /cakebox/bash/completion-message.sh $@"
         s.args = [ settings["vm"]["ip"] ]
+        if settings['cakebox']['https'] == true
+          s.args.push('https')
+        else
+          s.args.push('http')
+        end
     end
 
   end
