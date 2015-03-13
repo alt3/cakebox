@@ -8,11 +8,13 @@
 vm:
   hostname: cakebox
   ip: 10.33.10.10
-  memory: 2048
+  memory: 1024
   cpus: 1
 
 cakebox:
   branch: dev
+# composer version constraint for alt3/cakebox-console, see https://packagist.org/packages/alt3/cakebox-console
+  version: dev-dev
   https: false
 
 git:
