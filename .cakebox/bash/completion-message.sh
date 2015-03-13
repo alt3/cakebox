@@ -5,6 +5,6 @@ PROTOCOL=$2
 
 printf %63s |tr " " "-"
 printf '\n'
-printf "Your Cakebox is waiting at %s://%s\n" "$PROTOCOL" "$IP"
+printf "Your box is ready and waiting at %s://%s\n" "$PROTOCOL" "$IP"
 printf %63s |tr " " "-"
 printf '\n'
