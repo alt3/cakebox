@@ -8,7 +8,7 @@ class Cakebox
     settings["vm"] =  Hash.new
     settings["vm"]["hostname"] = "cakebox"
     settings["vm"]["ip"] = "10.33.10.10"
-    settings["vm"]["memory"] = 2048
+    settings["vm"]["memory"] = 1024
     settings["vm"]["cpus"] = 1
     settings["cakebox"] =  Hash.new
     settings["cakebox"]["version"] = "dev-master"
