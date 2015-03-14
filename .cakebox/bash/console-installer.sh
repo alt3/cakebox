@@ -7,7 +7,7 @@ VERSION=$1
 TARGET_DIR="/cakebox/console"
 DIR_NAME="console"
 
-# Remove /webroot/index.html used by test-kitchen before git cloning the repository.
+# Remove /webroot/index.html used by test-kitchen if needed.
 if [ -f $KITCHEN_FILE ]; then
 	echo "* Preparing installation directory"
 	rm -rfv "$TARGET_DIR"/*
@@ -23,7 +23,7 @@ fi
 # Vagrant provisioning feedback
 printf %63s |tr " " "-"
 printf '\n'
-printf "Please wait... installing Cakebox Console and Dashboard"
+printf "Please wait... installing Cakebox Commands and Dashboard"
 printf %63s |tr " " "-"
 printf '\n'
 
@@ -53,4 +53,4 @@ fi
 chmod +x /cakebox/console/bin/cake
 
 # Provisioning feedback
-echo "* Installation completed successfully!"
+echo "Installation completed successfully!"
