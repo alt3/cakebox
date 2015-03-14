@@ -53,12 +53,12 @@ directly from the command line. Currently supports:
 + Composer
 
 ```bash
-# Automatically configured framework skeleton applications
+# Fresh preconfigured PHP framework applications
 $ cakebox application add mycake3.app
 $ cakebox application add mycake2.app --majorversion 2
 $ cakebox application add mylaravel.app --framework laravel
 
-# Git and Composer applications (both public and private)
+# Git or Composer applications (both public and private)
 $ cakebox application add mypublic.app --source http://github.com/your-name/repository
 $ cakebox application add myprivate.app --source git@github.com:your-name/repository.git
 $ cakebox application add myyii.app --source yiisoft/yii2-app-basic
