@@ -142,6 +142,17 @@ class Cakebox
       end
     end
 
+    # Turn CakePHP debug mode on/off for Cakebox Commands and Dashboard
+    config.vm.provision "shell" do |s|
+      s.privileged = false
+      s.inline = "bash /cakebox/console/bin/cake config debug $@"
+      if settings["cakebox"]["debug"] == false
+        s.args = 'off'
+      else
+        s.args = 'on'
+      end
+    end
+
     # Set global git username and email using `cakebox config git [options]`
     unless settings["git"].nil?
       if !settings["git"]["username"].nil? || !settings["git"]["email"].nil?
