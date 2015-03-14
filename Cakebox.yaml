@@ -12,8 +12,8 @@ vm:
   cpus: 1
 
 cakebox:
-# composer version constraint for alt3/cakebox-console, see https://packagist.org/packages/alt3/cakebox-console
   version: dev-dev
+  debug: false
   https: false
 
 git:
