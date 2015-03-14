@@ -2,14 +2,21 @@
 
 # Cakebox
 
-Homestead on Steroids!
+Multi-framework development environment.
 
 ## Requirements
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
 + [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 6.0 or higher
-+ Windows users should additionally install the [Git Bash](http://git-scm.com/downloads)
-to run the commands below
++ a machine with at least 4GB of memory and 2 CPUs
+
+**Windows users** are strongly advised to additionally install the
+[Git Bash](http://git-scm.com/downloads) and use it to run the commands below.
+
+## What do you get?
+
+A 64-bit virtual machine running [Ubuntu 14.04.1 LTS](https://wiki.ubuntu.com/LTS)
+with a lot of useful [software and features](http://cakebox.readthedocs.org/en/latest/features/).
 
 ## Installation
 
@@ -24,7 +31,7 @@ vagrant up
 
 Once provisioning has completed you are ready to:
 
-- [Create your first website](http://cakebox.readthedocs.org/en/latest/tutorials/creating-your-first-website/).
+- [Create your first website](http://cakebox.readthedocs.org/en/latest/tutorials/creating-your-first-website/)
 - Login to your Virtual Machine using the ``vagrant ssh`` command
 - Login to your Cakebox Dashboard by browsing to [http://10.33.10.10](http://10.33.10.10)
 
@@ -33,12 +40,15 @@ Once provisioning has completed you are ready to:
 Full documentation [found here](http://cakebox.readthedocs.org/en/latest/).
 
 
-## Features
+## Command Line Provisioning
 
-### Command Line Provisioning
+Provision fully preconfigured applications, databases and virtual hosts
+directly from the command line. Currently supports:
 
-Provision applications, databases and virtual hosts directly from the command
-line:
++ CakePHP 2/3
++ Laravel 4
++ Git
++ Composer
 
 ```bash
 # Automatically configured framework skeleton applications
@@ -56,7 +66,7 @@ $ cakebox database add holiday2015
 $ cakebox site add idea.com /var/www/some-idea
 ```
 
-### Management Dashboard
+## Management Dashboard
 
 Comes with a dashboard for your convenience.
 
