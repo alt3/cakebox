@@ -1,4 +1,5 @@
 [![Documentation Status](https://readthedocs.org/projects/cakebox/badge)](https://cakebox.readthedocs.org)
+[![Total Downloads](https://img.shields.io/packagist/dt/alt3/cakebox-console.svg?style=flat-square)](https://packagist.org/packages/alt3/cakebox-console)
 
 # Cakebox
 
