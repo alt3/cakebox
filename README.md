@@ -4,7 +4,7 @@
 
 # Cakebox
 
-Multi-framework development environment.
+Multi-framework PHP development environment.
 
 ## Requirements
 
