@@ -62,5 +62,5 @@ the same SSH keys as before with all websites and databases
 up-and-running, exactly as they did on your old Virtual Machine.
 
 > **Note:** please remember that only Cakebox.yaml provisioned entities
-> will be re-created. You will obviously still lose your old logfiles,
+> will be re-created. You will obviously still lose logfiles,
 > temporary files and anything you've changed manually.

@@ -1,14 +1,23 @@
 # Introduction
 
-Your box is highly customizable and designed to be personalized by editing
-your ``Cakebox.yaml`` configuration file. This way you can always
-(re)create exact copies of your box including installed applications,
-databases and virtual hosts.
+You are highly advised to use your ``Cakebox.yaml`` file to provision your box.
+This way you will always be able to (re)create exact copies of your box
+without losing your:
+
++ virtual machine settings (hostname, IP address, CPUs, memory)
++ databases
++ virtual hosts
++ Git credentials
++ Git installed applications (public and private)
++ Composer installed applications
++ hardened SSH Authentication
++ Vagrant Synced Folders
++ additionally installed Ubuntu software
 
 **Notes:**
 
 + use spaced indentation or your box will fail to start
-+ apply (and test) configuration changes by rebooting your box using
++ apply (and test) configuration changes by running
 ``vagrant reload --provision``
 
 ## TL;DR
@@ -24,6 +33,11 @@ vm:
   ip: 10.33.10.10
   memory: 2048
   cpus: 1
+
+cakebox:
+  version: dev-dev
+  debug: true
+  https: false
 
 git:
   username: your-username@github.com
@@ -116,17 +130,33 @@ vm:
   cpus: 1
 ```
 
+## Cakebox
+
+The ``cakebox`` section contains settings related to your Cakebox Dashboard
+and Cakebox Commands.
+
+Option   | Description
+:--------|:------------
+version  | Composer version of the cakebox-console project
+debug    | true to enable CakePHP debug mode
+https    | true to enable HTTPS for the Cakebox Dashboard
+
+```yaml
+cakebox:
+  version: dev-dev
+  debug: true
+  https: false
+```
+
 ## Git
 
-Use the ``git`` section if you want to be able to use:
-
-+ private git repositories
-+ ssh git repositories (instead of https)
+Automatically configures the Git globals user.name and user.email inside your
+box. Required for provisioning ssh and private Git repositories.
 
 Key         | Option    | Description
 :-----------|:----------|:------------
-git         | username  | your git(hub) username as it will be used by the vagrant user
-git         | email     | your git email-address as it will be used by the vagrant user
+git         | username  | your git config --global user.name
+git         | email     | your git config --global user.email
 
 ```yaml
 git:

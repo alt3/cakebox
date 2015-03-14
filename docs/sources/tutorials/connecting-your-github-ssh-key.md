@@ -65,7 +65,7 @@ if they want:
 > [coded limitation](https://github.com/net-ssh/net-ssh/commit/bd61eeab4927e9a68a5217ad9d8c04a99156efb2)
 > in the Vagrant software.
 
-> **Note** because Pageant uses the same codebase as Putty it only handles
+> **Note:** because Pageant uses the same codebase as Putty it only handles
 > ``.ppk`` files which means you will probably first have to convert your **Github
 > key** to .ppk format using the same steps as
 > [described here](tutorials/securing-box-authentication/#putty-users-windows)
@@ -82,3 +82,6 @@ To load your local Github key into the Pageant SSH agent:
 
 To verify Putty forwarding is working as expected login to your box using Putty
 and run ``ssh-add -l``.  It should list the exact same fingerprint.
+
+> **Note:** because Pageant does not forward keys to existing Putty connections
+> you might have to create a new Putty connection to see your key appear.

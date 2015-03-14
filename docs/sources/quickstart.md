@@ -5,23 +5,25 @@ We are currently in beta so things may break. Help us improve by
 
 ## Requirements
 
-
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
 + [Vagrant](https://www.vagrantup.com/downloads.html) 6.0 or higher
 + a machine with at least 4GB of memory and 2 CPUs
 
-## Windows users
+**Windows users** are strongly advised to additionally install the
+[Git Bash](http://git-scm.com/downloads) and are assumed to be using it for all
+command line examples in this documentation.
 
-We highly recommend that Windows users also install
-the [Git Bash](http://git-scm.com/downloads) and use it
-to run the commands in this documentation.
+## What do you get?
+
+A 64-bit virtual machine running [Ubuntu 14.04.1 LTS](https://wiki.ubuntu.com/LTS)
+with a lot of useful [software and features](features/).
 
 ## Installation
 
 To launch your box for the first time:
 
 ```bash
-git clone git@github.com:alt3/cakebox.git
+git clone https://github.com/alt3/cakebox.git
 cd cakebox
 vagrant up
 ```
@@ -32,11 +34,7 @@ vagrant up
 Once provisioning has completed you can:
 
 - login to your Virtual Machine by using the ``vagrant ssh`` command
-- login to your Cakebox Dashboard by browsing to ``https://10.33.10.10``
-
-> **Note:** accept the
-> [certificate warning](additional/known-limitations/#dashboard-certificate-warning)
-> shown when browsing to the Cakebox Dashboard.
+- login to your Cakebox Dashboard by browsing to ``http://10.33.10.10``
 
 ## What's next?
 
