@@ -12,7 +12,7 @@ printf '\n'
 
 # Do nothing if custom public key is already present in authorized_keys
 if diff "$AUTHORIZED_KEYS" "$PUBLIC_KEY_PATH" >/dev/null ; then
-	echo "* Skipping: SSH logins already require your personal SSH key"
+	echo "* Skipping: logins already require your personal SSH key"
 	exit 0
 fi
 
@@ -31,4 +31,5 @@ echo "* Enabling your public key"
 cat "$PUBLIC_KEY_PATH" > "$AUTHORIZED_KEYS"
 
 # Vagrant provisioning feedback
-echo "* Awesome... SSH logins now require your personal SSH key"
+echo "* Logins now require your personal SSH key"
+echo "Command completed successfully"
