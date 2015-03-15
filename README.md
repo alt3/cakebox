@@ -25,6 +25,7 @@ with a lot of useful [software and features](http://cakebox.readthedocs.org/en/l
 ```bash
 git clone https://github.com/alt3/cakebox.git
 cd cakebox
+cp Cakebox.yaml.default Cakebox.yaml
 vagrant up
 ```
 
