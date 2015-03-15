@@ -25,6 +25,7 @@ To launch your box for the first time:
 ```bash
 git clone https://github.com/alt3/cakebox.git
 cd cakebox
+cp Cakebox.yaml.default Cakebox.yaml
 vagrant up
 ```
 
