@@ -113,7 +113,7 @@ class Cakebox
         # - initial non-secure vagrant up
         # - users protecting their box with a personally generated public key
         config.ssh.private_key_path = [
-          '~/.vagrant.d/insecure_private_key',
+          Dir.home + '/.vagrant.d/insecure_private_key',
           settings["security"]["box_private_key"]
         ]
 
