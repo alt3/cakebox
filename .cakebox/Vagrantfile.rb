@@ -2,6 +2,7 @@ class Cakebox
   def Cakebox.configure(config, user_settings)
     require 'vagrant/util/deep_merge'
     require 'json'
+    require 'tempfile'
 
     # Define absolutely required box settings
     settings =  Hash.new
@@ -56,11 +57,12 @@ class Cakebox
     config.vm.provision "file", source: ".git/refs/heads/dev", destination: "/home/vagrant/.cakebox/last-known-cakebox-commit"
 
     # Write vagrant box version to file before ssh copying to /home/vagrant/.cakebox
-    versionFile = '.cakebox/last-known-box-version'
+    tempfile = Tempfile.new('last-known-box-version')
     boxes = `vagrant box list`
     boxes.match(/cakebox\s+\(virtualbox,\s(.+)\)/)
-    File.write(versionFile, $1)
-    config.vm.provision "file", source: versionFile, destination: "/home/vagrant/.cakebox/last-known-box-version"
+    tempfile.write($1)
+    config.vm.provision "file", source: tempfile, destination: "/home/vagrant/.cakebox/last-known-box-version"
+    tempfile.close
 
     # Mount small (and thus fast) scripts folder instead of complete box root folder
     config.vm.synced_folder '.', '/vagrant', disabled: true
