@@ -7,7 +7,7 @@ VERSION=$1
 TARGET_DIR="/cakebox/console"
 DIR_NAME="console"
 
-# Remove /webroot/index.html used by test-kitchen if needed.
+# Remove /webroot/index.html used by test-kitchen if needed
 if [ -f $KITCHEN_FILE ]; then
 	echo "* Preparing installation directory"
 	rm -rfv "$TARGET_DIR"/*
@@ -27,7 +27,18 @@ printf "Please wait... installing Cakebox Commands and Dashboard"
 printf %63s |tr " " "-"
 printf '\n'
 
-# Create the project.
+# Self-update Composer to prevent out-of-date error breaking installation
+echo "* Self-updating Composer"
+cd /cakebox
+OUTPUT=$(composer self-update 2>&1)
+EXITCODE=$?
+if [ "$EXITCODE" -ne 0 ]; then
+	echo $OUTPUT
+	echo "FATAL: non-zero composer self-update exit code ($EXITCODE)"
+	exit 1
+fi
+
+# Create the project
 echo "* Creating project"
 cd /cakebox
 OUTPUT=$(composer create-project -sdev --no-install --keep-vcs --no-interaction "$REPOSITORY":"$VERSION" "$DIR_NAME" 2>&1)
