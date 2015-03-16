@@ -8,7 +8,7 @@ TARGET_DIR="/cakebox/console"
 DIR_NAME="console"
 
 # Remove /webroot/index.html used by test-kitchen if needed
-if [ -f $KITCHEN_FILE ]; then
+if [ -f "$KITCHEN_FILE" ]; then
 	echo "* Preparing installation directory"
 	rm -rfv "$TARGET_DIR"/*
 fi
