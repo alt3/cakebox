@@ -44,16 +44,23 @@ class Cakebox
     # SSH copy bash aliases file to the box
     config.vm.provision "file", source: ".cakebox/aliases", destination: "/home/vagrant/.bash_aliases"
 
-    # SSH copy the Cakebox.yaml to /home/vagrant/.cakebox when --provision is
+    # SSH copy local Cakebox.yaml to /home/vagrant/.cakebox when --provision is
     # being used so it can be used for virtual machine information.
     config.vm.provision "file", source: "Cakebox.yaml", destination: "/home/vagrant/.cakebox/last-known-cakebox-yaml"
 
-    # SSH copy most recent local Git commit to /home/vagrant/.cakebox
+    # SSH copy most recent local Git commit for alt3/cakebox to /home/vagrant/.cakebox
     composerVersionParts = settings['cakebox']['version'].split('-')
     if composerVersionParts[1].nil?
       raise Vagrant::Errors::VagrantError.new, 'Fatal: unable to extract local git branch from composer version "'  + settings['cakebox']['version'] + '"'
     end
     config.vm.provision "file", source: ".git/refs/heads/dev", destination: "/home/vagrant/.cakebox/last-known-cakebox-commit"
+
+    # Write vagrant box version to file before ssh copying to /home/vagrant/.cakebox
+    versionFile = '.cakebox/last-known-box-version'
+    boxes = `vagrant box list`
+    boxes.match(/cakebox\s+\(virtualbox,\s(.+)\)/)
+    File.write(versionFile, $1)
+    config.vm.provision "file", source: versionFile, destination: "/home/vagrant/.cakebox/last-known-box-version"
 
     # Mount small (and thus fast) scripts folder instead of complete box root folder.
     config.vm.synced_folder '.', '/vagrant', disabled: true
