@@ -62,9 +62,15 @@ class Cakebox
     File.write(versionFile, $1)
     config.vm.provision "file", source: versionFile, destination: "/home/vagrant/.cakebox/last-known-box-version"
 
-    # Mount small (and thus fast) scripts folder instead of complete box root folder.
+    # Mount small (and thus fast) scripts folder instead of complete box root folder
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.vm.synced_folder '.cakebox', '/cakebox', :mount_options => ["dmode=777","fmode=766"], create: true
+
+    # Temporarily mount .vagrant directory so we can replace the Vagrant 1.7.x
+    # secure private key until these issues are resolved:
+    # https://github.com/mitchellh/vagrant/issues/5090
+    # https://github.com/mitchellh/vagrant/issues/4967
+    config.vm.synced_folder '.vagrant', '/vagrant', :mount_options => ["dmode=777","fmode=766"], create: true
 
     # Create Vagrant Synced Folders for all yaml specified "folders".
     unless settings["synced_folders"].nil?
@@ -132,15 +138,19 @@ class Cakebox
         # - initial non-secure vagrant up
         # - users protecting their box with a personally generated public key
         config.ssh.private_key_path = [
-          Dir.home + '/.vagrant.d/insecure_private_key',
-          private_key
+          private_key,
+          Dir.home + '/.vagrant.d/insecure_private_key'
         ]
 
         # Run bash script to replace insecure public key in authorized_keys
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/bash/ssh-authentication.sh $@"
-          s.args = "/home/vagrant/.ssh/" + File.basename(public_key)
+          s.args = [ File.basename(public_key), File.basename(private_key) ]
         end
+
+        # Prevent Vagrant 1.7.x from generating a new private key and inserting
+        # corresponding public key (overwriting our just set custom key).
+        config.ssh.insert_key = false
       end
     end
 
