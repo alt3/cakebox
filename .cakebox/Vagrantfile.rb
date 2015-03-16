@@ -62,8 +62,7 @@ class Cakebox
     File.write(versionFile, $1)
     config.vm.provision "file", source: versionFile, destination: "/home/vagrant/.cakebox/last-known-box-version"
 
-    # Mount small (and thus fast) scripts folder instead of complete box root folder.
-    # insertion for Vagrant 1.7.x users.
+    # Mount small (and thus fast) scripts folder instead of complete box root folder
     config.vm.synced_folder '.', '/vagrant', disabled: true
     config.vm.synced_folder '.cakebox', '/cakebox', :mount_options => ["dmode=777","fmode=766"], create: true
 
