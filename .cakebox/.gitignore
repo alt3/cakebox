@@ -1,6 +1,9 @@
 # Do not ignore anything in this subdirectory
 !*
 
+# Except these file
+last-known-box-version
+
 # Except these directories
 console/
 backups/
