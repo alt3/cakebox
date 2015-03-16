@@ -27,14 +27,14 @@ printf "Please wait... installing Cakebox Commands and Dashboard"
 printf %63s |tr " " "-"
 printf '\n'
 
-# Clone the repo.
+# Create the project.
 echo "* Creating project"
 cd /cakebox
 OUTPUT=$(composer create-project -sdev --no-install --keep-vcs --no-interaction "$REPOSITORY":"$VERSION" "$DIR_NAME" 2>&1)
 EXITCODE=$?
 if [ "$EXITCODE" -ne 0 ]; then
 	echo $OUTPUT
-	echo "FATAL: non-zero git exit code ($EXITCODE)"
+	echo "FATAL: non-zero composer create-project exit code ($EXITCODE)"
 	exit 1
 fi
 cd "$DIR_NAME"
@@ -45,7 +45,7 @@ OUTPUT=$(composer install --prefer-dist --no-dev 2>&1)
 EXITCODE=$?
 if [ "$EXITCODE" -ne 0 ]; then
 	echo $OUTPUT
-	echo "FATAL: non-zero composer exit code ($EXITCODE)"
+	echo "FATAL: non-zero composer install exit code ($EXITCODE)"
 	exit 1
 fi
 
