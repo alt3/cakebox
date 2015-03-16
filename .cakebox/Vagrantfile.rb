@@ -70,6 +70,11 @@ class Cakebox
     unless settings["synced_folders"].nil?
       settings["synced_folders"].each do |folder|
 
+        # Convert user defined ~ paths in yaml to Dir.home for user's convenience
+        if ( folder["local"] =~ /^~/ )
+            folder["local"] = folder["local"].sub(/^~/, Dir.home)
+        end
+
         # On Windows mounts are always created with loosened permissions so the
         # vagrant user will be able to execute files (like composer installed
         # binaries) inside the shared folders.
@@ -100,6 +105,9 @@ class Cakebox
     unless settings["security"].nil?
       unless settings["security"]["box_public_key"].nil?
         public_key = settings["security"]["box_public_key"]
+        if ( public_key =~ /^~/ )
+            public_key = public_key.sub(/^~/, Dir.home)
+        end
         unless File.exists?(public_key)
           raise Vagrant::Errors::VagrantError.new, "Fatal: your public ssh key does not exist (#{settings["security"]["box_public_key"]})"
         end
@@ -108,12 +116,16 @@ class Cakebox
         if settings["security"]["box_private_key"].nil?
           raise Vagrant::Errors::VagrantError.new, "Fatal: using a public ssh key also requires specifying a local private ssh key in your Cakebox.yaml"
         end
-        unless File.exists?(settings["security"]["box_private_key"])
+        private_key = settings["security"]["box_private_key"]
+        if ( private_key =~ /^~/ )
+            private_key = private_key.sub(/^~/, Dir.home)
+        end
+        unless File.exists?(private_key)
           raise Vagrant::Errors::VagrantError.new, "Fatal: your private ssh key does not exist (#{settings["security"]["box_private_key"]})"
         end
 
         # Copy user's public key to the vm so it can be validated and applied
-        config.vm.provision "file", source: settings["security"]["box_public_key"], destination: "/home/vagrant/.ssh/" + File.basename(settings["security"]["box_public_key"])
+        config.vm.provision "file", source: public_key, destination: "/home/vagrant/.ssh/" + File.basename(public_key)
 
         # Add user's private key to all Vagrant-usable local private keys so all
         # required login scenarios will keep functioning as expected:
@@ -121,13 +133,13 @@ class Cakebox
         # - users protecting their box with a personally generated public key
         config.ssh.private_key_path = [
           Dir.home + '/.vagrant.d/insecure_private_key',
-          settings["security"]["box_private_key"]
+          private_key
         ]
 
         # Run bash script to replace insecure public key in authorized_keys
         config.vm.provision "shell" do |s|
           s.inline = "bash /cakebox/bash/ssh-authentication.sh $@"
-          s.args = "/home/vagrant/.ssh/" + File.basename(settings["security"]["box_public_key"])
+          s.args = "/home/vagrant/.ssh/" + File.basename(public_key)
         end
       end
     end
