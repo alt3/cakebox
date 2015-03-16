@@ -30,7 +30,7 @@ printf '\n'
 # Self-update Composer to prevent out-of-date error breaking installation
 echo "* Self-updating Composer"
 cd /cakebox
-OUTPUT=$(composer self-update 2>&1)
+OUTPUT=$(sudo composer self-update 2>&1)
 EXITCODE=$?
 if [ "$EXITCODE" -ne 0 ]; then
 	echo $OUTPUT
