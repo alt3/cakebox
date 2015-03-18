@@ -13,5 +13,4 @@
 !Cakebox.yaml.default
 !mkdocs.yml
 !README.md
-!vagrant_private_key.ppk
 !Vagrantfile
