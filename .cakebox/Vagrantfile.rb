@@ -254,6 +254,16 @@ class Cakebox
       end
     end
 
+    # Upload and run user created post-install bash script if it is found to
+    # support fully re-provisionable non-standard user box customizations.
+    if File.exists?('Cakebox.sh')
+      config.vm.provision "file", source: "Cakebox.sh", destination: "/home/vagrant/.cakebox/last-known-cakebox.sh"
+      config.vm.provision "shell" do |s|
+        s.privileged = false
+        s.inline = "bash /home/vagrant/.cakebox/last-known-cakebox.sh"
+      end
+    end
+
     # Provide user with box-info
     config.vm.provision "shell" do |s|
         s.inline = "bash /cakebox/bash/completion-message.sh $@"
