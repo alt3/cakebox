@@ -109,7 +109,7 @@ class Cakebox
       unless settings["security"]["box_public_key"].nil?
         public_key = settings["security"]["box_public_key"]
         if ( public_key =~ /^~/ )
-            public_key = public_key.sub(/^~/, Dir.home)
+          public_key = public_key.sub(/^~/, Dir.home)
         end
         unless File.exists?(public_key)
           raise Vagrant::Errors::VagrantError.new, "Fatal: your public ssh key does not exist (#{settings["security"]["box_public_key"]})"
@@ -261,13 +261,13 @@ class Cakebox
 
     # Provide user with box-info
     config.vm.provision "shell" do |s|
-        s.inline = "bash /cakebox/bash/completion-message.sh $@"
-        s.args = [ settings["vm"]["ip"] ]
-        if settings['cakebox']['https'] == true
-          s.args.push('https')
-        else
-          s.args.push('http')
-        end
+      s.inline = "bash /cakebox/bash/completion-message.sh $@"
+      s.args = [ settings["vm"]["ip"] ]
+      if settings['cakebox']['https'] == true
+        s.args.push('https')
+      else
+        s.args.push('http')
+      end
     end
 
   end
@@ -275,29 +275,29 @@ end
 
 # Hash cleaner
 class Hash
-    def compact!
-        self.delete_if do |key, val|
-            if block_given?
-                yield(key,val)
-            else
-                test1 = val.nil?
-                test2 = val.empty? if val.respond_to?('empty?')
-                test3 = val.strip.empty? if val.is_a?(String) && val.respond_to?('empty?')
+  def compact!
+    self.delete_if do |key, val|
+      if block_given?
+        yield(key,val)
+      else
+        test1 = val.nil?
+        test2 = val.empty? if val.respond_to?('empty?')
+        test3 = val.strip.empty? if val.is_a?(String) && val.respond_to?('empty?')
 
-                test1 || test2 || test3
-            end
-        end
-
-        self.each do |key, val|
-            if self[key].is_a?(Hash) && self[key].respond_to?('compact!')
-                if block_given?
-                    self[key] = self[key].compact!(&Proc.new)
-                else
-                    self[key] = self[key].compact!
-                end
-            end
-        end
-
-        return self
+        test1 || test2 || test3
+      end
     end
+
+    self.each do |key, val|
+      if self[key].is_a?(Hash) && self[key].respond_to?('compact!')
+        if block_given?
+          self[key] = self[key].compact!(&Proc.new)
+        else
+          self[key] = self[key].compact!
+        end
+      end
+    end
+
+    return self
+  end
 end
