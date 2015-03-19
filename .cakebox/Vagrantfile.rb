@@ -231,7 +231,10 @@ class Cakebox
       end
     end
 
-    # Install fully working framework applications for all yaml specified "apps"
+    # Install fully working framework applications for all yaml specified "apps".
+    # The --repair parameter is appended so only missing components will be
+    # installed when the sources already exist (e.g. when recreating a new box
+    # with existing sources in a mapped Synced Folder)
     unless settings["apps"].nil?
       settings["apps"].each do |app|
         config.vm.provision "shell" do |s|
@@ -239,6 +242,7 @@ class Cakebox
           s.inline = "bash /cakebox/console/bin/cake application add $@"
           s.args = [ app["url"] ]
           s.args.push(app["options"]) if !app["options"].nil?
+          s.args.push('--repair')
         end
       end
     end
