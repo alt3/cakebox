@@ -273,7 +273,11 @@ class Cakebox
   end
 end
 
-# Hash cleaner
+# Hash cleaner, removes nil/empty values recursively from a hash
+#
+# Very handy to avoid errors when user yaml file does not include all required parts
+# After removing nil values, it can safely be deep merged into default settings,
+# without the need to check for all keys being present or having a value
 class Hash
   def compact!
     self.delete_if do |key, val|
