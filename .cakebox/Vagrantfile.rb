@@ -14,16 +14,11 @@ class Cakebox
     settings["cakebox"] =  Hash.new
     settings["cakebox"]["version"] = "dev-master"
 
-    # Prevent merging empty vm user settings
-    user_settings["vm"] = Hash.new if user_settings["vm"].nil?
-    user_settings["vm"]["hostname"] = settings["vm"]["hostname"] if user_settings["vm"]["hostname"].nil?
-    user_settings["vm"]["ip"] = settings["vm"]["ip"] if user_settings["vm"]["ip"].nil?
-    user_settings["vm"]["memory"] = settings["vm"]["memory"] if user_settings["vm"]["memory"].nil?
-    user_settings["vm"]["cpus"] = settings["vm"]["cpus"] if user_settings["vm"]["cpus"].nil?
-    user_settings["cakebox"]["version"] = settings["cakebox"]["version"] if user_settings["cakebox"]["version"].nil?
-
+    if user_settings == false
+        user_settings = Hash.new
+    end
     # Deep merge user settings found in Cakebox.yaml without plugin dependency
-    settings = Vagrant::Util::DeepMerge.deep_merge(settings, user_settings)
+    settings = Vagrant::Util::DeepMerge.deep_merge(settings, user_settings.compact!)
 
     # Specify CDN base-box and hostname for the vm
     config.vm.box = "cakebox"
@@ -114,7 +109,7 @@ class Cakebox
       unless settings["security"]["box_public_key"].nil?
         public_key = settings["security"]["box_public_key"]
         if ( public_key =~ /^~/ )
-            public_key = public_key.sub(/^~/, Dir.home)
+          public_key = public_key.sub(/^~/, Dir.home)
         end
         unless File.exists?(public_key)
           raise Vagrant::Errors::VagrantError.new, "Fatal: your public ssh key does not exist (#{settings["security"]["box_public_key"]})"
@@ -270,14 +265,47 @@ class Cakebox
 
     # Provide user with box-info
     config.vm.provision "shell" do |s|
-        s.inline = "bash /cakebox/bash/completion-message.sh $@"
-        s.args = [ settings["vm"]["ip"] ]
-        if settings['cakebox']['https'] == true
-          s.args.push('https')
-        else
-          s.args.push('http')
-        end
+      s.inline = "bash /cakebox/bash/completion-message.sh $@"
+      s.args = [ settings["vm"]["ip"] ]
+      if settings['cakebox']['https'] == true
+        s.args.push('https')
+      else
+        s.args.push('http')
+      end
     end
 
+  end
+end
+
+# Hash cleaner, removes nil/empty values recursively from a hash
+#
+# Very handy to avoid errors when user yaml file does not include all required parts
+# After removing nil values, it can safely be deep merged into default settings,
+# without the need to check for all keys being present or having a value
+class Hash
+  def compact!
+    self.delete_if do |key, val|
+      if block_given?
+        yield(key,val)
+      else
+        test1 = val.nil?
+        test2 = val.empty? if val.respond_to?('empty?')
+        test3 = val.strip.empty? if val.is_a?(String) && val.respond_to?('empty?')
+
+        test1 || test2 || test3
+      end
+    end
+
+    self.each do |key, val|
+      if self[key].is_a?(Hash) && self[key].respond_to?('compact!')
+        if block_given?
+          self[key] = self[key].compact!(&Proc.new)
+        else
+          self[key] = self[key].compact!
+        end
+      end
+    end
+
+    return self
   end
 end
