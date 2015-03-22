@@ -20,6 +20,16 @@ class Cakebox
     # Deep merge user settings found in Cakebox.yaml without plugin dependency
     settings = Vagrant::Util::DeepMerge.deep_merge(settings, user_settings.compact!)
 
+    # Determine Cakebox Dashboard protocol only once
+    if settings['cakebox']['https'] == true
+      settings['cakebox']['protocol'] = 'https'
+    else
+      settings['cakebox']['protocol'] = 'http'
+    end
+
+    # Specify Vagrant post-up message
+    config.vm.post_up_message = "Your box is ready and waiting at " + settings['cakebox']['protocol'] + '://' + settings["vm"]["ip"]
+
     # Specify CDN base-box and hostname for the vm
     config.vm.box = "cakebox"
     config.vm.box_url = "https://alt3-aee.kxcdn.com/cakebox.box"
@@ -266,12 +276,7 @@ class Cakebox
     # Provide user with box-info
     config.vm.provision "shell" do |s|
       s.inline = "bash /cakebox/bash/completion-message.sh $@"
-      s.args = [ settings["vm"]["ip"] ]
-      if settings['cakebox']['https'] == true
-        s.args.push('https')
-      else
-        s.args.push('http')
-      end
+      s.args = [ settings["vm"]["ip"], settings['cakebox']['protocol'] ]
     end
 
   end
