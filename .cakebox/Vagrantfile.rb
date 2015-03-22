@@ -17,7 +17,10 @@ class Cakebox
     if user_settings == false
         user_settings = Hash.new
     end
-    # Deep merge user settings found in Cakebox.yaml without plugin dependency
+
+    # Deep merge user settings found in Cakebox.yaml. Uses the Vagrant Util
+    # class to prevent a Vagrant plugin dependency + our custom 'compact' Hash
+    # cleaner class to prevent non-DRY checking per setting.
     settings = Vagrant::Util::DeepMerge.deep_merge(settings, user_settings.compact!)
 
     # Determine Cakebox Dashboard protocol only once
@@ -259,13 +262,19 @@ class Cakebox
       end
     end
 
-    # Upload and run user created post-install bash script if it is found to
-    # support fully re-provisionable non-standard user box customizations.
-    if File.exists?('Cakebox.sh')
-      config.vm.provision "file", source: "Cakebox.sh", destination: "/home/vagrant/.cakebox/last-known-cakebox.sh"
-      config.vm.provision "shell" do |s|
-        s.privileged = false
-        s.inline = "bash /home/vagrant/.cakebox/last-known-cakebox.sh"
+    # Upload and run user created customization bash script (if found) to allow
+    # the user to create fully re-provisionable box customizations.
+    unless settings['customization_script'].nil?
+      if ( settings['customization_script'] =~ /^~/ )
+        settings['customization_script'] = settings['customization_script'].sub(/^~/, Dir.home)
+      end
+
+      if File.exists?(settings['customization_script'])
+        config.vm.provision "file", source: settings['customization_script'], destination: "/home/vagrant/.cakebox/last-known-customization-script.sh"
+        config.vm.provision "shell" do |s|
+          s.privileged = false
+          s.inline = "bash /home/vagrant/.cakebox/last-known-customization-script.sh"
+        end
       end
     end
 
