@@ -178,11 +178,7 @@ class Cakebox
     config.vm.provision "shell" do |s|
       s.privileged = false
       s.inline = "bash /cakebox/console/bin/cake config dashboard --force --protocol $@"
-      if settings["cakebox"]["https"] == false
-        s.args = 'http'
-      else
-        s.args = 'https'
-      end
+      s.args = settings["cakebox"]["protocol"]
     end
 
     # Turn CakePHP debug mode on/off for Cakebox Commands and Dashboard
