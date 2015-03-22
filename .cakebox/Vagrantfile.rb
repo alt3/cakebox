@@ -273,12 +273,6 @@ class Cakebox
       end
     end
 
-    # Provide user with box-info
-    config.vm.provision "shell" do |s|
-      s.inline = "bash /cakebox/bash/completion-message.sh $@"
-      s.args = [ settings["vm"]["ip"], settings['cakebox']['protocol'] ]
-    end
-
   end
 end
 
