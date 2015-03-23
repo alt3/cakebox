@@ -251,19 +251,19 @@ class Cakebox
       end
     end
 
-    # Install all yaml specified "additional_software" packages
-    unless settings["software"].nil?
-      settings["software"].each do |package|
+    # Install additional packages from the Ubuntu Package Archive
+    unless settings["apt_packages"].nil?
+      settings["apt_packages"].each do |package|
         config.vm.provision "shell" do |s|
           s.privileged = false
           s.inline = "bash /cakebox/console/bin/cake package add $@"
-          s.args = [ package["package"] ]
+          s.args = [package]
         end
       end
     end
 
     # Upload and run user created customization bash script (if found) to allow
-    # the user to create fully re-provisionable box customizations.
+    # the user to create fully re-provisionable box customizations
     unless settings['user_script'].nil?
       if ( settings['user_script'] =~ /^~/ )
         settings['user_script'] = settings['user_script'].sub(/^~/, Dir.home)
@@ -281,7 +281,7 @@ class Cakebox
   end
 end
 
-# Hash cleaner, removes nil/empty values recursively from a hash
+# Hash cleaner, removes nil/empty values recursively from a hash.
 #
 # Very handy to avoid errors when user yaml file does not include all required parts
 # After removing nil values, it can safely be deep merged into default settings,
