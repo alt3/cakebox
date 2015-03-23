@@ -103,9 +103,10 @@ databases:
   - name: test3.db
     options: --username user123 --password pass123
 
-software:
-  - package: whois
-  - package: phpmyadmin
+apt_packages:
+  - whois
+  - phpmyadmin
+  - dos2unix
 
 ```
 
@@ -312,7 +313,8 @@ databases:
 
 ## Additional Software
 
-Define "packages" to install addtional software from the Ubuntu Package Archive.
+Specify Ubuntu Package Archive (apt) packages in the "apt_packages" section
+so they will automatically be installed inside your box.
 
 **Please note:**
 
@@ -323,7 +325,8 @@ Option  | Description
 package | name of the software package as used by ``apt-get install``
 
 ```yaml
-additional_software:
-  - package: whois
-  - package: phpmyadmin
+apt_packages:
+  - whois
+  - phpmyadmin
+  - dos2unix
 ```
