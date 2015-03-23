@@ -177,6 +177,12 @@ class Cakebox
       s.args = settings["cakebox"]["version"]
     end
 
+    # Run cakebox self-update
+    config.vm.provision "shell" do |s|
+      s.privileged = false
+      s.inline = "bash /cakebox/console/bin/cake update self"
+    end
+
     # Set Cakebox Dashboard protocol to HTTP or HTTPS
     config.vm.provision "shell" do |s|
       s.privileged = false
