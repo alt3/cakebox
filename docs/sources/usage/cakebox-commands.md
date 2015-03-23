@@ -7,4 +7,4 @@ Placeholder for:
 
 - ``cakebox application --help``
 - ``cakebox database --help``
-- ``cakebox site --help``
+- ``cakebox vhost --help``

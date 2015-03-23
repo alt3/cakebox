@@ -1,17 +1,21 @@
-## Beta
+## Alpha
 
-We are currently in beta so things may break. Help us improve by
+We are currently in alpha so things may break. Help us improve by
 [reporting problems](https://github.com/alt3/cakebox/issues).
 
 ## Requirements
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
-+ [Vagrant](https://www.vagrantup.com/downloads.html) 6.0 or higher
++ [Vagrant](https://www.vagrantup.com/downloads.html) 1.6.0 or higher
 + a machine with at least 4GB of memory and 2 CPUs
 
-**Windows users** are strongly advised to additionally install the
-[Git Bash](http://git-scm.com/downloads) and are assumed to be using it for all
-command line examples in this documentation.
+**Windows users**:
+
++ are strongly advised to use the
+[Git Bash](http://git-scm.com/downloads) for documented commands
++ may need to [enable hardware virtualization](https://www.thomas-krenn.com/en/wiki/Activating_the_Intel_VT_Virtualization_Feature)
+(VT-x)
+
 
 ## What do you get?
 

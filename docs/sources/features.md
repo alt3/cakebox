@@ -35,7 +35,7 @@ Use [CakePHP 3 Console](http://book.cakephp.org/3.0/en/console-and-shells.html)
 powered ``cakebox`` shell commands to deploy:
 
 - databases
-- websites
+- virtual hosts
 - fully configured (public and private) applications
 
 ![Cakebox Commands](img/cakebox-commands.png)

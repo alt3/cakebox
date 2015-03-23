@@ -62,14 +62,14 @@ synced_folders:
   - local:  some.app
     remote: /home/vagrant/Apps/some.app
 
-  - local:  c:\git\clones\other.app
+  - local:  D:\git\clones\other.app
     remote: /var/www/awesome.app
 
 apps:
   - url: mycake3.app
 
   - url: mycake2.app
-    options: --majorversion 2 --path /var/www/cake2.app
+    options: --majorversion 2 --path /var/www/mycake2.app
 
   - url: mylaravel.app
     options: --framework laravel
@@ -83,7 +83,7 @@ apps:
   - url: mycomposer.app
     options: --source yiisoft/yii2-app-basic
 
-sites:
+vhosts:
     - url: app1.dev
       webroot: /home/vagrant/Apps/app1.dev
 
@@ -201,7 +201,7 @@ the local Cakebox root folder
 
 **Windows users:**
 
-+ should avoid using driveletters (Vagrant will conveniently translate / to C:\)
++ should avoid using a driveletter C: (Vagrant will conveniently translate / to C:\)
 + should avoid sharing the Cakebox root folder (.) as a whole as this could
 seriously impact performance
 
@@ -223,7 +223,7 @@ synced_folders:
   - local:  some.app
     remote: /home/vagrant/Apps/some.app
 
-  - local:  c:\git\clones\another.app
+  - local:  D:\git\clones\another.app
     remote: /var/www/awesome.app
 ```
 
@@ -241,7 +241,7 @@ apps:
   - url: mycake3.app
 
   - url: mycake2.app
-    options: --majorversion 2 --path /var/www/cake2.app
+    options: --majorversion 2 --path /var/www/mycake2.app
 
   - url: ssh-cloned.cake3.app
     options: --ssh
@@ -259,18 +259,18 @@ apps:
     options: --source yiisoft/yii2-app-basic
 ```
 
-## Sites
-Define "sites" to provision Nginx virtual hosts.
+## Vhosts
+Use the "vhosts" section to provision Nginx virtual hosts.
 
 
 Option  | Description
 :-------|:------------
 url     | fully qualified domain name used to expose the site
 webroot | full path to site's webroot folder serving pages
-options | any combination of options displayed running ``cakebox site add --help``
+options | any combination of options displayed running ``cakebox vhost add --help``
 
 ```yaml
-sites:
+vhosts:
   - url: app1.dev
     webroot: /home/vagrant/Apps/app1.dev
 
@@ -330,3 +330,7 @@ apt_packages:
   - phpmyadmin
   - dos2unix
 ```
+
+## User Scripts
+
+Placeholder

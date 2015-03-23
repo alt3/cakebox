@@ -9,11 +9,15 @@ Multi-framework PHP development environment.
 ## Requirements
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
-+ [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 6.0 or higher
++ [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 1.6.0 or higher
 + a machine with at least 4GB of memory and 2 CPUs
 
-**Windows users** are strongly advised to additionally install the
-[Git Bash](http://git-scm.com/downloads) and use it to run the commands below.
+**Windows users**:
+
++ are strongly advised to use the
+[Git Bash](http://git-scm.com/downloads) for documented commands
++ may need to [enable hardware virtualization](https://www.thomas-krenn.com/en/wiki/Activating_the_Intel_VT_Virtualization_Feature)
+(VT-x)
 
 ## What do you get?
 
@@ -49,7 +53,7 @@ Provision fully preconfigured applications, databases and virtual hosts
 directly from the command line. Currently supports:
 
 + CakePHP 2/3
-+ Laravel 4
++ Laravel 5
 + Git
 + Composer
 
@@ -66,7 +70,7 @@ $ cakebox application add myyii.app --source yiisoft/yii2-app-basic
 
 # Databases and virtual hosts
 $ cakebox database add holiday2015
-$ cakebox site add idea.com /var/www/some-idea
+$ cakebox vhost add idea.com /var/www/some-idea
 ```
 
 ## Management Dashboard

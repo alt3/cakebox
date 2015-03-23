@@ -61,8 +61,8 @@ if they want:
 + to provision private git repositories using the ``Cakebox.yaml`` file
 
 > ** FYI:** provisioning private repositories on Windows without using Pageant
-> is simply not possible due to this hard
-> [coded limitation](https://github.com/net-ssh/net-ssh/commit/bd61eeab4927e9a68a5217ad9d8c04a99156efb2)
+> is simply not possible due to this
+> [hard coded limitation](https://github.com/net-ssh/net-ssh/commit/bd61eeab4927e9a68a5217ad9d8c04a99156efb2)
 > in the Vagrant software.
 
 > **Note:** because Pageant uses the same codebase as Putty it only handles

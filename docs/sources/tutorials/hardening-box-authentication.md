@@ -47,9 +47,7 @@ security:
 
 ## 3. Enable Your Key Pair
 
-Restart your box to start using the new key pair. Make 100% sure that the
-paths specified in step 2 are correct before running this command or
-you will lock yourself out of your box... forever!
+Run the following command on your local machine to effectuate the new key pair:
 
 ```bash
 vagrant reload --provision
@@ -57,7 +55,7 @@ vagrant reload --provision
 
 If things went well you should:
 
-- see the following message during startup: ``Replacing insecure Vagrant ssh key``
+- see the following message during startup: ``Restricting Cakebox SSH logins``
 - be asked for your passphrase when logging in (if you
     chose to use a passprhrase in step 1)
 
