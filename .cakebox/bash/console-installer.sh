@@ -38,6 +38,16 @@ if [ "$EXITCODE" -ne 0 ]; then
 	exit 1
 fi
 
+# Update composer cache permissions
+echo "* Updating Composer cache permissions"
+OUTPUT=$(sudo chown vagrant:vagrant /home/vagrant/.composer -R 2>&1)
+EXITCODE=$?
+if [ "$EXITCODE" -ne 0 ]; then
+	echo $OUTPUT
+	echo "FATAL: non-zero chown exit code ($EXITCODE)"
+	exit 1
+fi
+
 # Create the project
 echo "* Creating project"
 cd /cakebox
