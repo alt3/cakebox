@@ -264,16 +264,16 @@ class Cakebox
 
     # Upload and run user created customization bash script (if found) to allow
     # the user to create fully re-provisionable box customizations.
-    unless settings['customization_script'].nil?
-      if ( settings['customization_script'] =~ /^~/ )
-        settings['customization_script'] = settings['customization_script'].sub(/^~/, Dir.home)
+    unless settings['user_script'].nil?
+      if ( settings['user_script'] =~ /^~/ )
+        settings['user_script'] = settings['user_script'].sub(/^~/, Dir.home)
       end
 
-      if File.exists?(settings['customization_script'])
-        config.vm.provision "file", source: settings['customization_script'], destination: "/home/vagrant/.cakebox/last-known-customization-script.sh"
+      if File.exists?(settings['user_script'])
+        config.vm.provision "file", source: settings['user_script'], destination: "/home/vagrant/.cakebox/last-known-user-script.sh"
         config.vm.provision "shell" do |s|
           s.privileged = false
-          s.inline = "bash /home/vagrant/.cakebox/last-known-customization-script.sh"
+          s.inline = "bash /home/vagrant/.cakebox/last-known-user-script.sh"
         end
       end
     end

@@ -36,4 +36,4 @@ databases:
 
 software:
 
-customization_script:
+user_script:
