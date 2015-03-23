@@ -217,14 +217,14 @@ class Cakebox
       end
     end
 
-    # Create Nginx site configuration files for all yaml specified "sites"
-    unless settings["sites"].nil?
-      settings["sites"].each do |site|
+    # Create Nginx virtual hosts for all yaml specified "vhosts"
+    unless settings["vhosts"].nil?
+      settings["vhosts"].each do |vhost|
         config.vm.provision "shell" do |s|
           s.privileged = false
-          s.inline = "bash /cakebox/console/bin/cake site add $@"
-          s.args = [ site["url"], site["webroot"] ]
-          s.args.push(site["options"]) if !site["options"].nil?
+          s.inline = "bash /cakebox/console/bin/cake vhost add $@"
+          s.args = [ vhost["url"], vhost["webroot"] ]
+          s.args.push(vhost["options"]) if !vhost["options"].nil?
         end
       end
     end
