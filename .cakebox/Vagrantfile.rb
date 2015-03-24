@@ -4,6 +4,11 @@ class Cakebox
     require 'json'
     require 'tempfile'
 
+    # Use absolute paths to construct file paths to support Vagrant Lookup Path
+    # tree climbing (and thus running vagrant commands in any subfolder).
+    currentFolder = "#{File.dirname(__FILE__)}"
+    rootFolder = File.expand_path("..", currentFolder)
+
     # Define absolutely required box settings
     settings =  Hash.new
     settings["vm"] =  Hash.new
@@ -51,18 +56,19 @@ class Cakebox
     end
 
     # SSH copy bash aliases file to the box
-    config.vm.provision "file", source: ".cakebox/aliases", destination: "/home/vagrant/.bash_aliases"
+    config.vm.provision "file", source: currentFolder + File::SEPARATOR + "aliases", destination: "/home/vagrant/.bash_aliases"
 
     # SSH copy local Cakebox.yaml to /home/vagrant/.cakebox when --provision is
     # being used so it can be used for virtual machine information.
-    config.vm.provision "file", source: "Cakebox.yaml", destination: "/home/vagrant/.cakebox/last-known-cakebox-yaml"
+    config.vm.provision "file", source: rootFolder + File::SEPARATOR + "Cakebox.yaml", destination: "/home/vagrant/.cakebox/last-known-cakebox-yaml"   #@todo
 
     # SSH copy most recent local Git commit for alt3/cakebox to /home/vagrant/.cakebox
     composerVersionParts = settings['cakebox']['version'].split('-')
     if composerVersionParts[1].nil?
       raise Vagrant::Errors::VagrantError.new, 'Fatal: unable to extract local git branch from composer version "'  + settings['cakebox']['version'] + '"'
     end
-    config.vm.provision "file", source: ".git/refs/heads/dev", destination: "/home/vagrant/.cakebox/last-known-cakebox-commit"
+    headFile = rootFolder + File::SEPARATOR + ".git" + File::SEPARATOR + "refs" + File::SEPARATOR + "heads" + File::SEPARATOR + "dev"
+    config.vm.provision "file", source: headFile, destination: "/home/vagrant/.cakebox/last-known-cakebox-commit"
 
     # Write vagrant box version to file before ssh copying to /home/vagrant/.cakebox
     tempfile = Tempfile.new('last-known-box-version')
