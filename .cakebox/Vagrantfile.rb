@@ -37,7 +37,15 @@ class Cakebox
     end
 
     # Specify Vagrant post-up message
-    config.vm.post_up_message = "Your box is ready and waiting at " + settings['cakebox']['protocol'] + '://' + settings["vm"]["ip"]
+    config.vm.post_up_message =
+      "Your box is ready and waiting at "+
+      settings['cakebox']['protocol'] + '://' + settings["vm"]["ip"] +
+      "\n\nIf your hosts file contains the following line:\n" +
+      settings["vm"]["ip"] + "\t" + settings["vm"]["hostname"] +
+      "\nyou can access it at " +
+      settings['cakebox']['protocol'] + '://' + settings["vm"]["hostname"] +
+      " as well." +
+      "\n\nTo log into your box you can run: vagrant ssh"
 
     # Specify CDN base-box and hostname for the vm
     config.vm.box = "cakebox"
