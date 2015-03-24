@@ -27,6 +27,7 @@ class Cakebox
     # class to prevent a Vagrant plugin dependency + our custom 'compact' Hash
     # cleaner class to prevent non-DRY checking per setting.
     settings = Vagrant::Util::DeepMerge.deep_merge(settings, user_settings.compact!)
+    settings.tildeConvert!
 
     # Determine Cakebox Dashboard protocol only once
     if settings['cakebox']['https'] == true
@@ -92,11 +93,6 @@ class Cakebox
     unless settings["synced_folders"].nil?
       settings["synced_folders"].each do |folder|
 
-        # Convert user defined ~ paths in yaml to Dir.home for user's convenience
-        if ( folder["local"] =~ /^~/ )
-            folder["local"] = folder["local"].sub(/^~/, Dir.home)
-        end
-
         # On Windows mounts are always created with loosened permissions so the
         # vagrant user will be able to execute files (like composer installed
         # binaries) inside the shared folders.
@@ -126,24 +122,20 @@ class Cakebox
     # Replace insecure Vagrant ssh public key with user generated public key
     unless settings["security"].nil?
       unless settings["security"]["box_public_key"].nil?
+
         public_key = settings["security"]["box_public_key"]
-        if ( public_key =~ /^~/ )
-          public_key = public_key.sub(/^~/, Dir.home)
-        end
         unless File.exists?(public_key)
-          raise Vagrant::Errors::VagrantError.new, "Fatal: your public ssh key does not exist (#{settings["security"]["box_public_key"]})"
+          raise Vagrant::Errors::VagrantError.new, "Fatal: your public SSH key does not exist (#{public_key})"
         end
 
-        # A public key MUST be an accompanied by a private key
+        # A public key MUST be accompanied by a private key
         if settings["security"]["box_private_key"].nil?
           raise Vagrant::Errors::VagrantError.new, "Fatal: using a public ssh key also requires specifying a local private ssh key in your Cakebox.yaml"
         end
+
         private_key = settings["security"]["box_private_key"]
-        if ( private_key =~ /^~/ )
-            private_key = private_key.sub(/^~/, Dir.home)
-        end
         unless File.exists?(private_key)
-          raise Vagrant::Errors::VagrantError.new, "Fatal: your private ssh key does not exist (#{settings["security"]["box_private_key"]})"
+          raise Vagrant::Errors::VagrantError.new, "Fatal: your private ssh key does not exist (#{private_key})"
         end
 
         # Copy user's public key to the vm so it can be validated and applied
@@ -277,10 +269,6 @@ class Cakebox
     # Upload and run user created customization bash script (if found) to allow
     # the user to create fully re-provisionable box customizations
     unless settings['user_script'].nil?
-      if ( settings['user_script'] =~ /^~/ )
-        settings['user_script'] = settings['user_script'].sub(/^~/, Dir.home)
-      end
-
       if File.exists?(settings['user_script'])
         config.vm.provision "file", source: settings['user_script'], destination: "/home/vagrant/.cakebox/last-known-user-script.sh"
         config.vm.provision "shell" do |s|
@@ -301,6 +289,7 @@ end
 class Hash
   def compact!
     self.delete_if do |key, val|
+
       if block_given?
         yield(key,val)
       else
@@ -323,5 +312,39 @@ class Hash
     end
 
     return self
+  end
+end
+
+# Recursively searches a Hash for Strings starting with ~ and then replaces ~
+# with OS independent Dir.home so we can support the use of ~ on Windows too.
+class Hash
+  def tildeConvert!
+    self.each do | key, value |
+
+      if value.is_a?(String)
+        if ( value =~ /^~/ )
+          self[key] = value.sub(/^~/, Dir.home)
+        end
+      end
+
+      if value.is_a?(Array)
+        value.each_with_index do | arrayElement, i |
+          if arrayElement.is_a?(String)
+            if ( arrayElement =~ /^~/ )
+              self[key][i] = arrayElement.sub(/^~/, Dir.home)
+            end
+          end
+
+          if arrayElement.is_a?(Hash)
+            arrayElement.tildeConvert!
+          end
+        end
+      end
+
+      if value.is_a?(Hash)
+        value.tildeConvert!
+      end
+
+    end
   end
 end
