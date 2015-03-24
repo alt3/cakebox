@@ -263,31 +263,40 @@ class Cakebox
       end
     end
 
-    # Install additional packages from the Ubuntu Package Archive
-    unless settings["apt_packages"].nil?
-      settings["apt_packages"].each do |package|
-        config.vm.provision "shell" do |s|
-          s.privileged = false
-          s.inline = "bash /cakebox/console/bin/cake package add $@"
-          s.args = [package]
-        end
-      end
-    end
+    # Install extras
+    unless settings["extra"].nil?
+      settings["extra"].each do | hash |
+        hashKey = hash.keys.first
 
-    # Upload and run user created customization bash script (if found) to allow
-    # the user to create fully re-provisionable box customizations
-    unless settings['user_script'].nil?
-      if File.exists?(settings['user_script'])
-        config.vm.provision "file", source: settings['user_script'], destination: "/home/vagrant/.cakebox/last-known-user-script.sh"
-        config.vm.provision "shell" do |s|
-          s.privileged = false
-          s.inline = "bash /home/vagrant/.cakebox/last-known-user-script.sh"
+        # Install additional apt packages from the Ubuntu Package Archive
+        if hashKey == "apt_packages"
+          hash[hashKey].each do | package |
+            config.vm.provision "shell" do |s|
+              s.privileged = false
+              s.inline = "bash /cakebox/console/bin/cake package add $@"
+              s.args = [package]
+            end
+          end
+        end
+
+        # Upload and run user created bash scripts
+        if hashKey == "scripts"
+          hash[hashKey].each do | script |
+            remoteCopy = "/home/vagrant/.cakebox/last-known-script." + File.basename(script.to_s)
+            config.vm.provision "file", source: script, destination: remoteCopy
+            config.vm.provision "shell" do |s|
+              s.privileged = false
+              s.inline = "bash " + remoteCopy
+            end
+          end
         end
       end
     end
 
   end
 end
+
+
 
 # Hash cleaner, removes nil/empty values recursively from a hash.
 #
