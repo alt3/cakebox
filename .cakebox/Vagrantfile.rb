@@ -38,14 +38,9 @@ class Cakebox
 
     # Specify Vagrant post-up message
     config.vm.post_up_message =
-      "Your box is ready and waiting at "+
-      settings['cakebox']['protocol'] + '://' + settings["vm"]["ip"] +
-      "\n\nIf your hosts file contains the following line:\n" +
-      settings["vm"]["ip"] + "\t" + settings["vm"]["hostname"] +
-      "\nyou can access it at " +
-      settings['cakebox']['protocol'] + '://' + settings["vm"]["hostname"] +
-      " as well." +
-      "\n\nTo log into your box you can run: vagrant ssh"
+      "Your box is ready and waiting. You may want to:\n\n" +
+      "- login to your Dashboard by browsing to " + settings['cakebox']['protocol'] + '://' + settings["vm"]["ip"] + "\n" +
+      "- login to your virtual machine by running: vagrant ssh"
 
     # Specify CDN base-box and hostname for the vm
     config.vm.box = "cakebox"
@@ -267,26 +262,28 @@ class Cakebox
     unless settings["extra"].nil?
       settings["extra"].each do | hash |
         hashKey = hash.keys.first
+        unless hash[hashKey].nil?
 
-        # Install additional apt packages from the Ubuntu Package Archive
-        if hashKey == "apt_packages"
-          hash[hashKey].each do | package |
-            config.vm.provision "shell" do |s|
-              s.privileged = false
-              s.inline = "bash /cakebox/console/bin/cake package add $@"
-              s.args = [package]
+          # Install additional apt packages from the Ubuntu Package Archive
+          if hashKey == "apt_packages"
+            hash[hashKey].each do | package |
+              config.vm.provision "shell" do |s|
+                s.privileged = false
+                s.inline = "bash /cakebox/console/bin/cake package add $@"
+                s.args = [package]
+              end
             end
           end
-        end
 
-        # Upload and run user created bash scripts
-        if hashKey == "scripts"
-          hash[hashKey].each do | script |
-            remoteCopy = "/home/vagrant/.cakebox/last-known-script." + File.basename(script.to_s)
-            config.vm.provision "file", source: script, destination: remoteCopy
-            config.vm.provision "shell" do |s|
-              s.privileged = false
-              s.inline = "bash " + remoteCopy
+          # Upload and run user created bash scripts
+          if hashKey == "scripts"
+            hash[hashKey].each do | script |
+              remoteCopy = "/home/vagrant/.cakebox/last-known-script." + File.basename(script.to_s)
+              config.vm.provision "file", source: script, destination: remoteCopy
+              config.vm.provision "shell" do |s|
+                s.privileged = false
+                s.inline = "bash " + remoteCopy
+              end
             end
           end
         end
