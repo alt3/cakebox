@@ -313,8 +313,8 @@ databases:
 
 ## Extra
 
-The ``extra`` section is designed to provide you with total reprovisionable
-personal box customizations.
+The ``extra`` section was made to provide you with fully reprovisionable
+box customizations.
 
 ### Apt Packages
 
