@@ -2,29 +2,32 @@
 
 Follow these instructions to keep your box up-to-date.
 
-## Self-Update
+## Virtual Machine Update
 
-Your box comes with a built-in self-update mechanism that will update
-your Cakebox Dashboard and Console (plus all underlying Composer
-libraries) to the most recent version. To update your box run the
-following command inside your Virtual Machine:
+Your box comes with a ``self-update`` mechanism that will perform various
+system maintenance tasks and will update your Cakebox Commands and Dashboard
+to the latest available version. To update run this inside your virtual machine:
 
 ```bash
 cakebox update self
 ```
 
-You should see something similar to:
+## Local Machine Update
+
+Local machine updates require updating your local ``cakebox`` repository
+and restarting your virtual machine to apply new settings. To update run this
+on your local machine:
 
 ```bash
-$ Updating Cakebox Dashboard and Cakebox Commands
-$ Please wait... this can take a moment
-$ Update completed successfully
+cd cakebox
+git pull
+vagrant reload --provision
 ```
 
-## Virtual Machine Update
+## Box Image Update
 
 Your box uses a cakebox specific [pre-built](https://github.com/alt3/cakebox-builder)
-Vagrant Virtual Machine box-image taking all the hard work out of
+Vagrant Virtual Machine box image taking all the hard work out of
 installing and correctly configuring software like
 [Nginx, PHP and MySQL](features/#software).
 

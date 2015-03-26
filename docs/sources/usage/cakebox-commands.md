@@ -1,6 +1,6 @@
 # Introduction
 
-Your box comes with ``cakebox commands`` that give you the ability to provision
+Your box comes with ``cakebox commands`` that allow you to create
 applications, databases and virtual hosts directly from the command line.
 
 Placeholder for:

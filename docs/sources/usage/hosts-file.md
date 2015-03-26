@@ -1,30 +1,37 @@
 # Introduction
 
-Placeholder for hosts file documentation.
+The webserver inside your virtual machine depends on valid entries in the
+``hosts`` file on your local machine to determine which application/URL to serve.
+These entries are **not inserted automatically**, you will have
+to add them manually.
 
-+ cakebox will NOT automatically update your local hosts file
-+ manually add the URL after provisioning a new application/website
+> **Note:** all cakebox related entries will use the same IP address.
 
-Hosts file example corresponding to examples used in this documentation:
+## Adding Entries
+
+Add new entries by editing the ``hosts`` file on your local machine:
+
+- On Mac OS-X systems: ``/private/etc/hosts``
+- On Linux systems: ``/etc/hosts``
+- On Windows systems: ``c:\windows\system32\drivers\etc\hosts``
+
+> **Note:** Windows users MUST run Notepad as an Administrator (right
+> mouse button on c:\windows\notepad.exe) and then use the File > Open menu
+> options to open the hosts file or they won't be able to save the updated file.
+
+## Examples
+
+Single entry per line:
 
 ```
-10.33.10.10    cakebox    mycake3.app
+10.33.10.10  cakebox
+10.33.10.10  mycake2.app
+10.33.10.10  mycake3.app
 ```
 
-You might consider a multiline approach if your box hosts a lot of applications:
+Multiple entries per line:
 
 ```
-10.33.10.10    cakebox    mycake3.app
-10.33.10.10    mylaravel.app     myother.app     etc.app
+10.33.10.10    cakebox        mycake2.app    mycake3.app
+10.33.10.10    mylaravel.app  my-other.app   etc.app
 ```
-
-## Windows
-
-Windows users MUST run their editor using Administrator credentials or they
-won't be able to save the updated file. When using Notepad to update the hosts
-file:
-
-1. Right mouse click c:\windows\notepad.exe
-2. Choose ``Run as administrator``
-3. Use the File > Open menu options to browse to the hosts file
-4. Update and save the file

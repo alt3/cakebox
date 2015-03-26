@@ -49,7 +49,7 @@ Full documentation [found here](http://cakebox.readthedocs.org/en/latest/).
 
 ## Command Line Provisioning
 
-Provision fully preconfigured applications, databases and virtual hosts
+Create fully preconfigured applications, databases and virtual hosts
 directly from the command line. Currently supports:
 
 + CakePHP 2/3

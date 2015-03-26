@@ -40,7 +40,7 @@ local system where to find the new website:
 Add the following line and save the updated file.
 
 ```
-10.33.10.10     mycake3.app
+10.33.10.10    cakebox    mycake3.app
 ```
 
 You might want to test if your update was

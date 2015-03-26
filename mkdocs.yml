@@ -22,9 +22,10 @@ pages:
 - ['features.md', '', 'Features']
 
 # Usage:
+- ['usage/hosts-file.md', 'Usage', 'Hosts File']
 - ['usage/cakebox-commands.md', 'Usage', 'Cakebox Commands']
 - ['usage/cakebox-yaml.md', 'Usage', 'Cakebox.yaml']
-- ['usage/hosts-file.md', 'Usage', 'Hosts File']
+- ['usage/backups.md', 'Usage', 'Backups']
 - ['usage/logs.md', 'Usage', 'Logs']
 
 # Tutorials:

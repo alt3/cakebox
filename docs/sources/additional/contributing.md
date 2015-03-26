@@ -1,24 +1,29 @@
-# Introduction
 
-Simply put... we need your help to make this a success and would love to
-see your ideas and contributions!
+## Feedback
+
+Report problems, ideas and any other feedback:
+
++ related to your virtual machine [here](https://github.com/alt3/cakebox-console/issues)
++ related to your local machine [here](https://github.com/alt3/cakebox/issues)
+
 
 ## Documentation
 
-Help us improve this documentation by contributing Pull Requests that hold
-changes to the Markdown (.md) files
-located in your local ``cakebox/docs`` folder.
+Help us improve this documentation by updating
+the Markdown files in the ``cakebox/docs`` folder.
 
 > **Become famous:** merged PRs will appear on the Cakebox Dashboard along
 > with your name ;)
 
-## Cakebox Console
+## CakePHP Code
 
-Help us improve the Cakebox Dashboard and Console commands by
-contributing Pull Requests to the [cakebox-console](https://github.com/alt3/cakebox-console)
-project. It contains the CakePHP 3.x sources and could
-probably do with a lot of improvements and refactoring. Don't hold back...
-all help is welcomed!
+The ``CakePHP 3.x`` sources for the Cakebox Commands and Dashboard
+are found in the [cakebox-console](https://github.com/alt3/cakebox-console)
+project and could do with a lot of improvement so don't hold back to
+submit a PR:
+
++ for a new feature or bugfix
++ for one of the existing (``Easy Pick``) issues
 
 > **Become famous:** merged PRs will appear on the Cakebox Dashboard along
 > with your name ;)
@@ -32,15 +37,3 @@ knowledge of
 various [Cookbooks](https://github.com/alt3/cakebox-builder/blob/master/Berksfile).
 Pull Requests for **new** functionality will always be discussed since we aim to
 keep the number of major changes to the box-image to an absolute minimum.
-
-## Compatibility Testing
-
-We are curious to find out on which platforms the cakebox is being used and
-runs on. Let us know if you have successfully completed the
-[Creating Your First Website](tutorials/creating-your-first-website/)
-tutorial and provide us with:
-
-+ the Operating System and version you are using (e.g. Windows 8.1 or Ubuntu 14.04)
-+ your version of VirtualBox
-+ your version of Vagrant
-+ the number of CPUs and amount of memory on your local machine

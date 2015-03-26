@@ -311,10 +311,15 @@ databases:
     options: --username user123 --password pass123
 ```
 
-## Additional Software
+## Extra
 
-Specify Ubuntu Package Archive (apt) packages in the "apt_packages" section
-so they will automatically be installed inside your box.
+The ``extra`` section is designed to provide you with total reprovisionable
+personal box customizations.
+
+### Apt Packages
+
+All Ubuntu Pacakge Archive (apt) packages defined in the ``apt_pacakges``
+section will be installed on your box.
 
 **Please note:**
 
@@ -324,13 +329,27 @@ Option  | Description
 :-------|:-----------
 package | name of the software package as used by ``apt-get install``
 
+
 ```yaml
-apt_packages:
-  - whois
-  - phpmyadmin
-  - dos2unix
+extra:
+  - apt_packages:
+      - whois
+      - phpmyadmin
+      - dos2unix
 ```
 
-## User Scripts
+### Scripts
 
-Placeholder
+All user created bash scripts in the ``scripts`` section will run inside your box
+allowing you to fully customize anything you like while still maintaining
+reprovisionability (solve once, enjoy many).
+
+> **Note:** Make sure your scripts exit
+with 0 on success or vagrant provisioning will fail.
+
+```yaml
+extra:
+  - scripts:
+      - ~/scripts/my-cakebox-tuner.sh
+      - /path/to/another/bash.sh
+```

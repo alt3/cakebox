@@ -33,6 +33,7 @@ pair
 
 Either accept it or load your key into your SSH Agent.
 
+
 ## Slow shared folders
 
-Placeholder
+Placeholder for NFS / Rsync

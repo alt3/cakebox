@@ -47,8 +47,8 @@ Now that your box is up-and-running you might consider:
 
 + [creating your first website](tutorials/creating-your-first-website)
 + [updating your hosts file](usage/hosts-file)
++ [checking the credentials page](additional/credentials) (for usernames and passwords)
 + [experimenting with the ``cakebox commands``](usage/cakebox-commands)
 + [customizing your cakebox](usage/cakebox-yaml)
 + [hardening box logins](tutorials/hardening-box-authentication)
-+ [connecting your Github SSH key](tutorials/connecting-your-github-ssh-key) so you can use private repositories
-+ [checking the credentials page](additional/credentials) for usernames and passwords
++ [connecting your Github SSH key](tutorials/connecting-your-github-ssh-key) (so you can use private repositories)
