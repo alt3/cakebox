@@ -39,8 +39,8 @@ class Cakebox
     # Specify Vagrant post-up message
     config.vm.post_up_message =
       "Your box is ready and waiting.\n\n" +
-      "- Login to your Dashboard by browsing to " + settings['cakebox']['protocol'] + '://' + settings["vm"]["ip"] + "\n" +
-      "- Login to your virtual machine by running: vagrant ssh"
+      "=> Login to your Dashboard by browsing to " + settings['cakebox']['protocol'] + '://' + settings["vm"]["ip"] + "\n" +
+      "=> Login to your virtual machine by running: vagrant ssh"
 
     # Specify CDN base-box and hostname for the vm
     config.vm.box = "cakebox"
