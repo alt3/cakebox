@@ -4,14 +4,22 @@
     - databases
     - virtual hosts
     - fully configured applications
-+ Support for Git hosted applications (public and private)
-+ Support for Composer installed applications
++ Provision applications using Git repositories (both public and private)
++ Provision applications using Composer
 + SSH security done right
 + Highly customizable, Vagrant aware settings
 + Pro tools like Elasticsearch and Logstash
-+ Full functionality on Windows too (SSH, etc)
++ Fully functional on Windows (including SSH)
 + A web interface thrown in as a bonus
 
+## Box architecture
+
+To give you a less abstract idea of how your box operates:
+
+![Cakebox Overview](img/cakebox-overview.png)
+
+> **Note:** the Basebox Build Process is already done for you and is shown for
+completeness only.
 
 ## Software
 
@@ -23,17 +31,18 @@ of your Cakebox Dashboard for an actual list.
 
 ### Cakebox Commands
 
-Use [CakePHP 3 Console](http://book.cakephp.org/3.0/en/console-and-shells.html)
-powered ``cakebox`` shell commands to deploy:
+Use the [CakePHP 3 Console](http://book.cakephp.org/3.0/en/console-and-shells.html)
+powered ``cakebox`` command line to create:
 
 - databases
-- websites
+- virtual hosts
 - fully configured (public and private) applications
 
 ![Cakebox Commands](img/cakebox-commands.png)
 
-> **Pro tip!** These same commands are used by your ``Cakebox.yaml`` file allowing
-> you to easily (re)create exact copies of your customized box if ever needed.
+> **Note:** These commands are also used by your ``Cakebox.yaml`` file allowing
+> you to (re)create exact copies of your customized box including all installed
+> applications, databases and virtual hosts.
 
 ### Cakebox Dashboard
 

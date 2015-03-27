@@ -1,23 +1,25 @@
-Work in progress
+# Introduction
+
+This chapter contains the usernames/passwords used by your box.
 
 ## MySQL
 
-Description | username | password
-:-----------|:---------|:---------
-Root user   | root | secret
-Remote connections | vagrant | vagrant
-Local (per app) databases | cakebox | secret
+Description  | username | password |
+:----------- | :--------- | :--------- |
+MySQL root  | root | secret |
+Databases | cakebox | secret |
+Remote user | vagrant | vagrant |
+
+<break />
+
+> **Note:** you can connect to the MySQL service running on your box from
+> your local machine using ``10.33.10.10:3306`` or ``cakebox:3306`` if you have
+> [updated your local hosts file](usage/hosts-file/).
 
 ## SSH
 
-SSH password logins are disabled so either use:
-
-+ vagrant ssh
-+ the Vagrant insecure private key (.ppk included in project's root directory for Windows Putty users)
-+ generate your own secure ssh key pair and add them to your ``Cakebox.yaml`` file
-
-> Windows specific SSH instructions to be added here.
+See [Connecting To Your Box](tutorials/connecting-to-your-box)
 
 ## Cakebox Dashboard
 
-Authentication not implemented yet
+Dashboard Authentication is not implemented yet. Just press ``Login``.

@@ -21,13 +21,21 @@ pages:
 # Features:
 - ['features.md', '', 'Features']
 
-# Cakebox.yaml:
-- ['configuration/cakebox-yaml.md', '', 'Cakebox.yaml']
+# Usage:
+- ['usage/hosts-file.md', 'Usage', 'Hosts File']
+- ['usage/cakebox-commands.md', 'Usage', 'Cakebox Commands']
+- ['usage/cakebox-yaml.md', 'Usage', 'Cakebox.yaml']
+- ['usage/backups.md', 'Usage', 'Backups']
+- ['usage/logs.md', 'Usage', 'Logs']
 
-# SSH:
-- ['configuration/ssh.md', '', 'SSH']
-
+# Tutorials:
+- ['tutorials/creating-your-first-website.md', 'Tutorials', 'Creating Your First Website']
+- ['tutorials/connecting-to-your-box.md', 'Tutorials', 'Connecting To Your Box']
+- ['tutorials/updating-your-box.md', 'Tutorials', 'Updating Your Box']
+- ['tutorials/hardening-box-authentication.md', 'Tutorials', 'Hardening Box Authentication']
+- ['tutorials/connecting-your-github-ssh-key.md', 'Tutorials', 'Connecting Your Github SSH Key']
 
 # Additional Information:
-- ['additional/credentials.md', 'Additional Information', 'Usernames/Passwords']
+- ['additional/credentials.md', 'Additional Information', 'Credentials']
 - ['additional/known-limitations.md', 'Additional Information', 'Known Limitations']
+- ['additional/contributing.md', 'Additional Information', 'Contributing']

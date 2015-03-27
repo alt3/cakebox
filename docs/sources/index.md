@@ -1,22 +1,26 @@
-# Cakebox 0.1.1-beta
+# Cakebox 1.0-alpha1
+=======
 
-Homestead on steroids!
+Multi-framework PHP development environment.
 
 ## Get productive
 
-Sick and tired of wasting hours on webservers, databases and configuration
-before you can actually start hacking away at that prototype?
+Wasting hours on webservers, databases and configuration
+before you can actually start coding?
 
-No more... from now on simply run this command inside your vagrant box:
+No more... from now on provision fully preconfigured applications, databases
+and virtual hosts **directly from the command line**.
+Currently supports:
 
-```bash
-$ cakebox application add my.app
-```
++ CakePHP 2/3
++ Laravel 5
++ Git
++ Composer
 
-Which will give you:
+## Quickstart
 
-+ a fresh copy of your favorite framework
-+ a new active virtual host
-+ two new databases (one for test purposes)
-+ a fully configured application, connected to your database and ready for
-development
+Up and running in [three simple steps](quickstart/)!
+
+## How to get help, contribute, or provide feedback
+
+See [Contributing](additional/contributing/).
