@@ -1,1 +1,1 @@
-cakebox 1.0-alpha1
+cakebox 1.0-alpha2
