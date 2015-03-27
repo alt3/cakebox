@@ -4,9 +4,11 @@ Follow these instructions to keep your box up-to-date.
 
 ## Virtual Machine Update
 
-Your box comes with a ``self-update`` mechanism that will perform various
-system maintenance tasks and will update your Cakebox Commands and Dashboard
-to the latest available version. To update run this inside your virtual machine:
+A Virtual Machine Update is used for running various system maintenance tasks
+inside your box and updating your Cakebox Commands and Dashboard to the most
+current version.
+
+Run the following command inside your box to apply the update:
 
 ```bash
 cakebox update self
@@ -14,9 +16,10 @@ cakebox update self
 
 ## Local Machine Update
 
-Local machine updates require updating your local ``cakebox`` repository
-and restarting your virtual machine to apply new settings. To update run this
-on your local machine:
+A Local Machine Update is used for adding new Vagrant related functionality
+by updating the ``cakebox`` repository on your local machine.
+
+Run the following commands on your local machine to apply the update:
 
 ```bash
 cd cakebox

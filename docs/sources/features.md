@@ -31,8 +31,8 @@ of your Cakebox Dashboard for an actual list.
 
 ### Cakebox Commands
 
-Use [CakePHP 3 Console](http://book.cakephp.org/3.0/en/console-and-shells.html)
-powered ``cakebox`` shell commands to deploy:
+Use the [CakePHP 3 Console](http://book.cakephp.org/3.0/en/console-and-shells.html)
+powered ``cakebox`` command line to create:
 
 - databases
 - virtual hosts

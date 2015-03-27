@@ -103,13 +103,16 @@ databases:
   - name: test3.db
     options: --username user123 --password pass123
 
-apt_packages:
-  - whois
-  - phpmyadmin
-  - dos2unix
+extra:
+  - apt_packages:
+    - whois
+    - phpmyadmin
+    - dos2unix
 
+  -scripts:
+    - ~/scripts/box-customizer.sh
+    - /path/to/another.sh
 ```
-
 
 
 ## VM
