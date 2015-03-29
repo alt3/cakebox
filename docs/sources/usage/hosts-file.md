@@ -17,7 +17,7 @@ you will be able to connect to your box by name.
 10.33.10.10  cakebox
 ```
 
-> **Note:** just replace cakebox if you are using a different hostname.
+> **Note:** just replace cakebox if you prefer a different hostname.
 
 ## Adding Records
 

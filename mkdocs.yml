@@ -31,6 +31,7 @@ pages:
 # Tutorials:
 - ['tutorials/creating-your-first-website.md', 'Tutorials', 'Creating Your First Website']
 - ['tutorials/connecting-to-your-box.md', 'Tutorials', 'Connecting To Your Box']
+- ['tutorials/connecting-to-your-databases.md', 'Tutorials', 'Connecting To Your Databases']
 - ['tutorials/updating-your-box.md', 'Tutorials', 'Updating Your Box']
 - ['tutorials/hardening-box-authentication.md', 'Tutorials', 'Hardening Box Authentication']
 - ['tutorials/connecting-your-github-ssh-key.md', 'Tutorials', 'Connecting Your Github SSH Key']
