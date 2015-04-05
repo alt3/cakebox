@@ -90,6 +90,8 @@ Remember that you can provision as many applications as you like. They will all
 run parallel inside your box so feel free to create another website to get
 comfortable with the process.
 
-Run ``cakebox application add --help`` to display a list of supported options
-if you want to try provisioning a different website flavor like CakePHP 2.x,
-Laravel or Yii.
+As a closing note you might want to run ``cakebox application add --help``
+inside your virtual machine to display a list of options you can use to e.g.:
+
++ provisioning a different framework flavor like Laravel or Yii
++ using HHVM instead of Nginx
