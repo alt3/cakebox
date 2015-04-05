@@ -1,4 +1,4 @@
-# Cakebox 1.0-alpha2
+# Cakebox 1.0-alpha3
 
 Multi-framework PHP development environment.
 
