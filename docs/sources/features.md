@@ -6,6 +6,7 @@
     - fully configured applications
 + Provision applications using Git repositories (both public and private)
 + Provision applications using Composer
++ Provision directly to Nginx or HHVM
 + SSH security done right
 + Highly customizable, Vagrant aware settings
 + Pro tools like Elasticsearch and Logstash

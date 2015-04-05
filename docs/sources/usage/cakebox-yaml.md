@@ -6,7 +6,7 @@ without losing your:
 
 + virtual machine settings (hostname, IP address, CPUs, memory)
 + databases
-+ virtual hosts
++ virtual hosts (Nginx or HHVM)
 + Git credentials
 + Git installed applications (public and private)
 + Composer installed applications
@@ -68,6 +68,9 @@ synced_folders:
 apps:
   - url: mycake3.app
 
+  - url: mycake3-hhvm.app
+    options: --hhvm
+
   - url: mycake2.app
     options: --majorversion 2 --path /var/www/mycake2.app
 
@@ -75,13 +78,13 @@ apps:
     options: --framework laravel
 
   - url: git-ssh-repository.app
-    options: --source git@github.com:owner/repository.git
+    options: --source git@github.com:owner/repository.git --webroot /var/www/ssh-app/webroot
 
   - url: git-https-repository.app
-    options: --source http://github.com/your-name/repository
+    options: --source http://github.com/your-name/repository --webroot /var/www/ssh-app/public
 
   - url: mycomposer.app
-    options: --source yiisoft/yii2-app-basic
+    options: --source yiisoft/yii2-app-basic --webroot /var/www/yii/public_html
 
 vhosts:
     - url: app1.dev
@@ -243,17 +246,20 @@ options | any combination of options displayed running ``cakebox application add
 apps:
   - url: mycake3.app
 
+  - url: mycake3.app
+    options: --hhvm
+
   - url: mycake2.app
     options: --majorversion 2 --path /var/www/mycake2.app
 
   - url: ssh-cloned.cake3.app
     options: --ssh
 
-  - url: public.app
-    options: --source http://github.com/your-name/repository
+  - url: mypublic.app
+    options: --source http://github.com/your-name/repository --webroot /var/www/mypublic.app/webroot
 
   - url: myprivate.app
-    options: --source git@github.com:your-name/private-repository.git
+    options: --source git@github.com:your-name/private-repository.git  --webroot /var/www/myprivate.app/public
 
   - url: mylaravel.app
     options: --framework laravel
