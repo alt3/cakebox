@@ -10,7 +10,7 @@ Multi-framework PHP development environment.
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
 + [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 1.6.0 or higher
-+ a machine with at least 4GB of memory and 2 CPUs
++ a machine with at least 4GB of memory and 2 Cores
 
 **Windows users**:
 
