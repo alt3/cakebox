@@ -7,7 +7,7 @@ We are currently in alpha so things may break. Help us improve by
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
 + [Vagrant](https://www.vagrantup.com/downloads.html) 1.6.0 or higher
-+ a machine with at least 4GB of memory and 2 CPUs
++ a machine with at least 4GB of memory and 2 Cores
 
 **Windows users**:
 
