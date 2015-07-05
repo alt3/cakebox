@@ -29,20 +29,12 @@ If things went well you should now have two files:
 
 Configure your box to use the new keys for all SSH
 authentication requests by updating the ``security`` section in your
-``Cakebox.yaml`` file. On Mac/Linux it should resemble:
+``Cakebox.yaml`` to resemble:
 
 ```yaml
 security:
   box_public_key: ~/.ssh/cakebox_rsa.pub
   box_private_key: ~/.ssh/cakebox_rsa
-```
-
-On Windows it should look similar to this:
-
-```yaml
-security:
-  box_public_key: /Users/your-name/.ssh/cakebox_rsa.pub
-  box_private_key: /Users/your-name/.ssh/cakebox_rsa
 ```
 
 ## 3. Enable Your Key Pair
@@ -72,4 +64,5 @@ the private key generated in step 2.
 5. Change the Key Comment field to *cakebox-authentication*
 6. Save the key as ``~/.ssh/cakebox_rsa.ppk`` by pressing Save Private Key
 
-You now have a .ppk key to be used in your Putty cakebox connection properties.
+You now have a .ppk key to be used in your
+[Putty cakebox connection properties](http://cakebox.readthedocs.org/en/latest/tutorials/connecting-your-github-ssh-key/#putty-users-windows).
