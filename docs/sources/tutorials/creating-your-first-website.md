@@ -69,7 +69,7 @@ That's all there's to it. You can now open the browser on your local system and
 browse to ``http://mycake3.app``. If things went well you should see something
 similar to this:
 
-![Cakebox Overview](img/fresh-install-cake3.png)
+![Cakebox Overview](../img/fresh-install-cake3.png)
 
 ## Editing Code
 

@@ -3,7 +3,7 @@
 #
 #  Spaced indentation MUST be used or your box will not start!
 #
-#  https://cakebox.readthedocs.org/en/latest/configuration/cakebox-yml
+#  https://cakebox.readthedocs.org/en/latest/usage/cakebox-yaml/
 # ------------------------------------------------------------------------
 vm:
   hostname: cakebox
