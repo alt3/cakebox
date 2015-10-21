@@ -19,6 +19,11 @@ Multi-framework PHP development environment.
 + may need to [enable hardware virtualization](https://www.thomas-krenn.com/en/wiki/Activating_the_Intel_VT_Virtualization_Feature)
 (VT-x)
 
+> **Windows 10 users** running older VirtualBox versions should run
+[this executable](https://www.virtualbox.org/attachment/ticket/14040/VBox-Win10-fix-14040.exe)
+before running `vagrant up` to solve `Failed to create the host-only adapter` errors preventing
+the box to boot.
+
 ## What do you get?
 
 A 64-bit virtual machine running [Ubuntu 14.04.1 LTS](https://wiki.ubuntu.com/LTS)
