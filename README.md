@@ -19,8 +19,10 @@ Multi-framework PHP development environment.
 + may need to [enable hardware virtualization](https://www.thomas-krenn.com/en/wiki/Activating_the_Intel_VT_Virtualization_Feature)
 (VT-x)
 
-> **Windows 10** requires latest versions of VirtualBox and Vagrant plus
-> setting `VBoxManage.exe` compatibility mode to `Windows 8`.
+**Windows 10 users** must additionally:
+- use latest VirtualBox and Vagrant
+- set `VBoxManage.exe` compatibility mode to `Windows 8`
+- apply this [NDIS6 solution](http://stackoverflow.com/questions/33725779/failed-to-open-create-the-internal-network-vagrant-on-windows10) to fix `VERR_INTNET_FLT_IF_NOT_FOUND` error
 
 ## What do you get?
 
