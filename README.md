@@ -9,7 +9,7 @@ Multi-framework PHP development environment.
 ## Requirements
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
-+ [Vagrant](https://www.vagrantup.com/downloads.html) 1.6.0 or higher
++ [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 1.6.0 or higher
 + a machine with at least 4GB of memory and 2 Cores
 
 **Windows users**:
@@ -35,6 +35,7 @@ with a lot of useful [software and features](http://cakebox.readthedocs.org/en/l
 git clone https://github.com/alt3/cakebox.git
 cd cakebox
 cp Cakebox.yaml.default Cakebox.yaml
+vagrant plugin install vagrant-vbguest
 vagrant up
 ```
 
