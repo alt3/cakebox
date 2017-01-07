@@ -14,6 +14,7 @@ class Cakebox
     settings["vm"] =  Hash.new
     settings["vm"]["hostname"] = "cakebox"
     settings["vm"]["ip"] = "10.33.10.10"
+    settings["vm"]["network"] = "private"
     settings["vm"]["memory"] = 1024
     settings["vm"]["cpus"] = 1
     settings["cakebox"] =  Hash.new
@@ -47,8 +48,12 @@ class Cakebox
     config.vm.box_url = "https://alt3-aee.kxcdn.com/cakebox.box"
     config.vm.hostname = settings["vm"]["hostname"]
 
-    # Configure a private network IP (since DHCP is known to cause SSH timeouts)
-    config.vm.network :private_network, ip: settings["vm"]["ip"]
+    # Configure a private or public network IP
+    if settings['vm']['network'] == 'public'
+      config.vm.network :public_network, ip: settings["vm"]["ip"]
+    else
+      config.vm.network :private_network, ip: settings["vm"]["ip"]
+    end
 
     # Optimize box settings
     config.vm.provider "virtualbox" do |vb|
