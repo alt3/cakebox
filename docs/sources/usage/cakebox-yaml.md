@@ -31,6 +31,7 @@ Cakebox.yaml with a lot of different provisioning variations.
 vm:
   hostname: cakebox
   ip: 10.33.10.10
+  network: private
   memory: 2048
   cpus: 1
 
@@ -126,6 +127,7 @@ Option    | Description
 :---------|:------------
 hostname  | hostname used by your box
 ip        | ip-address used to connect to your box
+network   | "private" for localhost access only (default) or "public"
 memory    | amount of memory available to your box (in MB)
 cpus      | number of virtual CPUs available to your box
 
@@ -133,6 +135,7 @@ cpus      | number of virtual CPUs available to your box
 vm:
   hostname: cakebox
   ip: 10.33.10.10
+  network: private
   memory: 2048
   cpus: 1
 ```
