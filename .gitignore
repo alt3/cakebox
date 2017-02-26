@@ -14,3 +14,6 @@
 !mkdocs.yml
 !README.md
 !Vagrantfile
+!.travis.yml
+!Gemfile
+!.rubocop.yml

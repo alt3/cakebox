@@ -1,6 +1,7 @@
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](.cakebox/LICENSE.txt)
+[![Build Status](https://travis-ci.org/alt3/cakebox.svg?style=flat-square)](https://travis-ci.org/alt3/cakebox)
 [![Documentation Status](https://readthedocs.org/projects/cakebox/badge?style=flat-square)](https://cakebox.readthedocs.org)
 [![Total Downloads](https://img.shields.io/packagist/dt/alt3/cakebox-console.svg?style=flat-square)](https://packagist.org/packages/alt3/cakebox-console)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](.cakebox/LICENSE.txt)
 
 # Cakebox
 
