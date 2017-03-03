@@ -1,0 +1,12 @@
+sudo: false
+
+language: ruby
+
+rvm:
+  - 2.2
+  
+matrix:
+  fast_finish: true
+
+script:
+  - bundle exec rubocop

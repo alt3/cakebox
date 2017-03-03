@@ -263,6 +263,12 @@ class Cakebox
       end
     end
 
+    # Install and configure automated backups
+    config.vm.provision "shell" do |s|
+      s.privileged = true
+      s.inline = "bash /cakebox/bash/backup-installer.sh"
+    end
+
     # Install extras
     unless settings["extra"].nil?
       settings["extra"].each do | hash |
