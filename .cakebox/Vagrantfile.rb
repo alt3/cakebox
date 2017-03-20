@@ -65,7 +65,7 @@ class Cakebox
     end
 
     # SSH copy bash aliases file to the box
-    config.vm.provision "file", source: currentFolder + File::SEPARATOR + "aliases", destination: "/home/vagrant/.bash_aliases"
+    config.vm.provision "file", source: currentFolder + File::SEPARATOR + "templates" + File::SEPARATOR + "aliases", destination: "/home/vagrant/.bash_aliases"
 
     # SSH copy local Cakebox.yaml to /home/vagrant/.cakebox when --provision is
     # being used so it can be used for virtual machine information.
@@ -267,6 +267,12 @@ class Cakebox
     config.vm.provision "shell" do |s|
       s.privileged = true
       s.inline = "bash /cakebox/bash/backup-installer.sh"
+    end
+
+    # Update MOTD if local template does not match box file
+    config.vm.provision "shell" do |s|
+      s.privileged = true
+      s.inline = "bash /cakebox/bash/motd-installer.sh"
     end
 
     # Install extras
