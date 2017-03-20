@@ -272,7 +272,7 @@ class Cakebox
     # Update MOTD if local template does not match box file
     config.vm.provision "shell" do |s|
       s.privileged = true
-      s.inline = "bash /cakebox/bash/motd-installer.sh"
+      s.inline = "bash /cakebox/bash/motd-updater.sh"
     end
 
     # Install extras
