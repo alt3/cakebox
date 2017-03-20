@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 EXECUTABLE="/usr/local/bin/multibackup"
-CONFIG_LOCAL="/cakebox/.multibackup.conf"
+CONFIG_LOCAL="/cakebox/templates/.multibackup.conf"
 CONFIG_BOX="/home/vagrant/.multibackup.conf"
 CRON_FILE="/etc/cron.d/backup-liveconfig"
 
