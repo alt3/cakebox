@@ -269,6 +269,12 @@ class Cakebox
       s.inline = "bash /cakebox/bash/backup-installer.sh"
     end
 
+    # Update MOTD if local template does not match box file
+    config.vm.provision "shell" do |s|
+      s.privileged = true
+      s.inline = "bash /cakebox/bash/motd-installer.sh"
+    end
+
     # Install extras
     unless settings["extra"].nil?
       settings["extra"].each do | hash |
