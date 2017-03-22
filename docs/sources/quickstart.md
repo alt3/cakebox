@@ -16,6 +16,12 @@ We are currently in alpha so things may break. Help us improve by
 + may need to [enable hardware virtualization](https://www.thomas-krenn.com/en/wiki/Activating_the_Intel_VT_Virtualization_Feature)
 (VT-x)
 
+**Windows 10 users** should/can additionally:
+
++ use latest Vagrant and VirtualBox >5.0
++ set `VBoxManage.exe` compatibility mode to `Windows 8`
++ apply this [NDIS6 solution](http://stackoverflow.com/questions/33725779/failed-to-open-create-the-internal-network-vagrant-on-windows10) to fix `VERR_INTNET_FLT_IF_NOT_FOUND` error
+
 
 ## What do you get?
 
