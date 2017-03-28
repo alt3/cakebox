@@ -75,14 +75,14 @@ directly from the command line. Currently supports:
 
 ```bash
 # Fresh preconfigured PHP framework applications
-$ cakebox application add mycake3.app
-$ cakebox application add mycake2.app --majorversion 2
-$ cakebox application add mylaravel.app --framework laravel
+$ cakebox application add mycake3.local
+$ cakebox application add mycake2.local --majorversion 2
+$ cakebox application add mylaravel.local --framework laravel
 
 # Git or Composer applications (both public and private)
-$ cakebox application add mypublic.app --source http://github.com/your-name/repository
-$ cakebox application add myprivate.app --source git@github.com:your-name/repository.git
-$ cakebox application add myyii.app --source yiisoft/yii2-app-basic
+$ cakebox application add mypublic.local --source http://github.com/your-name/repository
+$ cakebox application add myprivate.local --source git@github.com:your-name/repository.git
+$ cakebox application add myyii.local --source yiisoft/yii2-app-basic
 
 # Databases and virtual hosts
 $ cakebox database add holiday2015
