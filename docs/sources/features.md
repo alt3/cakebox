@@ -24,8 +24,8 @@ completeness only.
 
 ## Software
 
-Your box runs a 64-bit version of [Ubuntu 14.04.1 LTS](https://wiki.ubuntu.com/LTS)
-and comes with a bunch of useful software. Check the ``Virtual Machine`` section
+Your box runs a 64-bit version of [Ubuntu 16.04 LTS](https://wiki.ubuntu.com/LTS)
+and comes with a bunch of useful software like PHP 7.1. Check the ``Virtual Machine`` section
 of your Cakebox Dashboard for an actual list.
 
 ![Box Software](img/box-software.png)

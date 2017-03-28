@@ -1,6 +1,6 @@
-# Cakebox 1.0-alpha3
+# Cakebox 2.0-beta1
 
-Multi-framework PHP development environment.
+Framework agnostic virtual PHP development environment.
 
 ## Get productive
 

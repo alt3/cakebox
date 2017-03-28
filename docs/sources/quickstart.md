@@ -1,6 +1,6 @@
-## Alpha
+## Beta
 
-We are currently in alpha so things may break. Help us improve by
+We are currently in beta so things may break. Help us improve by
 [reporting problems](https://github.com/alt3/cakebox/issues).
 
 ## Requirements
@@ -25,8 +25,8 @@ We are currently in alpha so things may break. Help us improve by
 
 ## What do you get?
 
-A 64-bit virtual machine running [Ubuntu 14.04.1 LTS](https://wiki.ubuntu.com/LTS)
-with a lot of useful [software and features](features/).
+A 64-bit virtual machine running [Ubuntu 16.04 LTS](https://wiki.ubuntu.com/LTS)
+with a lot of useful [software and features](features/) like PHP 7.1.
 
 ## Installation
 
