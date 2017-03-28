@@ -5,7 +5,7 @@
 
 # Cakebox
 
-Multi-framework PHP development environment.
+Framework agnostic virtual PHP development environment.
 
 ## Requirements
 
@@ -27,8 +27,9 @@ Multi-framework PHP development environment.
 
 ## What do you get?
 
-A 64-bit virtual machine running [Ubuntu 14.04.1 LTS](https://wiki.ubuntu.com/LTS)
-with a lot of useful [software and features](http://cakebox.readthedocs.org/en/latest/features/).
+A 64-bit virtual machine running [Ubuntu 16.04 LTS](https://wiki.ubuntu.com/LTS)
+with a lot of useful [software and features](http://cakebox.readthedocs.org/en/latest/features/)
+like PHP 7.1.
 
 ## Installation
 
@@ -38,6 +39,14 @@ cd cakebox
 cp Cakebox.yaml.default Cakebox.yaml
 vagrant plugin install vagrant-vbguest
 vagrant up
+```
+
+Optionally upgrade your box to Ubuntu 16.04 by running:
+```
+vagrant ssh
+/cakebox/bash/ubuntu-16.sh
+exit
+vagrant reload
 ```
 
 > **Note:** the initial download of the (~2GB) box image could take some time

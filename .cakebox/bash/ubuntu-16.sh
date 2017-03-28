@@ -72,7 +72,7 @@ sudo DEBIAN_FRONTEND='noninteractive' apt-get -y -o Dpkg::Options::='--force-con
 
 ## ============================================
 ## FYI software has already been upgraded here:
-## 
+##
 ## lsb_release -a	=> 16.04.2 LTS
 ## php -v		=> php 7.1.3
 ## hhvm --version	=> hhvm 3.18.1
@@ -175,7 +175,7 @@ sudo rm /etc/apt/apt.conf.d/local
 ## any rogue "previous" processes are killed).
 printf %71s |tr " " "-"
 printf '\n'
-printf "All done, you MUST now restart your vm by running `vagrant reload`";
+printf 'All done, you MUST now restart your vm by running `vagrant reload`';
 printf "on your local machine to complete the upgrade process.\n"
 printf "\n"
 printf "See /var/log/apt/term.log for detailed upgrade information."
