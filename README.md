@@ -10,7 +10,7 @@ Framework agnostic virtual PHP development environment.
 ## Requirements
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
-+ [Vagrant](https://www.vagrantup.com/downloads.htmlhttps://www.virtualbox.org/wiki/Downloads) 1.6.0 or higher
++ [Vagrant](https://www.vagrantup.com/downloads.html) 1.6.0 or higher
 + a machine with at least 4GB of memory and 2 Cores
 
 **Windows users**:
