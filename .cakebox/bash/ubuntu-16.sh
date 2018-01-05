@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 
+source /cakebox/bash/logger.sh
+
 # --------------------------------------------------------------------
 # Perform an in-box upgrade of Ubuntu 14.04 to 16.04 whilst also
 # upgrading all installed software to current versions.
 # --------------------------------------------------------------------
 
+SCRIPTENTRY
+
 ## Exit immediately if already upgrade to 16.04
 if lsb_release -r | grep -q '16.04'; then
   echo "Your cakebox has already been upgraded to 16.04... exiting."
+  INFO "Attempted upgrade when already upgraded"
   exit 0
 fi
 
@@ -144,16 +149,22 @@ sudo apt-get install php7.1-zip --assume-yes
 sudo find /etc/nginx/sites-available/ -type f -exec sed -i 's/php5-fpm/php\/php7.1-fpm/g' {} +
 sudo find /cakebox/console/src/Template/bake/ -type f -exec sed -i 's/php5-fpm/php\/php7.1-fpm/g' {} +
 
+INFO "PHP7.1 Installed"
+
 ## Install nodejs 7 using launchpad ppa
 cd /tmp
 curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+INFO "NodeJS 7 Installed"
 
 ## Install java 1.8 using launchpad ppa
 sudo add-apt-repository ppa:webupd8team/java --yes
 sudo apt-get update
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
 sudo apt-get install oracle-java8-installer --assume-yes
+
+INFO "Java 1.8 Installed"
 
 ## Remove deprecated upstart scripts (since 16.04 uses systemd)
 sudo unlink /etc/init.d/kibana
@@ -183,3 +194,6 @@ printf "\n"
 printf "Happy baking!\n"
 printf %71s |tr " " "-"
 printf '\n'
+INFO 'Ubuntu upgraded to 16.04. Complete process by running `vagrant reload`'
+
+SCRIPTEXIT
