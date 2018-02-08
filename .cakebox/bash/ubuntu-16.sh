@@ -162,8 +162,8 @@ sudo apt-get install php${PHP_VERSION}-xmlwriter --assume-yes
 sudo apt-get install php${PHP_VERSION}-zip --assume-yes
 
 ## Replace php5-fpm in all existing nginx vhosts and cakebox vhost-command templates
-sudo find /etc/nginx/sites-available/ -type f -exec sed -i 's/php5-fpm/php\/php${PHP_VERSION}-fpm/g' {} +
-sudo find /cakebox/console/src/Template/bake/ -type f -exec sed -i 's/php5-fpm/php\/php${PHP_VERSION}-fpm/g' {} +
+sudo find /etc/nginx/sites-available/ -type f -exec sed -i "s/php5-fpm/php\/php${PHP_VERSION}-fpm/g" {} +
+sudo find /cakebox/console/src/Template/bake/ -type f -exec sed -i "s/php5-fpm/php\/php${PHP_VERSION}-fpm/g" {} +
 
 ## Install nodejs 7 using launchpad ppa
 cd /tmp
