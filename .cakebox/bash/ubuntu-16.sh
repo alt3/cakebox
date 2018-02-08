@@ -14,8 +14,8 @@ fi
 ## Give user one more chance to break off the upgrade
 printf %71s |tr " " "-"
 printf '\n'
-echo "This script will upgrade your cakebox from Ubuntu 14.04 to 16.04 and"
-echo "will upgrade all installed software to current versions (PHP 7.1)."
+echo "This script will upgrade your cakebox from Ubuntu 14.04 to 16.04"
+echo "and will upgrade all installed software to current versions."
 echo ""
 echo 'Before upgrading make ABSOLUTELY sure to create a vagrant snapshot'
 echo 'of your current box by running `vagrant snapshot push` on your local'
@@ -35,6 +35,27 @@ else
     exit 0
 fi
 
+## Ask user for the preferred PHP version
+echo "Which PHP version do you want to install:"
+options=("PHP 7.1" "PHP 7.2")
+
+select opt in "${options[@]}"
+do
+    case $opt in
+        "PHP 7.1")
+            PHP_VERSION=7.1
+            break
+            ;;
+        "PHP 7.2")
+            PHP_VERSION=7.2
+            break
+            ;;
+        *) echo invalid option;;
+    esac
+done
+echo "=> installing PHP ${PHP_VERSION}"
+
+## Final chance to abort
 echo -n "Do you want to start your box-upgrade now (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
@@ -47,7 +68,7 @@ fi
 ## Install package containing add-apt-repository command
 sudo apt-get install software-properties-common --assume-yes
 
-## Replace depracted PHP 5.5 source with ppa PHP 7.1 source
+## Replace depracted PHP 5.5 source with ppa PHP 7.x source
 sudo rm /etc/apt/sources.list.d/php5-5.6.list
 sudo add-apt-repository ppa:ondrej/php --yes
 
@@ -73,10 +94,10 @@ sudo DEBIAN_FRONTEND='noninteractive' apt-get -y -o Dpkg::Options::='--force-con
 ## ============================================
 ## FYI software has already been upgraded here:
 ##
-## lsb_release -a	=> 16.04.2 LTS
-## php -v		=> php 7.1.3
-## hhvm --version	=> hhvm 3.18.1
-## nginx -v		=> nginx 1.11.9
+## lsb_release -a    => 16.04.2 LTS
+## php -v        => php 7.x.x
+## hhvm --version    => hhvm 3.18.1
+## nginx -v        => nginx 1.11.9
 ## ============================================
 
 ## Remove no longer required packages and clean up apt
@@ -102,7 +123,7 @@ sudo rm /etc/apt/apt.conf.d/50unattended-upgrades.ucf-dist
 sudo apt-get remove php5-fpm --assume-yes
 
 ## =========================================================
-## Install php7.1-fpm and re-install now missing 7.1 modules
+## Install php7.x-fpm and re-install now missing 7.x modules
 ## =========================================================
 sudo add-apt-repository ppa:ondrej/php --yes
 sudo apt-get update
@@ -110,39 +131,39 @@ sudo apt-get autoremove --assume-yes
 sudo apt-get clean --assume-yes
 sudo apt-get autoclean --assume-yes
 
-sudo apt-get install php7.1-fpm --assume-yes
+sudo apt-get install php${PHP_VERSION}-fpm --assume-yes
 
-sudo apt-get install php7.1-apc --assume-yes
-sudo apt-get install php7.1-bcmath --assume-yes
-sudo apt-get install php7.1-bz2 --assume-yes
-sudo apt-get install php7.1-curl --assume-yes
-sudo apt-get install php7.1-dba --assume-yes
-sudo apt-get install php7.1-dom --assume-yes
-sudo apt-get install php7.1-gd --assume-yes
-sudo apt-get install php7.1-gearman --assume-yes
-sudo apt-get install php7.1-geoip --assume-yes
-sudo apt-get install php7.1-gmp --assume-yes
-sudo apt-get install php7.1-imagick --assume-yes
-sudo apt-get install php7.1-imap --assume-yes
-sudo apt-get install php7.1-intl --assume-yes
-sudo apt-get install php7.1-json --assume-yes
-sudo apt-get install php7.1-mbstring --assume-yes
-sudo apt-get install php7.1-mcrypt --assume-yes
-sudo apt-get install php7.1-memcache --assume-yes
-sudo apt-get install php7.1-memcached --assume-yes
-sudo apt-get install php7.1-mysql --assume-yes
-sudo apt-get install php7.1-mysqli --assume-yes
-sudo apt-get install php7.1-readline --assume-yes
-sudo apt-get install php7.1-redis --assume-yes
-sudo apt-get install php7.1-soap --assume-yes
-sudo apt-get install php7.1-sqlite3 --assume-yes
-sudo apt-get install php7.1-xdebug --assume-yes
-sudo apt-get install php7.1-xmlwriter --assume-yes
-sudo apt-get install php7.1-zip --assume-yes
+sudo apt-get install php${PHP_VERSION}-apc --assume-yes
+sudo apt-get install php${PHP_VERSION}-bcmath --assume-yes
+sudo apt-get install php${PHP_VERSION}-bz2 --assume-yes
+sudo apt-get install php${PHP_VERSION}-curl --assume-yes
+sudo apt-get install php${PHP_VERSION}-dba --assume-yes
+sudo apt-get install php${PHP_VERSION}-dom --assume-yes
+sudo apt-get install php${PHP_VERSION}-gd --assume-yes
+sudo apt-get install php${PHP_VERSION}-gearman --assume-yes
+sudo apt-get install php${PHP_VERSION}-geoip --assume-yes
+sudo apt-get install php${PHP_VERSION}-gmp --assume-yes
+sudo apt-get install php${PHP_VERSION}-imagick --assume-yes
+sudo apt-get install php${PHP_VERSION}-imap --assume-yes
+sudo apt-get install php${PHP_VERSION}-intl --assume-yes
+sudo apt-get install php${PHP_VERSION}-json --assume-yes
+sudo apt-get install php${PHP_VERSION}-mbstring --assume-yes
+sudo apt-get install php${PHP_VERSION}-mcrypt --assume-yes
+sudo apt-get install php${PHP_VERSION}-memcache --assume-yes
+sudo apt-get install php${PHP_VERSION}-memcached --assume-yes
+sudo apt-get install php${PHP_VERSION}-mysql --assume-yes
+sudo apt-get install php${PHP_VERSION}-mysqli --assume-yes
+sudo apt-get install php${PHP_VERSION}-readline --assume-yes
+sudo apt-get install php${PHP_VERSION}-redis --assume-yes
+sudo apt-get install php${PHP_VERSION}-soap --assume-yes
+sudo apt-get install php${PHP_VERSION}-sqlite3 --assume-yes
+sudo apt-get install php${PHP_VERSION}-xdebug --assume-yes
+sudo apt-get install php${PHP_VERSION}-xmlwriter --assume-yes
+sudo apt-get install php${PHP_VERSION}-zip --assume-yes
 
 ## Replace php5-fpm in all existing nginx vhosts and cakebox vhost-command templates
-sudo find /etc/nginx/sites-available/ -type f -exec sed -i 's/php5-fpm/php\/php7.1-fpm/g' {} +
-sudo find /cakebox/console/src/Template/bake/ -type f -exec sed -i 's/php5-fpm/php\/php7.1-fpm/g' {} +
+sudo find /etc/nginx/sites-available/ -type f -exec sed -i "s/php5-fpm/php\/php${PHP_VERSION}-fpm/g" {} +
+sudo find /cakebox/console/src/Template/bake/ -type f -exec sed -i "s/php5-fpm/php\/php${PHP_VERSION}-fpm/g" {} +
 
 ## Install nodejs 7 using launchpad ppa
 cd /tmp
