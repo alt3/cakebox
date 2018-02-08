@@ -6,10 +6,10 @@
 # --------------------------------------------------------------------
 
 ## Exit immediately if already upgrade to 16.04
-# if lsb_release -r | grep -q '16.04'; then
-#   echo "Your cakebox has already been upgraded to 16.04... exiting."
-#   exit 0
-# fi
+if lsb_release -r | grep -q '16.04'; then
+  echo "Your cakebox has already been upgraded to 16.04... exiting."
+  exit 0
+fi
 
 ## Give user one more chance to break off the upgrade
 printf %71s |tr " " "-"
@@ -43,19 +43,19 @@ select opt in "${options[@]}"
 do
     case $opt in
         "PHP 7.1")
-            echo "you chose choice 1"
             PHP_VERSION=7.1
             break
             ;;
         "PHP 7.2")
-            echo "you chose choice 2"
             PHP_VERSION=7.2
             break
             ;;
         *) echo invalid option;;
     esac
 done
+echo "=> installing PHP ${PHP_VERSION}"
 
+## Final chance to abort
 echo -n "Do you want to start your box-upgrade now (y/n)?"
 read answer
 if echo "$answer" | grep -iq "^y" ;then
