@@ -61,6 +61,13 @@ Once provisioning has completed you are ready to:
 - Login to your Virtual Machine using the ``vagrant ssh`` command
 - Login to your Cakebox Dashboard by browsing to [http://10.33.10.10](http://10.33.10.10)
 
+### Troubleshooting
+
+If adding an application fails with `Error: Installation failed: Error composer installing.`, you need to manually set the composer cache directory to the vagrant user again:
+```
+sudo chown vagrant:vagrant /home/vagrant/.composer -R
+```
+
 ## Documentation
 
 Full documentation [found here](http://cakebox.readthedocs.org/en/latest/).
