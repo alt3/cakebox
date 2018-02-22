@@ -50,7 +50,7 @@ exit
 vagrant reload
 ```
 
-You can then chose to upgrade to either PHP 7.1 or PHP 7.2.
+You can then choose to upgrade to either PHP 7.1 or PHP 7.2.
 
 > **Note:** the initial download of the (~2GB) box image could take some time
 > so please be patient.
