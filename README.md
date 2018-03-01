@@ -28,8 +28,7 @@ Framework agnostic virtual PHP development environment.
 ## What do you get?
 
 A 64-bit virtual machine running [Ubuntu 16.04 LTS](https://wiki.ubuntu.com/LTS)
-with a lot of useful [software and features](http://cakebox.readthedocs.org/en/latest/features/)
-like PHP 7.1.
+with a lot of useful [software and features](http://cakebox.readthedocs.org/en/latest/features/).
 
 ## Installation
 
@@ -41,6 +40,8 @@ vagrant plugin install vagrant-vbguest
 vagrant up
 ```
 
+Installed by default: PHP 5.6
+
 Optionally upgrade your box to Ubuntu 16.04 by running:
 ```
 vagrant ssh
@@ -48,6 +49,8 @@ vagrant ssh
 exit
 vagrant reload
 ```
+
+You can then choose to upgrade to either PHP 7.1 or PHP 7.2.
 
 > **Note:** the initial download of the (~2GB) box image could take some time
 > so please be patient.
@@ -57,6 +60,13 @@ Once provisioning has completed you are ready to:
 - [Create your first website](http://cakebox.readthedocs.org/en/latest/tutorials/creating-your-first-website/)
 - Login to your Virtual Machine using the ``vagrant ssh`` command
 - Login to your Cakebox Dashboard by browsing to [http://10.33.10.10](http://10.33.10.10)
+
+### Troubleshooting
+
+If adding an application fails with `Error: Installation failed: Error composer installing.`, you need to manually set the composer cache directory to the vagrant user again:
+```
+sudo chown vagrant:vagrant /home/vagrant/.composer -R
+```
 
 ## Documentation
 

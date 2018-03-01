@@ -9,7 +9,7 @@ vm:
   hostname: cakebox
   ip: 10.33.10.10
   network: private
-  memory: 1024
+  memory: 2048
   cpus: 1
 
 cakebox:
