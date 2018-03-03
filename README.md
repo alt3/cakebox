@@ -7,6 +7,13 @@
 
 Framework agnostic virtual PHP development environment.
 
+## What do you get?
+
+A 64-bit virtual machine running [Ubuntu](https://wiki.ubuntu.com/LTS)
+with PHP and a lot of useful [software and features](http://cakebox.readthedocs.org/en/latest/features/).
+
+> Documentation [found here](http://cakebox.readthedocs.org/en/latest/).
+
 ## Requirements
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
@@ -25,12 +32,9 @@ Framework agnostic virtual PHP development environment.
 - set `VBoxManage.exe` compatibility mode to `Windows 8`
 - apply this [NDIS6 solution](http://stackoverflow.com/questions/33725779/failed-to-open-create-the-internal-network-vagrant-on-windows10) to fix `VERR_INTNET_FLT_IF_NOT_FOUND` error
 
-## What do you get?
-
-A 64-bit virtual machine running [Ubuntu 16.04 LTS](https://wiki.ubuntu.com/LTS)
-with a lot of useful [software and features](http://cakebox.readthedocs.org/en/latest/features/).
-
 ## Installation
+
+> **Please note:** that the initial download of the (~2GB) box image will take some time.
 
 ```bash
 git clone https://github.com/alt3/cakebox.git
@@ -40,9 +44,11 @@ vagrant plugin install vagrant-vbguest
 vagrant up
 ```
 
-Installed by default: PHP 5.6
+After the installation has completed you may either:
 
-Optionally upgrade your box to Ubuntu 16.04 by running:
+1. log in to your box (now running Ubuntu 14.04 and PHP 5.6)
+2. upgrade your box to Ubuntu 16.04 LTS and **PHP 7.1** or **PHP 7.2** by running:
+
 ```
 vagrant ssh
 /cakebox/bash/ubuntu-16.sh
@@ -50,10 +56,7 @@ exit
 vagrant reload
 ```
 
-You can then choose to upgrade to either PHP 7.1 or PHP 7.2.
-
-> **Note:** the initial download of the (~2GB) box image could take some time
-> so please be patient.
+## Additional information
 
 Once provisioning has completed you are ready to:
 
@@ -61,19 +64,7 @@ Once provisioning has completed you are ready to:
 - Login to your Virtual Machine using the ``vagrant ssh`` command
 - Login to your Cakebox Dashboard by browsing to [http://10.33.10.10](http://10.33.10.10)
 
-### Troubleshooting
-
-If adding an application fails with `Error: Installation failed: Error composer installing.`, you need to manually set the composer cache directory to the vagrant user again:
-```
-sudo chown vagrant:vagrant /home/vagrant/.composer -R
-```
-
-## Documentation
-
-Full documentation [found here](http://cakebox.readthedocs.org/en/latest/).
-
-
-## Command Line Provisioning
+### Command Line Provisioning
 
 Create fully preconfigured applications, databases and virtual hosts
 directly from the command line. Currently supports:
@@ -99,7 +90,7 @@ $ cakebox database add holiday2015
 $ cakebox vhost add idea.com /var/www/some-idea
 ```
 
-## Management Dashboard
+### Management Dashboard
 
 Comes with a dashboard for your convenience.
 

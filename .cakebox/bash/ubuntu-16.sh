@@ -191,6 +191,10 @@ sudo apt-get install mongodb-org --assume-yes
 ## Remove temporary workaround to prevent required user-input blocking
 sudo rm /etc/apt/apt.conf.d/local
 
+## Fix vagrant owned composer cache ownership problem
+## https://github.com/alt3/cakebox/issues/94
+sudo chown vagrant:vagrant /home/vagrant/.composer/ -R
+
 ## All done, a reboot is required to take the new 4.4.0-66 kernel into
 ## effect and complete the the upgrade process (also guarantees  that
 ## any rogue "previous" processes are killed).
