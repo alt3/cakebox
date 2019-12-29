@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-source /cakebox/bash/logger.sh
-
 # --------------------------------------------------------------------
 # Creates a new authorized_keys file for the vagrant user with (only)
 # the yaml-specified public key. Thus effectively:
@@ -19,7 +17,6 @@ source /cakebox/bash/logger.sh
 # SSH timeouts running vagrant reload --provision against a running vm )
 # --------------------------------------------------------------------
 
-SCRIPTENTRY
 
 # Convenience variables
 PUBLIC_KEY=$1
@@ -35,43 +32,34 @@ printf "Restricting Cakebox SSH logins\n"
 printf %63s |tr " " "-"
 printf '\n'
 
-INFO "Restricting Cakebox SSH logins"
-
 # Do nothing if yaml-specified public key is already the only key in authorized_keys
 if diff "$AUTHORIZED_KEYS" "$SSH_DIR/$PUBLIC_KEY" >/dev/null ; then
 	echo "* Skipping: SSH logins already require yaml-specified private key ($PRIVATE_KEY)"
-	INFO "Skipping: SSH Logins already require yaml-specified private key ($PRIVATE_KEY)"
 	exit 0
 fi
 
 # Still here, verify the public key is valid before applying (to prevent locking out user)
 echo "* Validating yaml-specified public key ($PUBLIC_KEY)"
-INFO "* Validating yaml-specified public key ($PUBLIC_KEY)"
 OUTPUT=$(ssh-keygen -l -f "$SSH_DIR/$PUBLIC_KEY" 2>&1)
 EXITCODE=$?
 if [ "$EXITCODE" -ne 0 ]; then
 	echo $OUTPUT
 	echo "FATAL: key did not pass validation, make sure it is in OpenSSH format"
-	ERROR "FATAL: key did not pass validation, make sure it is in OpenSSH format"
 	exit 1
 fi
 
 # Make yaml-specified public key the only key in authorized_keys
 echo "* Replacing current public keys in $AUTHORIZED_KEYS"
-INFO "* Replacing current public keys in $AUTHORIZED_KEYS"
 cat "$SSH_DIR/$PUBLIC_KEY" > "$AUTHORIZED_KEYS"
 
 # Remove Vagrant 1.7.x secure private key on host using Synced Folder
 if [ -f "$VAGRANT_17X_KEY" ]; then
 	echo "* Removing Vagrant 1.7.x generated private key"
-	INFO "* Removing Vagrant 1.7.x generated private key"
 	OUTPUT=$(rm "$VAGRANT_17X_KEY" 2>&1)
 	EXITCODE=$?
 	if [ "$EXITCODE" -ne 0 ]; then
 		echo $OUTPUT
-		DEBUG $OUTPUT
 		echo "FATAL: error removing key"
-		ERROR "FATAL: error removing key"
 		exit 1
 	fi
 fi
@@ -79,7 +67,3 @@ fi
 # All done
 echo "* SSH logins now require yaml-specified private key ($PRIVATE_KEY)"
 echo "Command completed successfully"
-
-INFO "* SSH logins now require yaml-specified private key ($PRIVATE_KEY)"
-
-SCRIPTEXIT
