@@ -7,6 +7,8 @@
 
 Framework agnostic virtual PHP development environment.
 
+![Abandoned repository](./abandoned-repo.png "This repository is no longer maintained.")
+
 ## What do you get?
 
 A 64-bit virtual machine running [Ubuntu](https://wiki.ubuntu.com/LTS)
