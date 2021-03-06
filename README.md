@@ -6,6 +6,8 @@
 
 Multi-framework PHP development environment.
 
+![Abandoned repository](./abandoned-repo.png "This repository is no longer maintained.")
+
 ## Requirements
 
 + [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 4.0 or higher
